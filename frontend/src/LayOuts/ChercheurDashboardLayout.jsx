@@ -1,12 +1,27 @@
 import React from "react";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { ChercheurDropdownMenuDemo } from "../LayOuts/drop-down-menu/ChercheurDropDownManu";
 import { useStateContext } from "../Contexts/ContextProvider";
 import { CHERCHEUR_DASHBOARD_ROUTE } from "../router";
 import { Navigate } from "react-router-dom";
 import { GaugeIcon } from "lucide-react";
-import { ChercheurAdministrationSideBar } from "./Chercheur/Administration/ChercheurAdministrationSideBar";
 import { ModeToggle } from "../Components/mode-toggle";
+import { AppSidebar } from "../Components/app-sidebar";
+import {
+    Breadcrumb,
+    BreadcrumbItem,
+    BreadcrumbLink,
+    BreadcrumbList,
+    BreadcrumbPage,
+    BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+import { Separator } from "@/components/ui/separator";
+import {
+    SidebarInset,
+    SidebarProvider,
+    SidebarTrigger,
+} from "@/components/ui/sidebar";
+
 function ChercheurDashboardLayout(props) {
     const { token } = useStateContext();
 
@@ -15,9 +30,10 @@ function ChercheurDashboardLayout(props) {
     }
 
     return (
-        <>
-            <header>
-                <div className="items-center justify-between flex bg-opacity-90 px-12 py-4 mb-4 mx-auto">
+        <div className="flex flex-col h-screen">
+            {/* Header fixe */}
+            <header className="sticky top-0 z-50 bg-background border-b">
+                <div className="items-center justify-between flex bg-opacity-90 px-12 py-4 mx-auto">
                     <div className="text-2xl font-semibold inline-flex items-center">
                         LIMATI
                     </div>
@@ -33,27 +49,64 @@ function ChercheurDashboardLayout(props) {
                                 </Link>
                             </li>
                             <li className="ml-5 px-2 py-1">
-                                <ChercheurDropdownMenuDemo />
-                            </li>
-                            <li className="ml-5 px-2 py-1">
                                 <ModeToggle />
                             </li>
                         </ul>
                     </div>
                 </div>
             </header>
-            <hr />
-            <main className={"mx-auto px-10 space-y-4 py-4"}>
-                <div className="flex">
-                    <div className={"w-full md:w-1/4"}>
-                        <ChercheurAdministrationSideBar />
+
+            {/* Contenu principal avec sidebar */}
+            <div className="flex flex-1 overflow-hidden">
+                <SidebarProvider>
+                    {/* Sidebar fixe */}
+                    <AppSidebar />
+
+                    {/* Zone de contenu scrollable */}
+                    <div className="flex-1 overflow-auto">
+                        <SidebarInset>
+                            <header className="sticky top-0 z-40 bg-background flex h-16 items-center gap-2 px-4">
+                                <div className="flex items-center gap-2">
+                                    <SidebarTrigger className="-ml-1" />
+                                    <Separator
+                                        orientation="vertical"
+                                        className="mr-2 h-4"
+                                    />
+                                </div>
+                            </header>
+                            <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
+                                <Outlet />
+                                <div className="grid auto-rows-min gap-4 md:grid-cols-3">
+                                    <div className="aspect-video rounded-xl bg-muted/50" />
+                                    <div className="aspect-video rounded-xl bg-muted/50" />
+                                    <div className="aspect-video rounded-xl bg-muted/50" />
+                                </div>
+                                <div className="grid auto-rows-min gap-4 md:grid-cols-3">
+                                    <div className="aspect-video rounded-xl bg-muted/50" />
+                                    <div className="aspect-video rounded-xl bg-muted/50" />
+                                    <div className="aspect-video rounded-xl bg-muted/50" />
+                                </div>
+                                <div className="grid auto-rows-min gap-4 md:grid-cols-3">
+                                    <div className="aspect-video rounded-xl bg-muted/50" />
+                                    <div className="aspect-video rounded-xl bg-muted/50" />
+                                    <div className="aspect-video rounded-xl bg-muted/50" />
+                                </div>
+                                <div className="grid auto-rows-min gap-4 md:grid-cols-3">
+                                    <div className="aspect-video rounded-xl bg-muted/50" />
+                                    <div className="aspect-video rounded-xl bg-muted/50" />
+                                    <div className="aspect-video rounded-xl bg-muted/50" />
+                                </div>
+                                <div className="grid auto-rows-min gap-4 md:grid-cols-3">
+                                    <div className="aspect-video rounded-xl bg-muted/50" />
+                                    <div className="aspect-video rounded-xl bg-muted/50" />
+                                    <div className="aspect-video rounded-xl bg-muted/50" />
+                                </div>
+                            </div>
+                        </SidebarInset>
                     </div>
-                    <div className={"w-full md:w-3/4"}>
-                        <Outlet />
-                    </div>
-                </div>
-            </main>
-        </>
+                </SidebarProvider>
+            </div>
+        </div>
     );
 }
 
