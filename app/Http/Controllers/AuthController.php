@@ -13,21 +13,34 @@ class AuthController extends Controller
     public function login(LoginRequest $request)
     {
         $data = $request->validated();
-        
-        if(!Auth::attempt($data)){
-            return response([
-                'message' => 'email or password are wrong'
+
+        if (Auth::guard('admin')->attempt($data)) {
+            $admin = Auth::guard('admin')->user();
+            $token = $admin->createToken('main')->plainTextToken;
+            return response()->json([
+                'user' => $admin,
+                'token' => $token,
+                'role' => 'admin',
             ]);
         }
-        $user = Auth::user();
-        $token = $user->createToken('main')->plainTextToken;
 
-        return response()->json([
-            'user' => $user,
-            'token' => $token
-        ]);
+        if (Auth::guard('web')->attempt($data)) {
+            $user = Auth::guard('web')->user();
+            $token = $user->createToken('main')->plainTextToken;
+            return response()->json([
+                'user' => $user,
+                'token' => $token,
+                'role' => 'user',
+            ]);
+        }
 
+        return response([
+            'message' => 'Email or password incorrect.'
+        ], 422);
     }
+
+
+
 
     public function register(RegisterRequest $request)
     {
@@ -53,6 +66,6 @@ class AuthController extends Controller
 
         $user->currentAccessToken()->delete();
 
-        return response('',204);
+        return response('', 204);
     }
 }

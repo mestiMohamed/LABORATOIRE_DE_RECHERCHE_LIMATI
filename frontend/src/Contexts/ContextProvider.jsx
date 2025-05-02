@@ -5,33 +5,49 @@ import { createContext } from "react";
 const StateContext = createContext({
     user: null,
     token: null,
+    role: null,
     setUser: () => {},
-    setToken: () => {}
+    setToken: () => {},
+    setRole: () => {},
 });
 
-export const ContextProvider = ({children}) => {
+export const ContextProvider = ({ children }) => {
     const [user, setUser] = useState({});
-    const [token, _setToken] = useState(localStorage.getItem('ACCESS_TOKEN'));
+    const [token, _setToken] = useState(localStorage.getItem("ACCESS_TOKEN"));
+    const [role, setRole] = useState(localStorage.getItem("ROLE"));
 
     const setToken = (token) => {
-        _setToken(token)
-        if(token){
-            localStorage.setItem('ACCESS_TOKEN',token);
+        _setToken(token);
+        if (token) {
+            localStorage.setItem("ACCESS_TOKEN", token);
+        } else {
+            localStorage.removeItem("ACCESS_TOKEN");
         }
-        else{
-            localStorage.removeItem('ACCESS_TOKEN');
+    };
+
+    const setRoleSafe = (role) => {
+        setRole(role);
+        if (role) {
+            localStorage.setItem("ROLE", role);
+        } else {
+            localStorage.removeItem("ROLE");
         }
-    }
+    };
+
     return (
-        <StateContext.Provider value={{
-            user,
-            token,
-            setUser,
-            setToken
-        }}>
+        <StateContext.Provider
+            value={{
+                user,
+                token,
+                role,
+                setUser,
+                setToken,
+                setRole: setRoleSafe,
+            }}
+        >
             {children}
         </StateContext.Provider>
-    )
-}
+    );
+};
 
-export const useStateContext = () => useContext(StateContext)
+export const useStateContext = () => useContext(StateContext);

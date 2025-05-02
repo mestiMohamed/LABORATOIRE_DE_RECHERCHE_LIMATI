@@ -6,7 +6,7 @@ import { useStateContext } from "../contexts/contextprovider";
 import { CHERCHEUR_DASHBOARD_ROUTE } from "../router"; // ✅ importer la constante de redirection
 
 function Login(props) {
-    const { setUser, setToken } = useStateContext();
+    const { setUser, setToken, setRole } = useStateContext();
     const navigate = useNavigate(); // ✅ initialiser navigate
 
     const handleSubmit = (data) => {
@@ -15,9 +15,13 @@ function Login(props) {
             .then(({ data }) => {
                 setUser(data.user);
                 setToken(data.token);
+                setRole(data.role); // ✅
 
-                // ✅ Redirection après login réussi
-                navigate(CHERCHEUR_DASHBOARD_ROUTE);
+                if (data.role === "admin") {
+                    navigate("/admin/dashboard");
+                } else {
+                    navigate("/chercheur/dashboard");
+                }
             })
             .catch((err) => {
                 const response = err.response;

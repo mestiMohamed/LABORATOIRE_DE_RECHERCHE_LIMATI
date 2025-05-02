@@ -1,21 +1,19 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, Navigate } from 'react-router-dom';
 import { useStateContext } from '../Contexts/ContextProvider';
-import { Navigate } from 'react-router-dom';
-import { CHERCHEUR_DASHBOARD_ROUTE } from '../router';
 
-function GuestLayout(props) {
+function GuestLayout() {
+    const { token, role } = useStateContext();
 
-    const {token} = useStateContext()
-    if(token) {
-        return <Navigate to={CHERCHEUR_DASHBOARD_ROUTE} />
+    if (token && role === "admin") {
+        return <Navigate to="/admin/dashboard" replace />;
     }
 
-    return (
-        <div>
-            <Outlet />
-        </div>
-    );
+    if (token && role === "user") {
+        return <Navigate to="/chercheur/dashboard" replace />;
+    }
+
+    return <Outlet />;
 }
 
 export default GuestLayout;
