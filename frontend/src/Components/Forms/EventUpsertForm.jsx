@@ -9,6 +9,7 @@ import {
     FormLabel,
     FormMessage,
 } from "../../Components/ui/form.js";
+import { CheckCircle2, XCircle, Loader2 } from "lucide-react";
 import { Input } from "../../Components/ui/input.jsx";
 import { Button } from "../../Components/ui/button.jsx";
 import { Loader, Trash2Icon } from "lucide-react";
@@ -54,41 +55,46 @@ export default function EventUpsertForm({ handleSubmit, values }) {
     const isUpdate = values !== undefined;
 
     const onSubmit = async (values) => {
-        // Show the loader and save its toast ID
         const loaderId = toast.loading(
-            isUpdate ? "Mise à jour..." : "Création en cours...",
-            {
-                duration: Infinity, // Stays until manually dismissed
-            }
+            <div className="flex items-center gap-2">
+                <Loader2 className="h-4 w-4 animate-spin" />
+                {isUpdate ? "Mise à jour en cours..." : "Création en cours..."}
+            </div>,
+            { duration: Infinity }
         );
 
         try {
             const response = await handleSubmit(values);
 
-            // Dismiss the loader once done
-            toast.dismiss(loaderId);
-
-            if (response.status === 200) {
-                toast.success(
-                    isUpdate
-                        ? "Événement mis à jour avec succès!"
-                        : "Événement créé avec succès!",
-                    { duration: 5000 }
-                );
-
+            if ([200, 201].includes(response?.status)) {
                 reset();
-
-                toast.success("Le formulaire a été réinitialisé", {
-                    duration: 3000,
-                });
+                toast.success(
+                    <div className="flex items-center gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-green-500" />
+                        {isUpdate
+                            ? "Événement mis à jour avec succès !"
+                            : "Événement créé avec succès !"}
+                    </div>,
+                    { duration: 3000 }
+                );
+            } else {
+                throw new Error(
+                    response?.data?.message || "Statut inattendu de la réponse"
+                );
             }
         } catch (error) {
-            toast.dismiss(loaderId); // Always clean up loader
+            toast.error(
+                <div className="flex items-center gap-2">
+                    <XCircle className="h-4 w-4 text-red-500" />
+                    {error.response?.data?.errors
+                        ? "Veuillez corriger les erreurs dans le formulaire"
+                        : "Une erreur est survenue. Veuillez réessayer."}
+                </div>,
+                { duration: 5000 }
+            );
 
-            const response = error.response;
-
-            if (response?.data?.errors) {
-                Object.entries(response.data.errors).forEach(
+            if (error.response?.data?.errors) {
+                Object.entries(error.response.data.errors).forEach(
                     ([fieldName, errorMessages]) => {
                         setError(fieldName, {
                             message: Array.isArray(errorMessages)
@@ -97,20 +103,9 @@ export default function EventUpsertForm({ handleSubmit, values }) {
                         });
                     }
                 );
-
-                toast.error(
-                    "Veuillez corriger les erreurs dans le formulaire",
-                    {
-                        duration: 5000,
-                        important: true,
-                    }
-                );
-            } else {
-                toast.error("Une erreur est survenue. Veuillez réessayer.", {
-                    duration: 5000,
-                    important: true,
-                });
             }
+        } finally {
+            toast.dismiss(loaderId); // Ferme le toast de chargement dans tous les cas
         }
     };
 
