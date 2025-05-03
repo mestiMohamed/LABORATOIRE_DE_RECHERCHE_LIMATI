@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use App\Http\Requests\StoreEventRequest;
 use App\Http\Requests\UpdateEventRequest;
+use App\Http\Resources\EventResource;
 
 class EventController extends Controller
 {
@@ -21,7 +22,9 @@ class EventController extends Controller
      */
     public function store(StoreEventRequest $request)
     {
-        //
+        $formFields = $request->validated();
+        $event = Event::create($formFields);
+        return new EventResource($event);
     }
 
     /**
