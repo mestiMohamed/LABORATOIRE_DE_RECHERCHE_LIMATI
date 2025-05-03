@@ -41,6 +41,13 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+.toaster {
+  --normal-bg: var(--popover);
+  --normal-text: var(--popover-foreground);
+  --normal-border: var(--border);
+}
+
+
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);

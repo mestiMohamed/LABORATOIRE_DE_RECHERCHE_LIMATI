@@ -3,16 +3,25 @@ import { RegisterForm } from "../Components/register-form";
 import { useStateContext } from "../Contexts/ContextProvider";
 
 import axiosClient from "../axiosClient";
+import { useNavigate } from "react-router-dom";
 
 function register(props) {
-    const {setUser, setToken} = useStateContext();
+    const { setUser, setToken } = useStateContext();
+    const navigate = useNavigate(); // 👈 pour rediriger
 
     const handleSubmit = (data) => {
         axiosClient
-            .post("/register", data) // Utilise directement les données du formulaire
+            .post("/register", data)
             .then(({ data }) => {
                 setUser(data.user);
                 setToken(data.token);
+
+                // 👇 Redirection selon rôle
+                if (data.role === "admin") {
+                    navigate("/admin/dashboard");
+                } else {
+                    navigate("/chercheur/dashboard");
+                }
             })
             .catch((err) => {
                 const response = err.response;

@@ -7,6 +7,7 @@ import { Navigate } from "react-router-dom";
 import { GaugeIcon } from "lucide-react";
 import { ModeToggle } from "../Components/mode-toggle";
 import { AppSidebar } from "../Components/app-sidebar";
+import {AdminAppSidebar} from "../Components/admin-app-sidebar"
 import {
     Breadcrumb,
     BreadcrumbItem,
@@ -60,7 +61,7 @@ function AdminDashboardLayout(props) {
             <div className="flex flex-1 overflow-hidden">
                 <SidebarProvider>
                     {/* Sidebar fixe */}
-                    <AppSidebar />
+                    <AdminAppSidebar />
 
                     {/* Zone de contenu scrollable */}
                     <div className="flex-1 overflow-auto">
@@ -76,31 +77,6 @@ function AdminDashboardLayout(props) {
                             </header>
                             <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
                                 <Outlet />
-                                <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-                                    <div className="aspect-video rounded-xl bg-muted/50" />
-                                    <div className="aspect-video rounded-xl bg-muted/50" />
-                                    <div className="aspect-video rounded-xl bg-muted/50" />
-                                </div>
-                                <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-                                    <div className="aspect-video rounded-xl bg-muted/50" />
-                                    <div className="aspect-video rounded-xl bg-muted/50" />
-                                    <div className="aspect-video rounded-xl bg-muted/50" />
-                                </div>
-                                <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-                                    <div className="aspect-video rounded-xl bg-muted/50" />
-                                    <div className="aspect-video rounded-xl bg-muted/50" />
-                                    <div className="aspect-video rounded-xl bg-muted/50" />
-                                </div>
-                                <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-                                    <div className="aspect-video rounded-xl bg-muted/50" />
-                                    <div className="aspect-video rounded-xl bg-muted/50" />
-                                    <div className="aspect-video rounded-xl bg-muted/50" />
-                                </div>
-                                <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-                                    <div className="aspect-video rounded-xl bg-muted/50" />
-                                    <div className="aspect-video rounded-xl bg-muted/50" />
-                                    <div className="aspect-video rounded-xl bg-muted/50" />
-                                </div>
                             </div>
                         </SidebarInset>
                     </div>

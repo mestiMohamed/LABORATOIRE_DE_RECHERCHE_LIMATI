@@ -6,6 +6,8 @@ import { RouterProvider } from "react-router-dom";
 import router from "./router.jsx";
 import { ContextProvider } from "./Contexts/ContextProvider.jsx";
 import { ThemeProvider } from "@/components/theme-provider"
+import { Toaster } from "@/components/ui/sonner"
+
 
 createRoot(document.getElementById("root")).render(
     <StrictMode>
@@ -14,5 +16,6 @@ createRoot(document.getElementById("root")).render(
                 <RouterProvider router={router} />
             </ThemeProvider>
         </ContextProvider>
+        <Toaster />
     </StrictMode>
 );
