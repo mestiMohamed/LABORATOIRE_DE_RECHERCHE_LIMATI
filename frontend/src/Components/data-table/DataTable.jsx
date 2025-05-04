@@ -7,12 +7,6 @@ import {
     getPaginationRowModel,
 } from "@tanstack/react-table";
 
-import {
-    DropdownMenu,
-    DropdownMenuCheckboxItem,
-    DropdownMenuContent,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 
 import {
     Table,
@@ -27,7 +21,6 @@ import { Input } from "@/components/ui/input";
 
 import { useState } from "react";
 
-import { Button } from "../ui/button";
 import { DataTableViewOptions } from "./DataTableViewOptions ";
 import { DataTablePagination } from "./DataTablePagination ";
 

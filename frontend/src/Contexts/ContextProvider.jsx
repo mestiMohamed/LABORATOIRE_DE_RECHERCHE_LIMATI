@@ -1,7 +1,8 @@
 import { useContext } from "react";
 import { useState } from "react";
 import { createContext } from "react";
-
+import { useEffect } from "react";
+import axiosClient from "../axiosClient";
 const StateContext = createContext({
     user: null,
     token: null,
@@ -33,6 +34,21 @@ export const ContextProvider = ({ children }) => {
             localStorage.removeItem("ROLE");
         }
     };
+
+    useEffect(() => {
+        if (token && (!user || Object.keys(user).length === 0)) {
+            axiosClient
+                .get("/user")
+                .then(({ data }) => {
+                    setUser(data);
+                })
+                .catch(() => {
+                    setUser({});
+                    setToken(null);
+                    setRoleSafe(null);
+                });
+        }
+    }, [token]);
 
     return (
         <StateContext.Provider

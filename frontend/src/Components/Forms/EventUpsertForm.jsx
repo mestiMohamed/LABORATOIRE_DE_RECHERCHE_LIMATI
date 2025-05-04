@@ -12,19 +12,8 @@ import {
 import { CheckCircle2, XCircle, Loader2 } from "lucide-react";
 import { Input } from "../../Components/ui/input.jsx";
 import { Button } from "../../Components/ui/button.jsx";
-import { Loader, Trash2Icon } from "lucide-react";
-import {
-    RadioGroup,
-    RadioGroupItem,
-} from "../../Components/ui/radio-group.jsx";
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "../../Components/ui/select.jsx";
-import { Textarea } from "../../Components/ui/textarea.jsx";
+import { Loader } from "lucide-react";
+
 import { toast } from "sonner";
 
 const formSchema = z.object({
@@ -65,6 +54,7 @@ export default function EventUpsertForm({ handleSubmit, values }) {
 
         try {
             const response = await handleSubmit(values);
+            console.log("response =", response);
 
             if ([200, 201].includes(response?.status)) {
                 reset();

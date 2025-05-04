@@ -1,8 +1,8 @@
 import axiosClient from "../../../axiosClient";
 
-const EventApi = {
+const ChercheurApi = {
     create: async (payload) => {
-        const response = await axiosClient.post("/admin/events", payload);
+        const response = await axiosClient.post("/admin/users", payload);
         return {
             status: response.status,
             data: response.data,
@@ -10,15 +10,15 @@ const EventApi = {
         };
     },
     all: async () => {
-        const response = await axiosClient.get("/admin/events");
+        const response = await axiosClient.get("/admin/users");
         return {
             status: response.status,
             data: response.data,
             ok: response.status >= 200 && response.status < 300,
         };
     },
-    update: async (id, payload) => {
-        const response = await axiosClient.put(`/admin/events/${id}`, {
+    update: async (id, payload) => {users
+        const response = await axiosClient.put(`/admin/users/${id}`, {
             ...payload,
             id,
         });
@@ -30,7 +30,7 @@ const EventApi = {
     },
 
     delete: async (id) => {
-        return await axiosClient.delete(`/admin/events/${id}`);
+        return await axiosClient.delete(`/admin/users/${id}`);
     },
 };
-export default EventApi;
+export default ChercheurApi;

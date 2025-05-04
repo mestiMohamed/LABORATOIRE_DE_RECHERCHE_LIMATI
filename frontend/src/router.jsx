@@ -8,11 +8,13 @@ import AdminDashboardLayout from "./LayOuts/AdminDashboardLayout.jsx";
 import ProtectedRoute from "./ProtectedRoute.jsx";
 import AdminDashboard from "./LayOuts/Admin/AdminDashboard.jsx";
 import ManageEvents from "./LayOuts/Admin/ManageEvents.jsx";
+import ManageChercheurs from "./LayOuts/Admin/ManageChercheurs.jsx";
 
 const ADMIN_BASE_ROUTE = '/admin';
 export const CHERCHEUR_DASHBOARD_ROUTE = "/chercheur/dashboard";
 export const ADMIN_DASHBOARD_ROUTE = ADMIN_BASE_ROUTE+"/dashboard";
 export const ADMIN_MANAGE_EVENTS_ROUTE = ADMIN_BASE_ROUTE+"/manage-events";
+export const ADMIN_MANAGE_CHERCHEURS_ROUTE = ADMIN_BASE_ROUTE+"/manage-chercheurs";
 
 
 const router = createBrowserRouter([
@@ -51,6 +53,10 @@ const router = createBrowserRouter([
                     {
                         path: ADMIN_MANAGE_EVENTS_ROUTE,
                         element: <ManageEvents />, // remplace peut-être par AdminDashboard ?
+                    },
+                    {
+                        path: ADMIN_MANAGE_CHERCHEURS_ROUTE,
+                        element: <ManageChercheurs />, // remplace peut-être par AdminDashboard ?
                     },
                 ],
             },

@@ -28,9 +28,10 @@ import {
     SheetTrigger,
 } from "@/components/ui/sheet";
 import EventUpsertForm from "../Forms/EventUpsertForm";
+import ChercheurApi from "../services/Api/ChercheurApi";
 
-function AdminEventsList(props) {
-    const AdminEventsColumns = [
+function AdminChercheurList(props) {
+    const AdminChercheurColumns = [
         {
             accessorKey: "id",
             header: ({ column }) => {
@@ -40,48 +41,75 @@ function AdminEventsList(props) {
         {
             accessorKey: "name",
             header: ({ column }) => {
-                return <DataTableColumnHeader column={column} title="Titre" />;
-            },
-        },
-        {
-            accessorKey: "code",
-            header: ({ column }) => {
-                return <DataTableColumnHeader column={column} title="Code" />;
-            },
-        },
-        {
-            accessorKey: "event_type_name",
-            header: ({ column }) => {
                 return (
                     <DataTableColumnHeader
                         column={column}
-                        title="Type d'événement"
+                        title="Nom complet"
                     />
                 );
             },
         },
         {
-            accessorKey: "date_debut",
+            accessorKey: "email",
+            header: ({ column }) => {
+                return <DataTableColumnHeader column={column} title="Email" />;
+            },
+        },
+        {
+            accessorKey: "date_of_birth",
             header: ({ column }) => {
                 return (
                     <DataTableColumnHeader
                         column={column}
-                        title="Date de début"
+                        title="Date de naissance"
                     />
                 );
             },
         },
         {
-            accessorKey: "date_fin",
+            accessorKey: "gender",
+            header: ({ column }) => (
+                <DataTableColumnHeader column={column} title="Sexe" />
+            ),
+            cell: ({ row }) => {
+                const gender = row.original.gender;
+                return gender === "m"
+                    ? "Homme"
+                    : gender === "f"
+                    ? "Femme"
+                    : "Autre";
+            },
+        },
+
+        {
+            accessorKey: "address",
             header: ({ column }) => {
                 return (
-                    <DataTableColumnHeader
-                        column={column}
-                        title="Date de fin"
-                    />
+                    <DataTableColumnHeader column={column} title="Addresse" />
                 );
             },
         },
+        {
+            accessorKey: "blood_type",
+            header: ({ column }) => {
+                return <DataTableColumnHeader column={column} title="Sang" />;
+            },
+        },
+        {
+            accessorKey: "phone",
+            header: ({ column }) => (
+                <DataTableColumnHeader column={column} title="Tel" />
+            ),
+            cell: ({ row }) => {
+                const phone = row.original.phone;
+                // Si le numéro commence par 0, on le remplace par +212
+                if (phone && phone.startsWith("0")) {
+                    return "+212 " + phone.slice(1);
+                }
+                return phone;
+            },
+        },
+
         {
             id: "actions",
             cell: ({ row }) => {
@@ -173,7 +201,7 @@ function AdminEventsList(props) {
                                     <EventUpsertForm
                                         values={row.original}
                                         handleSubmit={(values) => {
-                                            return EventApi.update(
+                                            return ChercheurApi.update(
                                                 id,
                                                 values
                                             ).then((res) => {
@@ -192,13 +220,13 @@ function AdminEventsList(props) {
     ];
     const [data, setData] = useState([]);
     useEffect(() => {
-        EventApi.all().then(({ data }) => setData(data.data));
+        ChercheurApi.all().then(({ data }) => setData(data.data));
     }, []);
     return (
         <div>
-            <DataTable columns={AdminEventsColumns} data={data} />
+            <DataTable columns={AdminChercheurColumns} data={data} />
         </div>
     );
 }
 
-export default AdminEventsList;
+export default AdminChercheurList;
