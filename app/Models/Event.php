@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Event extends Model
 {
-    //
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
@@ -23,6 +22,10 @@ class Event extends Model
         'deleted_at',
         'created_at',
         'updated_at'
+    ];
+
+    protected $casts = [
+        'event_type_id' => 'string',
     ];
 
     public function eventType()

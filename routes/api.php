@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ChercheurController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -19,6 +20,9 @@ Route::middleware('auth:sanctum')->group(function() {
 
 Route::prefix('admin')->group(function () {
     Route::apiResource('events', EventController::class);
+});
+Route::prefix('admin')->group(function () {
+    Route::apiResource('users', ChercheurController::class);
 });
 
 

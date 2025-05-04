@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use App\Http\Requests\StoreEventRequest;
 use App\Http\Requests\UpdateEventRequest;
+use App\Http\Resources\ChercheurResource;
 use App\Http\Resources\EventResource;
+use App\Models\User;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-class EventController extends Controller
+class ChercheurController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,17 +18,17 @@ class EventController extends Controller
     public function index(): AnonymousResourceCollection
     {
         //
-        return EventResource::collection(Event::with('eventType')->get());
+        return ChercheurResource::collection(User::all());
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreEventRequest $request)
+    /*public function store(StoreEventRequest $request)
     {
         $formFields = $request->validated();
         $event = Event::create($formFields);
-        $response = new EventResource($event);
+        $response = new ChercheurResource($event);
         return response()->json([
             'event' => $response,
             'message' => __('Event created successfully')
@@ -36,15 +38,11 @@ class EventController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Event $event)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateEventRequest $request, Event $event)
+    /*public function update(UpdateEventRequest $request, Event $event)
     {
         $formFields = $request->validated();
         $event->update($formFields);
@@ -52,14 +50,14 @@ class EventController extends Controller
             'parent' => $event,
             'message' => __('Event updated successfully')
         ]);
-    }
+    }*/
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Event $event)
+    /*public function destroy(Event $event)
     {
         $event->delete();
-        return new EventResource($event);
-    }
+        return new ChercheurResource($event);
+    }*/
 }
