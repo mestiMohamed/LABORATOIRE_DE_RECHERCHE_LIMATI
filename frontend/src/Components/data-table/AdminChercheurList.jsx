@@ -5,6 +5,8 @@ import EventApi from "../services/Api/EventApi";
 import { DataTableColumnHeader } from "./DataTableHeader";
 import { Button } from "@/components/ui/button";
 
+import { Switch } from "@/components/ui/Switch";
+
 import {
     AlertDialog,
     AlertDialogAction,
@@ -29,6 +31,7 @@ import {
 } from "@/components/ui/sheet";
 import EventUpsertForm from "../Forms/EventUpsertForm";
 import ChercheurApi from "../services/Api/ChercheurApi";
+import ChercheurUpsertForm from "../Forms/ChercheurUpsertForm";
 
 function AdminChercheurList(props) {
     const AdminChercheurColumns = [
@@ -111,6 +114,40 @@ function AdminChercheurList(props) {
         },
 
         {
+            id: "is_active",
+            header: ({ column }) => (
+                <DataTableColumnHeader column={column} title="Actif" />
+            ),
+            cell: ({ row }) => {
+                const user = row.original;
+                const [active, setActive] = useState(user.is_active);
+
+                const handleToggle = async () => {
+                    setActive(!active);
+                    try {
+                        await ChercheurApi.toggleActive(user.id, !active);
+                        toast.success(
+                            `Compte ${
+                                !active ? "activé" : "désactivé"
+                            } avec succès`
+                        );
+                    } catch (error) {
+                        setActive(active); // rollback
+                        toast.error("Erreur lors du changement de statut");
+                    }
+                };
+
+                return (
+                    <Switch
+                        checked={active}
+                        onCheckedChange={handleToggle}
+                        className="data-[state=checked]:bg-green-600"
+                    />
+                );
+            },
+        },
+
+        {
             id: "actions",
             cell: ({ row }) => {
                 const { id, name } = row.original;
@@ -145,25 +182,25 @@ function AdminChercheurList(props) {
                                         onClick={async () => {
                                             const deletingLoader =
                                                 toast.loading(
-                                                    "Deleting in progress..."
+                                                    "Suppression en cours ..."
                                                 );
                                             const {
-                                                data: deletedEvent,
+                                                data: deletedChercheur,
                                                 status,
-                                            } = await EventApi.delete(id);
+                                            } = await ChercheurApi.delete(id);
                                             toast.dismiss(deletingLoader);
                                             if (status === 200) {
                                                 setData(
                                                     data.filter(
-                                                        (event) =>
-                                                            event.id !== id
+                                                        (chercheur) =>
+                                                            chercheur.id !== id
                                                     )
                                                 );
                                                 toast.success(
-                                                    "Evénement supprimé",
+                                                    "Chercheur supprimé",
                                                     {
                                                         description:
-                                                            "Evénement supprimer avec succées!",
+                                                            "Chercheur supprimer avec succées!",
                                                         icon: <Trash2Icon />,
                                                     }
                                                 );
@@ -198,16 +235,93 @@ function AdminChercheurList(props) {
                                         remove your data from our servers.
                                     </SheetDescription>
 
-                                    <EventUpsertForm
+                                    <ChercheurUpsertForm
                                         values={row.original}
-                                        handleSubmit={(values) => {
-                                            return ChercheurApi.update(
-                                                id,
-                                                values
-                                            ).then((res) => {
+                                        handleSubmit={async (
+                                            formData,
+                                            options = {}
+                                        ) => {
+                                            try {
+                                                // Détermine si c'est un FormData (pour les fichiers)
+                                                const isFormData =
+                                                    formData instanceof
+                                                    FormData;
+
+                                                // Configure les headers automatiquement
+                                                const requestOptions = {
+                                                    ...options,
+                                                    headers: {
+                                                        ...options.headers,
+                                                        "Content-Type":
+                                                            isFormData
+                                                                ? "multipart/form-data"
+                                                                : "application/json",
+                                                    },
+                                                };
+
+                                                const result =
+                                                    await ChercheurApi.update(
+                                                        row.original.id,
+                                                        isFormData
+                                                            ? formData
+                                                            : convertToFormData(
+                                                                  formData
+                                                              ),
+                                                        requestOptions
+                                                    );
+
                                                 setOpenUpdateDialog(false);
-                                                return res; // ← tu dois retourner la réponse ici
-                                            });
+
+                                                // Optionnel : actualiser les données si nécessaire
+                                                if (
+                                                    typeof refetch ===
+                                                    "function"
+                                                ) {
+                                                    await refetch();
+                                                }
+
+                                                return result;
+                                            } catch (error) {
+                                                console.error(
+                                                    "Échec de la mise à jour:",
+                                                    {
+                                                        error:
+                                                            error.response
+                                                                ?.data ||
+                                                            error.message,
+                                                        payload: formData,
+                                                    }
+                                                );
+
+                                                // Transforme les erreurs de l'API en format compatible avec react-hook-form
+                                                if (
+                                                    error.response?.data?.errors
+                                                ) {
+                                                    const formErrors = {};
+                                                    Object.entries(
+                                                        error.response.data
+                                                            .errors
+                                                    ).forEach(
+                                                        ([field, messages]) => {
+                                                            formErrors[field] =
+                                                                {
+                                                                    type: "server",
+                                                                    message:
+                                                                        Array.isArray(
+                                                                            messages
+                                                                        )
+                                                                            ? messages.join(
+                                                                                  ", "
+                                                                              )
+                                                                            : messages,
+                                                                };
+                                                        }
+                                                    );
+                                                    throw formErrors;
+                                                }
+
+                                                throw error;
+                                            }
                                         }}
                                     />
                                 </SheetHeader>

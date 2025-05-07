@@ -17,20 +17,27 @@ const ChercheurApi = {
             ok: response.status >= 200 && response.status < 300,
         };
     },
-    update: async (id, payload) => {users
-        const response = await axiosClient.put(`/admin/users/${id}`, {
-            ...payload,
-            id,
-        });
+    update: async (id, payload) => {
+        return await axiosClient.put(`/admin/users/${id}`, {...payload, id})
+      },
+
+    delete: async (id) => {
+        return await axiosClient.delete(`/admin/users/${id}`);
+    },
+
+    // toggle
+    toggleActive: async (id, is_active) => {
+        const response = await axiosClient.patch(
+            `/admin/users/${id}/toggle-active`,
+            {
+                is_active,
+            }
+        );
         return {
             status: response.status,
             data: response.data,
             ok: response.status >= 200 && response.status < 300,
         };
-    },
-
-    delete: async (id) => {
-        return await axiosClient.delete(`/admin/users/${id}`);
     },
 };
 export default ChercheurApi;

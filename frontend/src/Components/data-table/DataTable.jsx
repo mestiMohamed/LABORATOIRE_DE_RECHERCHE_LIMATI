@@ -49,7 +49,7 @@ export function DataTable({ columns, data }) {
         <>
             <div className="flex items-center pb-4">
                 <Input
-                    placeholder="Filter titres..."
+                    placeholder="Filtrer"
                     value={table.getColumn("name")?.getFilterValue() ?? ""}
                     onChange={(event) =>
                         table

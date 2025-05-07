@@ -9,6 +9,8 @@ import { Button } from "../../Components/ui/button";
 import { Plus } from "lucide-react";
 import AdminEventsList from "../../Components/data-table/AdminEventsList";
 import AdminChercheurList from "../../Components/data-table/AdminChercheurList";
+import ChercheurApi from "../../Components/services/Api/ChercheurApi";
+import ChercheurUpsertForm from "../../Components/Forms/ChercheurUpsertForm";
 
 function ManageChercheurs() {
     const { user, setUser } = useStateContext();
@@ -50,8 +52,8 @@ function ManageChercheurs() {
                             Ajouter un nouveau chercheur
                         </h2>
                         <Separator className="my-4" />
-                        <EventUpsertForm
-                            handleSubmit={(values) => EventApi.create(values)}
+                        <ChercheurUpsertForm
+                            handleSubmit={(values) => ChercheurApi.create(values)}
                         />
                     </div>
                 </TabsContent>

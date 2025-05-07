@@ -25,6 +25,9 @@ Route::prefix('admin')->group(function () {
     Route::apiResource('users', ChercheurController::class);
 });
 
+Route::patch('/admin/users/{id}/toggle-active', [\App\Http\Controllers\ChercheurController::class, 'toggleActive']);
+
+
 
 
 Route::post('/login',[AuthController::class,'login']);

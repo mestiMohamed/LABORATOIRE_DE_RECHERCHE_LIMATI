@@ -22,11 +22,15 @@ class StoreEventRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required',
-            'code' => 'required|max:10',
-            'event_type_id' => '',
-            'date_debut' => 'required|date',
-            'date_fin' => 'required|date'
+            'name' => 'required|string|min:2',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:8|confirmed',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg',
+            'date_of_birth' => 'required',
+            'gender' => 'required',
+            'address' => 'required',
+            'blood_type' => 'required',
+            'phone' => 'required',
         ];
     }
 }
