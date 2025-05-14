@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('titre');
             $table->text('contenu')->nullable();
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
-            $table->enum('status', ['publique', 'prive'])->default('prive');;
+            $table->enum('status', ['publique', 'prive'])->default('prive');
             $table->softDeletes();
             $table->timestamps();
         });

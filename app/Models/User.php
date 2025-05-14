@@ -55,4 +55,13 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function equipe()
+    {
+        return $this->belongsTo(Equipe::class);
+    }
+    public function publication()
+    {
+        return $this->belongsTo(Publication::class);
+    }
 }

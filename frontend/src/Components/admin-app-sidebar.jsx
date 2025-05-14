@@ -11,7 +11,9 @@ import {
     Atom,
     AtomIcon,
     Calendar1,
+    Columns3Cog,
     Settings2,
+    Users,
 } from "lucide-react";
 import { SidebarFooter, SidebarHeader } from "@/components/ui/sidebar";
 
@@ -28,6 +30,21 @@ const data = {
             url: "/admin/manage-chercheurs",
             icon: Atom,
         },
+        {
+            title: "Gestion des equipes",
+            url: "/admin/manage-equipes",
+            icon: Users,
+        },
+        {
+            title: "Gestion des projets",
+            url: "/admin/manage-projets",
+            icon: Columns3Cog
+        },
+        {
+            title: "Gestion des publications scientifiques",
+            url: "/admin/manage-publications",
+            icon: Columns3Cog
+        },
     ],
 };
 
@@ -40,7 +57,6 @@ export function AdminAppSidebar({ ...props }) {
         >
             <SidebarContent className="mt-4 space-y-4">
                 <NavMain items={data.navMain} />
-                
             </SidebarContent>
 
             <SidebarFooter className="pb-4">
