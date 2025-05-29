@@ -171,14 +171,22 @@ function AdminEventsList(props) {
                                     </SheetDescription>
 
                                     <EventUpsertForm
-                                        values={row.original}
+                                        values={{
+                                            ...row.original,
+                                            date_debut: new Date(
+                                                row.original.date_debut
+                                            ), // Conversion explicite
+                                            date_fin: new Date(
+                                                row.original.date_fin
+                                            ),
+                                        }}
                                         handleSubmit={(values) => {
                                             return EventApi.update(
                                                 id,
                                                 values
                                             ).then((res) => {
                                                 setOpenUpdateDialog(false);
-                                                return res; // ← tu dois retourner la réponse ici
+                                                return res;
                                             });
                                         }}
                                     />

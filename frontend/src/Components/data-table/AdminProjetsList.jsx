@@ -11,6 +11,8 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 
+import { ScrollArea } from "@/components/ui/scroll-area";
+
 import {
     AlertDialog,
     AlertDialogAction,
@@ -55,15 +57,20 @@ function AdminProjetsList(props) {
         },
         {
             accessorKey: "description",
-            header: ({ column }) => {
+            header: ({ column }) => (
+                <DataTableColumnHeader column={column} title="Description" />
+            ),
+            cell: ({ row }) => {
+                const description = row.getValue("description");
+
                 return (
-                    <DataTableColumnHeader
-                        column={column}
-                        title="Description"
-                    />
+                    <ScrollArea className="h-24 w-full rounded-md p-2 text-sm">
+                        <div className="whitespace-pre-wrap">{description}</div>
+                    </ScrollArea>
                 );
             },
         },
+
         {
             id: "auteur",
             header: ({ column }) => (

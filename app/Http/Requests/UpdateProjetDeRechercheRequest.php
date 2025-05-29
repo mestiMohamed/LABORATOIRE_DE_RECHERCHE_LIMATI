@@ -23,7 +23,12 @@ class UpdateProjetDeRechercheRequest extends FormRequest
     {
         return [
             'name' => 'required|string|min:2',
-            'description' => 'required|string',
+            'description' => 'string',
+            'user_id' => '',
+            'equipe_id' => '',
+            'date_debut' => 'required',
+            'date_fin' => 'required',
+            'status' => 'required',
         ];
     }
 }

@@ -45,10 +45,22 @@ export function LoginForm({ className, onSubmit, ...props }) {
     //
     const handleSubmit = async (values) => {
         try {
-            await onSubmit(values);
-             // onSubmit vient des props
+            await onSubmit(values); // onSubmit vient du parent (Login.jsx)
         } catch (error) {
-            // Gérer les erreurs ici si besoin
+            const status = error?.response?.status;
+            if (status === 422) {
+                setError("email", {
+                    type: "manual",
+                    message: "Email ou mot de passe incorrect",
+                });
+                setError("password", {
+                    type: "manual",
+                    message: "Email ou mot de passe incorrect",
+                });
+            } else {
+                // Optionnel : autre erreur générale
+                console.error("Une erreur est survenue :", error);
+            }
         }
     };
     //

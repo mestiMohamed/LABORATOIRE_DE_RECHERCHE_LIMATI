@@ -45,7 +45,10 @@ function Login() {
                         );
                         setShowDialog(true);
                     } else if (response.status === 422) {
-                        console.log(response.data.errors);
+                        setDialogMessage(
+                            "Email ou mot de passe incorrect."
+                        );
+                        setShowDialog(true);
                     } else {
                         setDialogMessage("Une erreur est survenue. Veuillez réessayer.");
                         setShowDialog(true);

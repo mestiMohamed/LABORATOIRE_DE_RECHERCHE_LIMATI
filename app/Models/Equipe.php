@@ -11,13 +11,8 @@ class Equipe extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'titre',
+        'name',
         'description',
-        'user_id',
-        'equipe_id',
-        'date_debut',
-        'date_fin',
-        ''
     ];
 
     protected $hidden = [

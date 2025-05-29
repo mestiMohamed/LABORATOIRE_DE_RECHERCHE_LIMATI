@@ -33,10 +33,10 @@ import {
     SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet";
-import EventUpsertForm from "../Forms/EventUpsertForm";
-import EquipeApi from "../services/Api/EquipeApi";
-import EquipeUpsertForm from "../Forms/EquipeUpSertForm";
-import PublicationApi from "../services/Api/PubicationApi";
+import PublicationApi from "../services/Api/PublicationApi";
+import { ScrollArea } from "@/components/ui/scroll-area"
+
+import PublicationsUpSertForm from "../Forms/PublicationsUpSertForm";
 
 function AdminPublicationList(props) {
     const AdminPublicationsColumns = [
@@ -47,26 +47,36 @@ function AdminPublicationList(props) {
             },
         },
         {
-            accessorKey: "name",
+            accessorKey: "titre",
             header: ({ column }) => {
                 return <DataTableColumnHeader column={column} title="Titre" />;
             },
         },
         {
             accessorKey: "contenu",
+            header: ({ column }) => (
+                <DataTableColumnHeader column={column} title="Contenu" />
+            ),
+            cell: ({ row }) => {
+                const contenu = row.getValue("contenu");
+
+                return (
+                    <ScrollArea className="h-24 w-full  p-2 text-sm">
+                        <div className="whitespace-pre-wrap">{contenu}</div>
+                    </ScrollArea>
+                );
+            },
+        },
+
+        {
+            accessorKey: "user_id",
             header: ({ column }) => {
                 return (
                     <DataTableColumnHeader
                         column={column}
-                        title="Contenu"
+                        title="Chercheur ID"
                     />
                 );
-            },
-        },
-        {
-            accessorKey: "user_id",
-            header: ({ column }) => {
-                return <DataTableColumnHeader column={column} title="Chercheur ID" />;
             },
         },
 
@@ -165,15 +175,15 @@ function AdminPublicationList(props) {
                                         remove your data from our servers.
                                     </SheetDescription>
 
-                                    <EquipeUpsertForm
+                                    <PublicationsUpSertForm
                                         values={row.original}
                                         handleSubmit={(values) => {
                                             return PublicationApi.update(
-                                                id,
+                                                row.original.id,
                                                 values
                                             ).then((res) => {
                                                 setOpenUpdateDialog(false);
-                                                return res; // ← tu dois retourner la réponse ici
+                                                return res;
                                             });
                                         }}
                                     />

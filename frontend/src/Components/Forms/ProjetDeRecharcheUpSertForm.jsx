@@ -22,35 +22,49 @@ import {
     SelectValue,
 } from "../../Components/ui/select.jsx";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import ChercheurApi from "../services/Api/ChercheurApi.js";
+import EquipeApi from "../services/Api/EquipeApi.js";
 
 export default function ProjetDeRechercheUpSertForm({
     handleSubmit,
     values,
-    users = [],
+    //users = [],
 }) {
     const isUpdate = values !== undefined;
 
-    const formSchema = z.object({
-        name: z.string().min(2, "Le titre est requis"),
-        description: z.string().min(5, "La description est trop courte"),
-        user_id: z.coerce
-            .number()
-            .int()
-            .positive("Sélectionnez un utilisateur"),
-        equipe_id: z.coerce.number().int().positive("Sélectionnez une équipe"),
-        date_debut: z.string().min(1, "Date de début requise"),
-        date_fin: z.string().min(1, "Date de fin requise"),
-        status: z.string().min(1, "Le statut est requis"),
-    });
+    const formSchema = z
+        .object({
+            name: z.string().min(2, "Le titre est requis"),
+            description: z.string().min(5, "La description est trop courte"),
+            user_id: z
+                .union([z.coerce.number().int().positive(), z.literal(null)])
+                .nullable(),
+            equipe_id: z
+                .union([z.coerce.number().int().positive(), z.literal(null)])
+                .nullable(),
+            date_debut: z.string().min(1, "Date de début requise"),
+            date_fin: z.string().min(1, "Date de fin requise"),
+            status: z.string().min(1, "Le statut est requis"),
+        })
+        .refine(
+            (data) =>
+                (data.user_id && !data.equipe_id) ||
+                (!data.user_id && data.equipe_id),
+            {
+                message:
+                    "Un projet doit être attribué soit à un utilisateur, soit à une équipe, pas les deux.",
+                path: ["user_id"], // ou "equipe_id" si tu préfères
+            }
+        );
 
     const form = useForm({
         resolver: zodResolver(formSchema),
         defaultValues: values || {
             titre: "",
             description: "",
-            user_id: undefined,
-            equipe_id: 1,
+            user_id: null,
+            equipe_id: null,
             date_debut: "",
             date_fin: "",
             status: "",
@@ -116,6 +130,22 @@ export default function ProjetDeRechercheUpSertForm({
             toast.dismiss(loaderId);
         }
     };
+    const [users, setUsers] = useState([]);
+
+    useEffect(() => {
+        ChercheurApi.all().then((res) => {
+            console.log("✅ Utilisateurs récupérés :", res.data);
+            setUsers(res.data.data); // ✅ ici on met directement le tableau dans le state
+        });
+    }, []);
+    const [equipes, setEquipes] = useState([]);
+
+    useEffect(() => {
+        EquipeApi.all().then((res) => {
+            console.log("✅ Equipe récupérés :", res.data);
+            setEquipes(res.data.data); // ✅ ici on met directement le tableau dans le state
+        });
+    }, []);
 
     return (
         <Form {...form}>
@@ -159,19 +189,28 @@ export default function ProjetDeRechercheUpSertForm({
                     name="user_id"
                     render={({ field }) => (
                         <FormItem className="w-full">
-                            <FormLabel>Utilisateur</FormLabel>
+                            <FormLabel>Utilisateur (optionnel)</FormLabel>
                             <Select
-                                value={field.value ? String(field.value) : ""}
+                                value={
+                                    field.value !== null
+                                        ? String(field.value)
+                                        : "null"
+                                }
                                 onValueChange={(value) =>
-                                    field.onChange(Number(value))
+                                    field.onChange(
+                                        value === "null" ? null : Number(value)
+                                    )
                                 }
                             >
                                 <FormControl>
                                     <SelectTrigger className="w-full">
-                                        <SelectValue placeholder="Sélectionner un utilisateur" />
+                                        <SelectValue placeholder="Sélectionner un utilisateur (ou aucun)" />
                                     </SelectTrigger>
                                 </FormControl>
                                 <SelectContent>
+                                    <SelectItem value="null">
+                                        Aucun utilisateur
+                                    </SelectItem>
                                     {users.map((user) => (
                                         <SelectItem
                                             key={user.id}
@@ -186,7 +225,48 @@ export default function ProjetDeRechercheUpSertForm({
                         </FormItem>
                     )}
                 />
-                
+
+                <FormField
+                    control={form.control}
+                    name="equipe_id"
+                    render={({ field }) => (
+                        <FormItem className="w-full">
+                            <FormLabel>Équipe (optionnelle)</FormLabel>
+                            <Select
+                                value={
+                                    field.value !== null
+                                        ? String(field.value)
+                                        : "null"
+                                }
+                                onValueChange={(value) =>
+                                    field.onChange(
+                                        value === "null" ? null : Number(value)
+                                    )
+                                }
+                            >
+                                <FormControl>
+                                    <SelectTrigger className="w-full">
+                                        <SelectValue placeholder="Sélectionner une équipe (ou aucune)" />
+                                    </SelectTrigger>
+                                </FormControl>
+                                <SelectContent>
+                                    <SelectItem value="null">
+                                        Aucune équipe
+                                    </SelectItem>
+                                    {equipes.map((equipe) => (
+                                        <SelectItem
+                                            key={equipe.id}
+                                            value={String(equipe.id)}
+                                        >
+                                            {equipe.name}
+                                        </SelectItem>
+                                    ))}
+                                </SelectContent>
+                            </Select>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
 
                 <div className="grid grid-cols-2 gap-4">
                     <FormField

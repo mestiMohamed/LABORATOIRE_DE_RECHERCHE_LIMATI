@@ -12,6 +12,7 @@ import {
     AtomIcon,
     Calendar1,
     Columns3Cog,
+    NotebookPen,
     Settings2,
     Users,
 } from "lucide-react";
@@ -43,7 +44,7 @@ const data = {
         {
             title: "Gestion des publications scientifiques",
             url: "/admin/manage-publications",
-            icon: Columns3Cog
+            icon: NotebookPen
         },
     ],
 };

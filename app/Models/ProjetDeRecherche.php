@@ -2,10 +2,15 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ProjetDeRecherche extends Model
 {
+    use SoftDeletes, HasFactory;
+
+
     protected $fillable = [
         'name',
         'description',
@@ -22,11 +27,7 @@ class ProjetDeRecherche extends Model
         'updated_at'
     ];
 
-    protected $casts = [
-        'date_debut' => 'date',
-        'date_fin' => 'date',
-    ];
-    
+
 
     public function user()
     {

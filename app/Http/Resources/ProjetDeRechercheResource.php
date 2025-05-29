@@ -18,6 +18,9 @@ class ProjetDeRechercheResource extends JsonResource
             'date_debut' => $this->date_debut,
             'date_fin' => $this->date_fin,
             'status' => $this->status,
+
+            'user' => new ChercheurResource($this->whenLoaded('user')),
+            'equipe' => new EquipeResource($this->whenLoaded('equipe')),
         ];
     }
 }

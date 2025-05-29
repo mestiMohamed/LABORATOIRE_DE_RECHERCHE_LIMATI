@@ -8,6 +8,7 @@ use App\Http\Requests\StoreEventRequest;
 use App\Http\Requests\StorePublicationRequest;
 use App\Http\Requests\UpdateEquipeRequest;
 use App\Http\Requests\UpdateEventRequest;
+use App\Http\Requests\UpdatePublicationRequest;
 use App\Http\Resources\EquipeResource;
 use App\Http\Resources\EventResource;
 use App\Http\Resources\PublicationResource;
@@ -51,22 +52,40 @@ class PublicationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateEquipeRequest $request, Equipe $equipe)
+    public function update(UpdatePublicationRequest $request, $id)
     {
+        $publication = Publication::find($id);
+
+        if (!$publication) {
+            return response()->json(['message' => 'Publication introuvable'], 404);
+        }
+
         $formFields = $request->validated();
-        $equipe->update($formFields);
+        $publication->update($formFields);
+
         return response()->json([
-            'parent' => $equipe,
-            'message' => __('Equipe updated successfully')
+            'pub' => $publication,
+            'message' => __('Publication mise à jour avec succès'),
         ]);
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Equipe $equipe)
+    public function destroy($id)
     {
-        $equipe->delete();
-        return new EquipeResource($equipe);
+        $pub = Publication::find($id);
+
+        if (!$pub) {
+            return response()->json(['message' => 'Publication not found'], 404);
+        }
+
+        $pub->delete();
+
+        // Recharger la publication supprimée avec les données soft-deleted
+        $deletedPub = Publication::withTrashed()->find($id);
+
+        return new PublicationResource($deletedPub);
     }
 }

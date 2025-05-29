@@ -8,12 +8,15 @@ use App\Http\Requests\StoreEventRequest;
 use App\Http\Requests\StoreProjetDeRechercheRequest;
 use App\Http\Requests\UpdateEquipeRequest;
 use App\Http\Requests\UpdateEventRequest;
+use App\Http\Requests\UpdateProjetDeRechercheRequest;
 use App\Http\Resources\EquipeResource;
 use App\Http\Resources\EventResource;
 use App\Http\Resources\ProjetDeRechercheResource;
 use App\Models\Equipe;
 use App\Models\ProjetDeRecherche;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class ProjteDeRecherchecontroller extends Controller
 {
@@ -22,8 +25,11 @@ class ProjteDeRecherchecontroller extends Controller
      */
     public function index(): AnonymousResourceCollection
     {
-        return ProjetDeRechercheResource::collection(ProjetDeRecherche::all());
+        return ProjetDeRechercheResource::collection(
+            ProjetDeRecherche::with(['user', 'equipe'])->get()
+        );
     }
+
 
 
     /**
@@ -51,22 +57,65 @@ class ProjteDeRecherchecontroller extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateEquipeRequest $request, Equipe $equipe)
+    public function update(UpdateProjetDeRechercheRequest $request, ProjetDeRecherche $projet)
     {
         $formFields = $request->validated();
-        $equipe->update($formFields);
+        $projet->update($formFields);
         return response()->json([
-            'parent' => $equipe,
-            'message' => __('Equipe updated successfully')
+            'projet' => $projet,
+            'message' => __('Projet updated successfully')
         ]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Equipe $equipe)
+    public function destroy(ProjetDeRecherche $projet)
     {
-        $equipe->delete();
-        return new EquipeResource($equipe);
+        $projet->delete();
+        return new ProjetDeRechercheResource($projet);
+    }
+
+
+    public function parType()
+    {
+        $now = Carbon::now();
+        $startDate = $now->copy()->subMonths(5)->startOfMonth();
+        $endDate = $now->copy()->endOfMonth();
+
+        // Requête optimisée en une seule requête SQL
+        $results = ProjetDeRecherche::query()
+            ->selectRaw('
+            DATE_FORMAT(date_debut, "%Y-%m") as month,
+            SUM(CASE WHEN user_id IS NOT NULL AND equipe_id IS NULL THEN 1 ELSE 0 END) as chercheur,
+            SUM(CASE WHEN equipe_id IS NOT NULL THEN 1 ELSE 0 END) as equipe
+        ')
+            ->whereBetween('date_debut', [$startDate, $endDate])
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get();
+
+        // Générer tous les mois demandés même sans données
+        $months = collect();
+        for ($i = 5; $i >= 0; $i--) {
+            $month = $now->copy()->subMonths($i)->startOfMonth();
+            $months->push([
+                'key' => $month->format('Y-m'),
+                'name' => $month->format('F')
+            ]);
+        }
+
+        // Formater les résultats avec tous les mois
+        $data = $months->map(function ($month) use ($results) {
+            $monthData = $results->firstWhere('month', $month['key']);
+
+            return [
+                'month' => $month['name'],
+                'chercheur' => $monthData ? $monthData->chercheur : 0,
+                'equipe' => $monthData ? $monthData->equipe : 0
+            ];
+        });
+
+        return response()->json($data);
     }
 }

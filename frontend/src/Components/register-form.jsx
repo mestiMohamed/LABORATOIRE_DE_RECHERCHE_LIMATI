@@ -16,6 +16,15 @@ import {
     FormLabel,
     FormMessage,
 } from "@/components/ui/form";
+
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select";
+
 import img from "../assets/logo.png";
 import { Link } from "react-router-dom";
 import { useState } from "react";
@@ -220,20 +229,24 @@ export function RegisterForm({
                                         <FormItem>
                                             <FormLabel>Sexe</FormLabel>
                                             <FormControl>
-                                                <select
-                                                    {...field}
-                                                    className="w-full rounded-md border px-3 py-2"
+                                                <Select
+                                                    onValueChange={
+                                                        field.onChange
+                                                    }
+                                                    value={field.value}
                                                 >
-                                                    <option value="">
-                                                        Sélectionner le sexe
-                                                    </option>
-                                                    <option value="m">
-                                                        Homme
-                                                    </option>
-                                                    <option value="f">
-                                                        Femme
-                                                    </option>
-                                                </select>
+                                                    <SelectTrigger className="w-full">
+                                                        <SelectValue placeholder="Sexe" />
+                                                    </SelectTrigger>
+                                                    <SelectContent>
+                                                        <SelectItem value="m">
+                                                            Homme
+                                                        </SelectItem>
+                                                        <SelectItem value="f">
+                                                            Femme
+                                                        </SelectItem>
+                                                    </SelectContent>
+                                                </Select>
                                             </FormControl>
                                             <FormMessage />
                                         </FormItem>
@@ -265,7 +278,7 @@ export function RegisterForm({
                                                 Groupe sanguin
                                             </FormLabel>
                                             <FormControl>
-                                                <select
+                                                {/*<select
                                                     {...field}
                                                     className="w-full rounded-md border px-3 py-2"
                                                 >
@@ -297,7 +310,46 @@ export function RegisterForm({
                                                     <option value="AB-">
                                                         AB-
                                                     </option>
-                                                </select>
+                                                </select>*/}
+                                                <Select
+                                                    onValueChange={
+                                                        field.onChange
+                                                    }
+                                                    value={field.value}
+                                                >
+                                                    <SelectTrigger className="w-full">
+                                                        <SelectValue
+                                                            placeholder=" Sélectionner un groupe
+                                                        sanguin"
+                                                        />
+                                                    </SelectTrigger>
+                                                    <SelectContent>
+                                                        <SelectItem value="O-">
+                                                            O-
+                                                        </SelectItem>
+                                                        <SelectItem value="O+">
+                                                            O+
+                                                        </SelectItem>
+                                                        <SelectItem value="A+">
+                                                            A+
+                                                        </SelectItem>
+                                                        <SelectItem value="A-">
+                                                            A-
+                                                        </SelectItem>
+                                                        <SelectItem value="B+">
+                                                            B+
+                                                        </SelectItem>
+                                                        <SelectItem value="B-">
+                                                            B-
+                                                        </SelectItem>
+                                                        <SelectItem value="AB+">
+                                                            AB+
+                                                        </SelectItem>
+                                                        <SelectItem value="AB-">
+                                                            AB-
+                                                        </SelectItem>
+                                                    </SelectContent>
+                                                </Select>
                                             </FormControl>
                                             <FormMessage />
                                         </FormItem>

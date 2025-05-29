@@ -22,20 +22,6 @@ import axiosClient from "../../axiosClient";
 import ProjetDeRechercheApi from "../../Components/services/Api/ProjetDeRechercheApi";
 
 function ManageProjets() {
-    const [users, setUsers] = useState([]);
-    useEffect(() => {
-        axiosClient
-            .get("/admin/users")
-            .then((response) => {
-                setUsers(response.data.data || []); // Assure-toi que l'API retourne [{ id, name }]
-            })
-            .catch((error) => {
-                console.error(
-                    "Erreur lors du chargement des types d'événements :",
-                    error
-                );
-            });
-    }, []);
 
     return (
         <div className="p-6">
@@ -78,7 +64,7 @@ function ManageProjets() {
                             handleSubmit={(values) =>
                                 ProjetDeRechercheApi.create(values)
                             }
-                            users={users}
+                         
                         />
                     </div>
                 </TabsContent>

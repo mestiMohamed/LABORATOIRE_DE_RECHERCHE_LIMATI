@@ -7,7 +7,7 @@ import { Button } from "../../Components/ui/button";
 import { Plus } from "lucide-react";
 
 
-import PublicationApi from "../../Components/services/Api/PubicationApi";
+import PublicationApi from "../../Components/services/Api/PublicationApi";
 import PublicationsUpSertForm from "../../Components/Forms/PublicationsUpSertForm";
 import AdminPublicationList from "../../Components/data-table/AdminPublicationList";
 

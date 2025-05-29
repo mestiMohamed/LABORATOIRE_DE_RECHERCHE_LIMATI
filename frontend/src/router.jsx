@@ -12,6 +12,7 @@ import ManageChercheurs from "./LayOuts/Admin/ManageChercheurs.jsx";
 import ManageEquipes from "./LayOuts/Admin/ManageEquipes.jsx";
 import ManageProjets from "./LayOuts/Admin/ManageProjets.jsx";
 import ManagePublications from "./LayOuts/Admin/ManagePublications.jsx";
+import Acceuil from "./views/Acceuil.jsx";
 
 const ADMIN_BASE_ROUTE = '/admin';
 export const CHERCHEUR_DASHBOARD_ROUTE = "/chercheur/dashboard";
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
         path: "/",
         element: <GuestLayout />,
         children: [
+            {
+                path: '/',
+                element: <Acceuil />
+            },
             { path: "login", element: <Login /> },
             { path: "register", element: <Register /> },
         ],
