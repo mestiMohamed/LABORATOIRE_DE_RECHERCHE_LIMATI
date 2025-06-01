@@ -16,6 +16,7 @@ import Acceuil from "./views/Acceuil.jsx";
 import ChercheurManageProjets from "./Components/Chercheur/ChercheurManageProjets.jsx";
 import ChercheurChefManageMembers from "./Components/Chercheur/Chef/ChercheurChefManageMembers.jsx";
 import ChercheurChefManageProjects from "./Components/Chercheur/Chef/ChercheurChefManageProjects.jsx";
+import ChercheurManagePublications from "./Components/Chercheur/ChercheurManagePublications.jsx";
 
 
 const ADMIN_BASE_ROUTE = "/admin";
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
                     {
                         path: CHERCHEUR_MANAGE_PROJETS_ROUTE,
                         element: <ChercheurManageProjets />,
+                    },
+                    {
+                        path: CHERCHEUR_MANAGE_PUBLICATIONS_ROUTE,
+                        element: <ChercheurManagePublications />,
                     },
 
                     // equipe management
