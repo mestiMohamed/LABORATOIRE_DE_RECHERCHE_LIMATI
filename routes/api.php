@@ -17,7 +17,19 @@ Route::middleware('auth:sanctum')->group(function () {
         return $request->user();
     });
 
+    Route::get('/me/publications', [PublicationController::class, 'getMyPublications']);
+    Route::get('/me/projets', [ProjteDeRecherchecontroller::class, 'getMyProject']);
+
+
+
+
     //Route::apiResource('/users',UserController::class);
+});
+
+Route::prefix('equipe')->middleware('auth:sanctum')->group(function () {
+    Route::get('/members', [EquipeController::class, 'getMembers']);
+    Route::get('/publications', [EquipeController::class, 'getPublications']);
+    Route::get('/projets', [EquipeController::class, 'getProjets']);
 });
 
 
@@ -51,7 +63,7 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::get('/events-by-type', [EventController::class, 'eventsByType']);
 //Route::get('chercheurs/count', [AdminStatsController::class, 'countChercheurs']);
 
-Route::group(['prefix' => 'admin', 'middleware' => ['auth:sanctum']], function() {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth:sanctum']], function () {
     // Routes pour les statistiques
     Route::get('chercheurs/count', [AdminStatsController::class, 'countChercheurs']);
     Route::get('projets/count', [AdminStatsController::class, 'countProjets']);
@@ -61,3 +73,4 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:sanctum']], function()
 
 Route::get('/admin/events-by-month', [EventController::class, 'eventsPerMonth']);
 Route::get('/admin/par-type', [ProjteDeRecherchecontroller::class, 'parType']);
+

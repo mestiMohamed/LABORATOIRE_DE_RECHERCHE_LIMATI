@@ -31,7 +31,7 @@ export function NavMain({
                 tooltip={item.title}
                 className={item.isActive ? "bg-muted" : ""}
               >
-                {item.icon && <item.icon className="mr-2 !h-6 !w-6" />}
+                {item.icon && <item.icon className="mr-2 h-4 w-4" />}
                 <span>{item.title}</span>
               </SidebarMenuButton>
             </Link>

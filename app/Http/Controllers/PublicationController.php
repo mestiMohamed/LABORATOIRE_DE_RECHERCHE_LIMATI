@@ -13,6 +13,7 @@ use App\Http\Resources\EquipeResource;
 use App\Http\Resources\EventResource;
 use App\Http\Resources\PublicationResource;
 use App\Models\Equipe;
+use Illuminate\Http\Request;
 use App\Models\Publication;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
@@ -87,5 +88,16 @@ class PublicationController extends Controller
         $deletedPub = Publication::withTrashed()->find($id);
 
         return new PublicationResource($deletedPub);
+    }
+
+
+
+    public function getMyPublications(Request $request)
+    {
+        $user = $request->user();
+
+        $publications = Publication::with('user')->where('user_id', $user->id)->get();
+
+        return PublicationResource::collection($publications);
     }
 }

@@ -32,5 +32,14 @@ const PublicationApi = {
     delete: async (id) => {
         return await axiosClient.delete(`/admin/publications/${id}`);
     },
+
+    mine: async () => {
+        const response = await axiosClient.get("/me/publications");
+        return {
+            status: response.status,
+            data: response.data,
+            ok: response.status >= 200 && response.status < 300,
+        };
+    },
 };
 export default PublicationApi;

@@ -10,10 +10,14 @@ import { TeamSwitcher } from "@/components/team-switcher";
 import {
     Atom,
     AtomIcon,
+    BookText,
     Calendar1,
+    CalendarCog,
     Columns3Cog,
+    FolderCog,
     NotebookPen,
     Settings2,
+    UserCog,
     Users,
 } from "lucide-react";
 import { SidebarFooter, SidebarHeader } from "@/components/ui/sidebar";
@@ -24,12 +28,12 @@ const data = {
         {
             title: "Gestion des événements",
             url: "/admin/manage-events",
-            icon: Calendar1,
+            icon: CalendarCog,
         },
         {
             title: "Gestion des chercheurs",
             url: "/admin/manage-chercheurs",
-            icon: Atom,
+            icon: UserCog,
         },
         {
             title: "Gestion des equipes",
@@ -39,12 +43,12 @@ const data = {
         {
             title: "Gestion des projets",
             url: "/admin/manage-projets",
-            icon: Columns3Cog
+            icon: FolderCog
         },
         {
             title: "Gestion des publications scientifiques",
             url: "/admin/manage-publications",
-            icon: NotebookPen
+            icon: BookText
         },
     ],
 };

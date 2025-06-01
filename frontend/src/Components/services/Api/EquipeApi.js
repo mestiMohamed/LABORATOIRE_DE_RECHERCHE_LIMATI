@@ -32,5 +32,26 @@ const EquipeApi = {
     delete: async (id) => {
         return await axiosClient.delete(`/admin/equipes/${id}`);
     },
+
+    //equipe Chef
+
+    getMembers: async () => {
+        const response = await axiosClient.get("/equipe/members");
+        return {
+            status: response.status,
+            data: response.data,
+            ok: response.status >= 200 && response.status < 300,
+        };
+    },
+
+
+    getProjets: async () => {
+        const response = await axiosClient.get("/equipe/projets");
+        return {
+            status: response.status,
+            data: response.data,
+            ok: response.status >= 200 && response.status < 300,
+        };
+    },
 };
 export default EquipeApi;

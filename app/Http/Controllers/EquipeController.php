@@ -66,4 +66,35 @@ class EquipeController extends Controller
         $equipe->delete();
         return new EquipeResource($equipe);
     }
+
+    public function getMembers()
+    {
+        $user = auth()->user();
+
+        // Une ou plusieurs équipes (au cas où il est chef de plusieurs)
+        $equipes = Equipe::with('membres')->where('chef_id', $user->id)->get();
+
+        $membres = $equipes->flatMap(function ($equipe) {
+            return $equipe->membres;
+        })->unique('id')->values();
+
+        return response()->json($membres);
+    }
+
+
+   
+
+
+
+    public function getProjets()
+    {
+        $user = auth()->user();
+        $equipes = Equipe::with('projets')->where('chef_id', $user->id)->get();
+
+        $projets = $equipes->flatMap(function ($equipe) {
+            return $equipe->projets;
+        })->values();
+
+        return response()->json($projets);
+    }
 }

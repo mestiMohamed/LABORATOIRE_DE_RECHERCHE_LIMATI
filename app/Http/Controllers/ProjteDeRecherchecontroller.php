@@ -16,6 +16,8 @@ use App\Models\Equipe;
 use App\Models\ProjetDeRecherche;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Carbon;
+use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\DB;
 
 class ProjteDeRecherchecontroller extends Controller
@@ -117,5 +119,14 @@ class ProjteDeRecherchecontroller extends Controller
         });
 
         return response()->json($data);
+    }
+
+    public function getMyProject(Request $request)
+    {
+        $user = $request->user();
+
+        $projets = ProjetDeRecherche::with('user')->where('user_id', $user->id)->get();
+
+        return ProjetDeRechercheResource::collection($projets);
     }
 }

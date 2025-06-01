@@ -34,11 +34,11 @@ import {
     SheetTrigger,
 } from "@/components/ui/sheet";
 import PublicationApi from "../services/Api/PublicationApi";
-import { ScrollArea } from "../../Components/ui/scroll-area"
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 import PublicationsUpSertForm from "../Forms/PublicationsUpSertForm";
 
-function AdminPublicationList(props) {
+function ChercheurPublicationList(props) {
     const AdminPublicationsColumns = [
         {
             accessorKey: "id",
@@ -61,21 +61,9 @@ function AdminPublicationList(props) {
                 const contenu = row.getValue("contenu");
 
                 return (
-                    <ScrollArea className="h-24 w-full rounded-md p-2 text-sm">
+                    <ScrollArea className="h-24 w-full  p-2 text-sm">
                         <div className="whitespace-pre-wrap">{contenu}</div>
                     </ScrollArea>
-                );
-            },
-        },
-
-        {
-            accessorKey: "user_id",
-            header: ({ column }) => {
-                return (
-                    <DataTableColumnHeader
-                        column={column}
-                        title="Chercheur ID"
-                    />
                 );
             },
         },
@@ -197,8 +185,11 @@ function AdminPublicationList(props) {
     ];
     const [data, setData] = useState([]);
     useEffect(() => {
-        PublicationApi.all().then(({ data }) => setData(data.data));
+        PublicationApi.mine().then(({ data }) => {
+            setData(data.data);
+        });
     }, []);
+
     return (
         <div>
             <DataTable columns={AdminPublicationsColumns} data={data} />
@@ -206,4 +197,4 @@ function AdminPublicationList(props) {
     );
 }
 
-export default AdminPublicationList;
+export default ChercheurPublicationList;

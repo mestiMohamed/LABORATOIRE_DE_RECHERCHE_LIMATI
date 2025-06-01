@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
-import { ChercheurDropdownMenuDemo } from "../LayOuts/drop-down-menu/ChercheurDropDownManu";
+import { ChercheurDropdownMenuDemo } from "./drop-down-menu/ChercheurDropDownManu";
 import { useStateContext } from "../Contexts/ContextProvider";
 import { CHERCHEUR_DASHBOARD_ROUTE } from "../router";
 import { Navigate } from "react-router-dom";
@@ -74,33 +74,8 @@ function ChercheurDashboardLayout(props) {
                                     />
                                 </div>
                             </header>
-                            <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
+                            <div className="flex flex-1 flex-col gap-4 p-4 pt-0 mb-20">
                                 <Outlet />
-                                <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-                                    <div className="aspect-video rounded-xl bg-muted/50" />
-                                    <div className="aspect-video rounded-xl bg-muted/50" />
-                                    <div className="aspect-video rounded-xl bg-muted/50" />
-                                </div>
-                                <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-                                    <div className="aspect-video rounded-xl bg-muted/50" />
-                                    <div className="aspect-video rounded-xl bg-muted/50" />
-                                    <div className="aspect-video rounded-xl bg-muted/50" />
-                                </div>
-                                <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-                                    <div className="aspect-video rounded-xl bg-muted/50" />
-                                    <div className="aspect-video rounded-xl bg-muted/50" />
-                                    <div className="aspect-video rounded-xl bg-muted/50" />
-                                </div>
-                                <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-                                    <div className="aspect-video rounded-xl bg-muted/50" />
-                                    <div className="aspect-video rounded-xl bg-muted/50" />
-                                    <div className="aspect-video rounded-xl bg-muted/50" />
-                                </div>
-                                <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-                                    <div className="aspect-video rounded-xl bg-muted/50" />
-                                    <div className="aspect-video rounded-xl bg-muted/50" />
-                                    <div className="aspect-video rounded-xl bg-muted/50" />
-                                </div>
                             </div>
                         </SidebarInset>
                     </div>

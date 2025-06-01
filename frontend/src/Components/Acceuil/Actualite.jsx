@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Button } from "@/components/ui/button";
+import { motion, useInView } from "framer-motion";
 import {
     Card,
     CardContent,
@@ -9,32 +10,42 @@ import {
     CardTitle,
 } from "@/components/ui/card";
 
-function ActualiteCard({ title, date, description, link, image }) {
+function ActualiteCard({ title, date, description, link, image, index }) {
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true });
+
     return (
-        <Card className="w-[350px]">
-            <CardHeader>
-                <CardTitle>{title}</CardTitle>
-                <CardDescription>{date}</CardDescription>
-            </CardHeader>
-            <CardContent>
-                {image && (
-                    <img
-                        src={image}
-                        alt={title}
-                        className="mb-4 w-full h-40 object-cover rounded-md"
-                    />
-                )}
-                <p className="text-sm text-gray-700">{description}</p>
-            </CardContent>
-            <CardFooter>
-                <Button
-                    variant="link"
-                    className="text-orange-600 p-0 h-auto underline underline-offset-4 text-sm"
-                >
-                    {link}
-                </Button>
-            </CardFooter>
-        </Card>
+        <motion.div
+            ref={ref}
+            initial={{ opacity: 0, y: 50 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 1, delay: index * 0.1 }}
+        >
+            <Card className="w-[350px] h-[500px] flex flex-col justify-between">
+                <CardHeader>
+                    <CardTitle>{title}</CardTitle>
+                    <CardDescription>{date}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                    {image && (
+                        <img
+                            src={image}
+                            alt={title}
+                            className="mb-4 w-full h-40 object-cover rounded-md"
+                        />
+                    )}
+                    <p className="text-sm text-gray-700">{description}</p>
+                </CardContent>
+                <CardFooter>
+                    <Button
+                        variant="link"
+                        className="inline-block text-sm text-orange-600 dark:text-teal-400 underline underline-offset-4 hover:text-orange-700 dark:hover:text-teal-300 transition-colors"
+                    >
+                        {link}
+                    </Button>
+                </CardFooter>
+            </Card>
+        </motion.div>
     );
 }
 

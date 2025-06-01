@@ -13,26 +13,46 @@ import ManageEquipes from "./LayOuts/Admin/ManageEquipes.jsx";
 import ManageProjets from "./LayOuts/Admin/ManageProjets.jsx";
 import ManagePublications from "./LayOuts/Admin/ManagePublications.jsx";
 import Acceuil from "./views/Acceuil.jsx";
+import ChercheurManageProjets from "./Components/Chercheur/ChercheurManageProjets.jsx";
+import ChercheurChefManageMembers from "./Components/Chercheur/Chef/ChercheurChefManageMembers.jsx";
+import ChercheurChefManageProjects from "./Components/Chercheur/Chef/ChercheurChefManageProjects.jsx";
 
-const ADMIN_BASE_ROUTE = '/admin';
+
+const ADMIN_BASE_ROUTE = "/admin";
+const CHERCHEUR_BASE_ROUTE = "/chercheur";
+const EQUIPE_BASE_ROUTE = "/equipe";
 export const CHERCHEUR_DASHBOARD_ROUTE = "/chercheur/dashboard";
-export const ADMIN_DASHBOARD_ROUTE = ADMIN_BASE_ROUTE+"/dashboard";
-export const ADMIN_MANAGE_EVENTS_ROUTE = ADMIN_BASE_ROUTE+"/manage-events";
-export const ADMIN_MANAGE_CHERCHEURS_ROUTE = ADMIN_BASE_ROUTE+"/manage-chercheurs";
-export const ADMIN_MANAGE_EQUIPES_ROUTE = ADMIN_BASE_ROUTE+"/manage-equipes";
-export const ADMIN_MANAGE_PROJETS_ROUTE = ADMIN_BASE_ROUTE+"/manage-projets";
-export const ADMIN_MANAGE_PUBLICATIONS_ROUTE = ADMIN_BASE_ROUTE+"/manage-publications";
+export const ADMIN_DASHBOARD_ROUTE = ADMIN_BASE_ROUTE + "/dashboard";
+export const ADMIN_MANAGE_EVENTS_ROUTE = ADMIN_BASE_ROUTE + "/manage-events";
+export const ADMIN_MANAGE_CHERCHEURS_ROUTE =
+    ADMIN_BASE_ROUTE + "/manage-chercheurs";
+export const ADMIN_MANAGE_EQUIPES_ROUTE = ADMIN_BASE_ROUTE + "/manage-equipes";
+export const ADMIN_MANAGE_PROJETS_ROUTE = ADMIN_BASE_ROUTE + "/manage-projets";
+export const ADMIN_MANAGE_PUBLICATIONS_ROUTE =
+    ADMIN_BASE_ROUTE + "/manage-publications";
+export const CHERCHEUR_MANAGE_PUBLICATIONS_ROUTE =
+    CHERCHEUR_BASE_ROUTE + "/manage-publications";
+export const CHERCHEUR_MANAGE_PROJETS_ROUTE =
+    CHERCHEUR_BASE_ROUTE + "/manage-projets";
 
+// equipe
+
+export const CHERCHEUR_CHEF_MANAGE_MEMBERS_ROUTE =
+    EQUIPE_BASE_ROUTE + "/manage-members";
+export const CHERCHEUR_MANAGE_PROJECTS_ROUTE =
+    EQUIPE_BASE_ROUTE + "/manage-projets";
+
+export const LOGIN = '/login';
 
 const router = createBrowserRouter([
     {
         path: "/",
+        element: <Acceuil />, // Accessible à tous
+    },
+    {
+        path: "/",
         element: <GuestLayout />,
         children: [
-            {
-                path: '/',
-                element: <Acceuil />
-            },
             { path: "login", element: <Login /> },
             { path: "register", element: <Register /> },
         ],
@@ -46,6 +66,22 @@ const router = createBrowserRouter([
                     {
                         path: CHERCHEUR_DASHBOARD_ROUTE,
                         element: <ChercheurDashboard />,
+                    },
+                    {
+                        path: CHERCHEUR_MANAGE_PROJETS_ROUTE,
+                        element: <ChercheurManageProjets />,
+                    },
+
+                    // equipe management
+
+                    {
+                        path: CHERCHEUR_CHEF_MANAGE_MEMBERS_ROUTE,
+                        element: <ChercheurChefManageMembers />,
+                    },
+
+                    {
+                        path: CHERCHEUR_MANAGE_PROJECTS_ROUTE,
+                        element: <ChercheurChefManageProjects />,
                     },
                 ],
             },

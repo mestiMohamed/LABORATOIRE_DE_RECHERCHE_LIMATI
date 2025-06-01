@@ -2,6 +2,7 @@ import * as React from "react";
 import Autoplay from "embla-carousel-autoplay";
 import it1 from "../../assets/images_d'acceuil/it.png"
 import it2 from "../../assets/images_d'acceuil/it2.png"
+import amphi from "../../assets/images_d'acceuil/amphi.png"
 
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -29,7 +30,7 @@ export function CarouselPlugin() {
                 "LIMATI : L’INNOVATION NUMÉRIQUE AU CŒUR DE LA RECHERCHE Exploration avancée en intelligence artificielle, algorithmique et systèmes intelligents",
         },
         {
-            image: it2,
+            image: amphi,
             title: "MATHÉMATIQUES",
             description: "LIMATI : LA PUISSANCE DES MATHÉMATIQUES POUR COMPRENDRE ET INNOVER Recherche fondamentale et appliquée en géométrie, logique, et modélisation mathématique",
         },

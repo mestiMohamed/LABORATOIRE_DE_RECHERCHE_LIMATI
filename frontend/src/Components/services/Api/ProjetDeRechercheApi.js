@@ -32,5 +32,14 @@ const ProjetDeRechercheApi = {
     delete: async (id) => {
         return await axiosClient.delete(`/admin/projets/${id}`);
     },
+
+    mine: async () => {
+        const response = await axiosClient.get("/me/projets");
+        return {
+            status: response.status,
+            data: response.data,
+            ok: response.status >= 200 && response.status < 300,
+        };
+    },
 };
 export default ProjetDeRechercheApi;

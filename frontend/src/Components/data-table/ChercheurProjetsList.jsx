@@ -11,6 +11,8 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 
+import { ScrollArea } from "@/components/ui/scroll-area";
+
 import {
     AlertDialog,
     AlertDialogAction,
@@ -33,13 +35,14 @@ import {
     SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet";
-import PublicationApi from "../services/Api/PublicationApi";
-import { ScrollArea } from "../../Components/ui/scroll-area"
+import EventUpsertForm from "../Forms/EventUpsertForm";
+import EquipeApi from "../services/Api/EquipeApi";
+import EquipeUpsertForm from "../Forms/EquipeUpSertForm";
+import ProjetDeRechercheApi from "../services/Api/ProjetDeRechercheApi";
+import ProjetDeRechercheUpSertForm from "../Forms/ProjetDeRecharcheUpSertForm";
 
-import PublicationsUpSertForm from "../Forms/PublicationsUpSertForm";
-
-function AdminPublicationList(props) {
-    const AdminPublicationsColumns = [
+function ChercheurProjetsList(props) {
+    const AdminEquipesColumns = [
         {
             accessorKey: "id",
             header: ({ column }) => {
@@ -47,50 +50,59 @@ function AdminPublicationList(props) {
             },
         },
         {
-            accessorKey: "titre",
+            accessorKey: "name",
             header: ({ column }) => {
                 return <DataTableColumnHeader column={column} title="Titre" />;
             },
         },
         {
-            accessorKey: "contenu",
+            accessorKey: "description",
             header: ({ column }) => (
-                <DataTableColumnHeader column={column} title="Contenu" />
+                <DataTableColumnHeader column={column} title="Description" />
             ),
             cell: ({ row }) => {
-                const contenu = row.getValue("contenu");
+                const description = row.getValue("description");
 
                 return (
                     <ScrollArea className="h-24 w-full rounded-md p-2 text-sm">
-                        <div className="whitespace-pre-wrap">{contenu}</div>
+                        <div className="whitespace-pre-wrap">{description}</div>
                     </ScrollArea>
                 );
             },
         },
 
         {
-            accessorKey: "user_id",
+            accessorKey: "date_debut",
             header: ({ column }) => {
                 return (
                     <DataTableColumnHeader
                         column={column}
-                        title="Chercheur ID"
+                        title="Date de début"
                     />
                 );
             },
         },
-
+        {
+            accessorKey: "date_fin",
+            header: ({ column }) => {
+                return (
+                    <DataTableColumnHeader
+                        column={column}
+                        title="Date de fin"
+                    />
+                );
+            },
+        },
         {
             accessorKey: "status",
             header: ({ column }) => {
                 return <DataTableColumnHeader column={column} title="Status" />;
             },
         },
-
         {
             id: "actions",
             cell: ({ row }) => {
-                const { id, name } = row.original;
+                const { id, titre } = row.original;
                 const [openUpdateDialog, setOpenUpdateDialog] = useState(false);
                 return (
                     <div className="flex gap-4">
@@ -103,7 +115,7 @@ function AdminPublicationList(props) {
                                     <AlertDialogTitle>
                                         Êtes-vous absolument sûr de supprimer{" "}
                                         <span className="font-bold">
-                                            {name}
+                                            {titre}
                                         </span>
                                         ?
                                     </AlertDialogTitle>
@@ -127,7 +139,10 @@ function AdminPublicationList(props) {
                                             const {
                                                 data: deletedEvent,
                                                 status,
-                                            } = await PublicationApi.delete(id);
+                                            } =
+                                                await ProjetDeRechercheApi.delete(
+                                                    id
+                                                );
                                             toast.dismiss(deletingLoader);
                                             if (status === 200) {
                                                 setData(
@@ -152,6 +167,7 @@ function AdminPublicationList(props) {
                                 </AlertDialogFooter>
                             </AlertDialogContent>
                         </AlertDialog>
+
                         <Sheet
                             open={openUpdateDialog}
                             onOpenChange={setOpenUpdateDialog}
@@ -166,7 +182,7 @@ function AdminPublicationList(props) {
                                 <SheetHeader>
                                     <SheetTitle>
                                         Modifier événement{" "}
-                                        <strong>{name}</strong>
+                                        <strong>{titre}</strong>
                                     </SheetTitle>
 
                                     <SheetDescription>
@@ -174,19 +190,20 @@ function AdminPublicationList(props) {
                                         permanently delete your account and
                                         remove your data from our servers.
                                     </SheetDescription>
-
-                                    <PublicationsUpSertForm
-                                        values={row.original}
-                                        handleSubmit={(values) => {
-                                            return PublicationApi.update(
-                                                row.original.id,
-                                                values
-                                            ).then((res) => {
-                                                setOpenUpdateDialog(false);
-                                                return res;
-                                            });
-                                        }}
-                                    />
+                                    <ScrollArea className="h-2/6 p-10 text-sm">
+                                        <ProjetDeRechercheUpSertForm
+                                            values={row.original}
+                                            handleSubmit={(values) => {
+                                                return ProjetDeRechercheApi.update(
+                                                    id,
+                                                    values
+                                                ).then((res) => {
+                                                    setOpenUpdateDialog(false);
+                                                    return res; // ← tu dois retourner la réponse ici
+                                                });
+                                            }}
+                                        />
+                                    </ScrollArea>
                                 </SheetHeader>
                             </SheetContent>
                         </Sheet>
@@ -197,13 +214,15 @@ function AdminPublicationList(props) {
     ];
     const [data, setData] = useState([]);
     useEffect(() => {
-        PublicationApi.all().then(({ data }) => setData(data.data));
+        ProjetDeRechercheApi.mine().then(({ data }) => {
+            setData(data.data);
+        });
     }, []);
     return (
         <div>
-            <DataTable columns={AdminPublicationsColumns} data={data} />
+            <DataTable columns={AdminEquipesColumns} data={data} />
         </div>
     );
 }
 
-export default AdminPublicationList;
+export default ChercheurProjetsList;

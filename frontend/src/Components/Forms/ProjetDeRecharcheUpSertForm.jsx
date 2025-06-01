@@ -160,6 +160,7 @@ export default function ProjetDeRechercheUpSertForm({
                                 <Input
                                     placeholder="Titre du projet"
                                     {...field}
+                                    className="shadow-none"
                                 />
                             </FormControl>
                             <FormMessage />
