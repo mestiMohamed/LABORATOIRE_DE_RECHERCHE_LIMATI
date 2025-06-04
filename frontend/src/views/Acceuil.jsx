@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { NavigationMenuDemo } from "../Components/Acceuil/NavBar";
+import { ResponsiveNavigationMenu } from "../Components/Acceuil/NavBar";
 import { CarouselPlugin } from "../Components/Acceuil/Carousel";
 import { CarouselEvents } from "../Components/Acceuil/CarouselEvents.jsx";
 import { Button } from "../Components/ui/button.js";
@@ -48,8 +48,8 @@ function Acceuil(props) {
                         : "bg-transparent"
                 }`}
             >
-                <div className="container mx-auto flex justify-center items-center h-18">
-                    <NavigationMenuDemo className="m-0 p-0" />
+                <div className="container mx-auto h-18 flex justify-center">
+                    <ResponsiveNavigationMenu className="m-0 p-0" />
                 </div>
             </header>
 
@@ -75,7 +75,7 @@ function Acceuil(props) {
                         </p>
 
                         <Link
-                            to="/presentation"
+                            to="/presentation-du-laboratoire"
                             className="inline-block text-sm text-orange-600 dark:text-teal-400 underline underline-offset-4 hover:text-orange-700 dark:hover:text-teal-300 transition-colors"
                         >
                             Voir la présentation du laboratoire
@@ -161,7 +161,7 @@ function Acceuil(props) {
                 <section className="mx-20">
                     <Gallery4 />
                 </section>
-                <section className="bg-black dark:bg-white">
+                <section className="bg-black">
                     <Footer2 />
                 </section>
             </main>

@@ -1,8 +1,20 @@
-import * as React from "react";
-import { Link } from "react-router-dom";
-import ellogo from  '../../assets/ellogo.png'
+"use client";
 
-import { cn } from "@/lib/utils";
+import React from "react";
+
+import { MenuIcon } from "lucide-react";
+import { Link } from "react-router-dom";
+import ellogo from "../../assets/ellogo.png";
+import { LOGIN } from "../../router";
+import { ModeToggle } from "../mode-toggle";
+
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from "@/components/ui/accordion";
+import { Button } from "@/components/ui/button";
 import {
     NavigationMenu,
     NavigationMenuContent,
@@ -12,8 +24,14 @@ import {
     NavigationMenuTrigger,
     navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { LOGIN } from "../../router";
-import { ModeToggle } from "../mode-toggle";
+import {
+    Sheet,
+    SheetContent,
+    SheetHeader,
+    SheetTitle,
+    SheetTrigger,
+} from "@/components/ui/sheet";
+import { cn } from "@/lib/utils";
 
 const components1 = [
     {
@@ -32,7 +50,7 @@ const components1 = [
         title: "ACTION STRATEGIQUE CALCULÉ, DONNÉES, AI",
         href: "/docs/primitives/progress",
         description:
-            "Axes stratégiques autour du calcul scientifique, de la science des données et de l’intelligence artificielle.",
+            "Axes stratégiques autour du calcul scientifique, de la science des données et de l'intelligence artificielle.",
     },
     {
         title: "DÉPARTEMENTS ET ÉQUIPES",
@@ -50,7 +68,7 @@ const components1 = [
         title: "PARTICIPATION GDR",
         href: "/docs/primitives/tooltip",
         description:
-            "Engagement du LIMATI dans des Groupements De Recherche à l’échelle nationale.",
+            "Engagement du LIMATI dans des Groupements De Recherche à l'échelle nationale.",
     },
 ];
 
@@ -59,19 +77,19 @@ const components2 = [
         title: "STRUCTURES COMMUNES",
         href: "/docs/primitives/alert-dialog",
         description:
-            "Structures mutualisées avec d’autres laboratoires ou institutions pour renforcer la recherche.",
+            "Structures mutualisées avec d'autres laboratoires ou institutions pour renforcer la recherche.",
     },
     {
         title: "ÉCOSYSTÈME PIA",
         href: "/docs/primitives/hover-card",
         description:
-            "Projets et partenariats dans le cadre du Programme d’Investissements d’Avenir (PIA).",
+            "Projets et partenariats dans le cadre du Programme d'Investissements d'Avenir (PIA).",
     },
     {
         title: "GROUPEMENTS D'INTÉRÊT SCIENTIFIQUE (GIS)",
         href: "/docs/primitives/progress",
         description:
-            "Partenariats structurants autour de problématiques scientifiques d’envergure nationale.",
+            "Partenariats structurants autour de problématiques scientifiques d'envergure nationale.",
     },
     {
         title: "GROUPEMENTS DE SERVICE (GDS)",
@@ -83,7 +101,7 @@ const components2 = [
         title: "PARTENARIATS INDUSTRIELS",
         href: "/docs/primitives/tabs",
         description:
-            "Collaborations avec le secteur industriel pour l’innovation et le transfert technologique.",
+            "Collaborations avec le secteur industriel pour l'innovation et le transfert technologique.",
     },
     {
         title: "PARTICIPATION GDR",
@@ -101,7 +119,7 @@ const components2 = [
         title: "INTERNATIONAL",
         href: "/docs/primitives/tooltip",
         description:
-            "Projets, partenariats et coopérations menés à l’échelle internationale.",
+            "Projets, partenariats et coopérations menés à l'échelle internationale.",
     },
 ];
 
@@ -116,7 +134,7 @@ const components4 = [
         title: "FAIRE SON STAGE A LIMATI",
         href: "/docs/primitives/hover-card",
         description:
-            "Opportunités de stages pour étudiants de licence, master ou écoles d’ingénieurs.",
+            "Opportunités de stages pour étudiants de licence, master ou écoles d'ingénieurs.",
     },
     {
         title: "FAIRE UN DOCTORAT A LIMATI",
@@ -147,224 +165,50 @@ const components3 = [
     },
 ];
 
-export function NavigationMenuDemo() {
-    return (
-        <>
-            <div className="flex justify-between items-center gap-20">
-                <div>
-                    <Link
-                        to="/"
-                        className="text-4xl font-bold hover:text-primary transition-colors"
-                    >
-                        {/*<span className=" text-orange-600 dark:text-teal-400 transition-colors duration-200">
-                            LIMA
-                        </span>
-                        <span className=" text-teal-400 dark:text-orange-600 transition-colors duration-200">
-                            TI
-                        </span>*/}
-
-                        <img src={ellogo} alt="" className="w-25" />
-                        
-                    </Link>
-                </div>
-                <div>
-                    <NavigationMenu viewport={false}>
-                        <NavigationMenuList className="flex justify-between gap-16">
-                            <div className="flex">
-                                <NavigationMenuItem>
-                                    <NavigationMenuTrigger className="bg-transparent hover:bg-white/20 data-[state=open]:bg-white/20">
-                                        LE LABORATOIRE
-                                    </NavigationMenuTrigger>
-                                    <NavigationMenuContent>
-                                        <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                                            <li className="row-span-3">
-                                                <NavigationMenuLink asChild>
-                                                    <a
-                                                        className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                                                        href="/"
-                                                    >
-                                                        <div className="mb-2 mt-4 text-lg font-medium">
-                                                            shadcn/ui
-                                                        </div>
-                                                        <p className="text-sm leading-tight text-muted-foreground">
-                                                            Beautifully designed
-                                                            components built
-                                                            with Radix UI and
-                                                            Tailwind CSS.
-                                                        </p>
-                                                    </a>
-                                                </NavigationMenuLink>
-                                            </li>
-                                            <ListItem
-                                                href="/docs"
-                                                title="PRESENTATION"
-                                            >
-                                                Aperçu global du laboratoire
-                                                LIMATI : sa mission, son
-                                                positionnement scientifique et
-                                                ses valeurs.
-                                            </ListItem>
-                                            <ListItem
-                                                href="/docs/installation"
-                                                title="DIRECTION, INSTANCES ET MISSIONS"
-                                            >
-                                                Organisation de la direction,
-                                                instances décisionnelles et
-                                                missions principales du
-                                                laboratoire.
-                                            </ListItem>
-                                            <ListItem
-                                                href="/docs/primitives/typography"
-                                                title="ORGANIGRAMME"
-                                            >
-                                                Schéma représentant la structure
-                                                hiérarchique et fonctionnelle du
-                                                LIMATI.
-                                            </ListItem>
-                                            <ListItem
-                                                href="/docs/primitives/typography"
-                                                title="LIMATI EN CHIFFRES"
-                                            >
-                                                Données clés : nombre de
-                                                chercheurs, publications,
-                                                projets, partenariats, etc.
-                                            </ListItem>
-                                            <ListItem
-                                                href="/docs/primitives/typography"
-                                                title="LIMATI S'ENGAGE"
-                                            >
-                                                Engagements du LIMATI en matière
-                                                de science ouverte, éthique et
-                                                développement durable.
-                                            </ListItem>
-                                            <ListItem
-                                                href="/docs/primitives/typography"
-                                                title="LE RAPPORT D'ACTIVITÉ DE LIMATI"
-                                            >
-                                                Bilan annuel des actions
-                                                scientifiques, partenariales et
-                                                pédagogiques du laboratoire.
-                                            </ListItem>
-                                            <ListItem
-                                                href="/docs/primitives/typography"
-                                                title="LE MAGAZINE NOIRE SUR BLANC (NSB)"
-                                            >
-                                                Magazine édité par le
-                                                laboratoire : actualités,
-                                                interviews, dossiers
-                                                scientifiques.
-                                            </ListItem>
-                                        </ul>
-                                    </NavigationMenuContent>
-                                </NavigationMenuItem>
-                                <NavigationMenuItem>
-                                    <NavigationMenuTrigger className="bg-transparent hover:bg-white/20 data-[state=open]:bg-white/20">
-                                        LA RECHERCHE
-                                    </NavigationMenuTrigger>
-                                    <NavigationMenuContent>
-                                        <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                                            {components1.map((component) => (
-                                                <ListItem
-                                                    key={component.title}
-                                                    title={component.title}
-                                                    href={component.href}
-                                                >
-                                                    {component.description}
-                                                </ListItem>
-                                            ))}
-                                        </ul>
-                                    </NavigationMenuContent>
-                                </NavigationMenuItem>
-                                <NavigationMenuItem>
-                                    <NavigationMenuTrigger className="bg-transparent hover:bg-white/20 data-[state=open]:bg-white/20">
-                                        COLLABORATIONS
-                                    </NavigationMenuTrigger>
-                                    <NavigationMenuContent>
-                                        <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                                            {components2.map((component) => (
-                                                <ListItem
-                                                    key={component.title}
-                                                    title={component.title}
-                                                    href={component.href}
-                                                >
-                                                    {component.description}
-                                                </ListItem>
-                                            ))}
-                                        </ul>
-                                    </NavigationMenuContent>
-                                </NavigationMenuItem>
-                                <NavigationMenuItem>
-                                    <NavigationMenuTrigger className="bg-transparent hover:bg-white/20 data-[state=open]:bg-white/20">
-                                        PRODUCTIONS SCIENTIFIQUES
-                                    </NavigationMenuTrigger>
-                                    <NavigationMenuContent>
-                                        <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                                            {components3.map((component) => (
-                                                <ListItem
-                                                    key={component.title}
-                                                    title={component.title}
-                                                    href={component.href}
-                                                >
-                                                    {component.description}
-                                                </ListItem>
-                                            ))}
-                                        </ul>
-                                    </NavigationMenuContent>
-                                </NavigationMenuItem>
-                                <NavigationMenuItem>
-                                    <NavigationMenuTrigger className="bg-transparent hover:bg-white/20 data-[state=open]:bg-white/20">
-                                        FORMATION
-                                    </NavigationMenuTrigger>
-                                    <NavigationMenuContent>
-                                        <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                                            {components4.map((component) => (
-                                                <ListItem
-                                                    key={component.title}
-                                                    title={component.title}
-                                                    href={component.href}
-                                                >
-                                                    {component.description}
-                                                </ListItem>
-                                            ))}
-                                        </ul>
-                                    </NavigationMenuContent>
-                                </NavigationMenuItem>
-                            </div>
-                        </NavigationMenuList>
-                    </NavigationMenu>
-                </div>
-                <div>
-                    <NavigationMenu>
-                        <NavigationMenuList className="flex gap-3">
-                            <NavigationMenuItem className="ml-4">
-                                <NavigationMenuLink asChild>
-                                    <Link
-                                        to={LOGIN}
-                                        className={cn(
-                                            "px-4 py-2 rounded-md text-sm font-medium",
-                                            "bg-orange-600 dark:bg-teal-500", // Fond orange vif/bleu-vert
-                                            "text-white dark:text-gray-900", // Texte contrasté
-                                            "hover:bg-orange-700 dark:hover:bg-teal-400", // Hover légèrement plus foncé/clair
-                                            "transition-colors duration-200",
-                                            "shadow-sm hover:shadow-md"
-                                        )}
-                                    >
-                                        Se connecter
-                                    </Link>
-                                </NavigationMenuLink>
-                            </NavigationMenuItem>
-                            <NavigationMenuItem>
-                                <div>
-                                    <ModeToggle />
-                                </div>
-                            </NavigationMenuItem>
-                        </NavigationMenuList>
-                    </NavigationMenu>
-                </div>
-            </div>
-        </>
-    );
-}
+const labItems = [
+    {
+        title: "PRESENTATION",
+        href: "/presentation-du-laboratoire",
+        description:
+            "Aperçu global du laboratoire LIMATI : sa mission, son positionnement scientifique et ses valeurs.",
+    },
+    {
+        title: "DIRECTION, INSTANCES ET MISSIONS",
+        href: "/docs/installation",
+        description:
+            "Organisation de la direction, instances décisionnelles et missions principales du laboratoire.",
+    },
+    {
+        title: "ORGANIGRAMME",
+        href: "/docs/primitives/typography",
+        description:
+            "Schéma représentant la structure hiérarchique et fonctionnelle du LIMATI.",
+    },
+    {
+        title: "LIMATI EN CHIFFRES",
+        href: "/docs/primitives/typography",
+        description:
+            "Données clés : nombre de chercheurs, publications, projets, partenariats, etc.",
+    },
+    {
+        title: "LIMATI S'ENGAGE",
+        href: "/docs/primitives/typography",
+        description:
+            "Engagements du LIMATI en matière de science ouverte, éthique et développement durable.",
+    },
+    {
+        title: "LE RAPPORT D'ACTIVITÉ DE LIMATI",
+        href: "/docs/primitives/typography",
+        description:
+            "Bilan annuel des actions scientifiques, partenariales et pédagogiques du laboratoire.",
+    },
+    {
+        title: "LE MAGAZINE NOIRE SUR BLANC (NSB)",
+        href: "/docs/primitives/typography",
+        description:
+            "Magazine édité par le laboratoire : actualités, interviews, dossiers scientifiques.",
+    },
+];
 
 const ListItem = React.forwardRef(
     ({ className, title, children, ...props }, ref) => {
@@ -392,3 +236,374 @@ const ListItem = React.forwardRef(
     }
 );
 ListItem.displayName = "ListItem";
+
+export function ResponsiveNavigationMenu() {
+    return (
+        <section className="py-4">
+            <div className="container">
+                <nav className="flex items-center justify-between gap-50">
+                    <Link to="/" className="flex items-center gap-2">
+                        <img
+                            src={ellogo}
+                            alt="LIMATI Logo"
+                            className="max-h-12"
+                        />
+                    </Link>
+
+                    {/* Desktop Navigation */}
+                    <NavigationMenu
+                        className="hidden lg:block"
+                        viewport={false}
+                    >
+                        <NavigationMenuList>
+                            <NavigationMenuItem>
+                                <NavigationMenuTrigger>
+                                    LE LABORATOIRE
+                                </NavigationMenuTrigger>
+                                <NavigationMenuContent>
+                                    <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                                        <li className="row-span-3">
+                                            <NavigationMenuLink asChild>
+                                                <a
+                                                    className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
+                                                    href="/"
+                                                >
+                                                    <div className="mb-2 mt-4 text-lg font-medium">
+                                                        LIMATI
+                                                    </div>
+                                                    <p className="text-sm leading-tight text-muted-foreground">
+                                                        Laboratoire d'Innovation
+                                                        en Mathématiques
+                                                        Appliquées et
+                                                        Technologies de
+                                                        l'Information
+                                                    </p>
+                                                </a>
+                                            </NavigationMenuLink>
+                                        </li>
+                                        {labItems.map((item, index) => (
+                                            <ListItem key={index}>
+                                                <Link
+                                                    to={item.href}
+                                                    className="block"
+                                                >
+                                                    <div className="text-black font-semibold">
+                                                        {item.title}
+                                                    </div>
+                                                    <div className="text-sm text-gray-500">
+                                                        {item.description}
+                                                    </div>
+                                                </Link>
+                                            </ListItem>
+                                        ))}
+                                    </ul>
+                                </NavigationMenuContent>
+                            </NavigationMenuItem>
+
+                            <NavigationMenuItem>
+                                <NavigationMenuTrigger>
+                                    LA RECHERCHE
+                                </NavigationMenuTrigger>
+                                <NavigationMenuContent>
+                                    <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                                        {components1.map((component, index) => (
+                                            <ListItem key={index}>
+                                                <Link
+                                                    to={component.href}
+                                                    className="block"
+                                                >
+                                                    <div className="text-black font-semibold">
+                                                        {component.title}
+                                                    </div>
+                                                    <div className="text-sm text-gray-500">
+                                                        {component.description}
+                                                    </div>
+                                                </Link>
+                                            </ListItem>
+                                        ))}
+                                    </ul>
+                                </NavigationMenuContent>
+                            </NavigationMenuItem>
+
+                            <NavigationMenuItem>
+                                <NavigationMenuTrigger>
+                                    COLLABORATIONS
+                                </NavigationMenuTrigger>
+                                <NavigationMenuContent>
+                                    <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                                        {components2.map((component, index) => (
+                                            <ListItem
+                                                key={index}
+                                                title={component.title}
+                                                href={component.href}
+                                            >
+                                                {component.description}
+                                            </ListItem>
+                                        ))}
+                                    </ul>
+                                </NavigationMenuContent>
+                            </NavigationMenuItem>
+
+                            <NavigationMenuItem>
+                                <NavigationMenuTrigger>
+                                    PRODUCTIONS SCIENTIFIQUES
+                                </NavigationMenuTrigger>
+                                <NavigationMenuContent>
+                                    <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                                        {components3.map((component, index) => (
+                                            <ListItem
+                                                key={index}
+                                                title={component.title}
+                                                href={component.href}
+                                            >
+                                                {component.description}
+                                            </ListItem>
+                                        ))}
+                                    </ul>
+                                </NavigationMenuContent>
+                            </NavigationMenuItem>
+
+                            <NavigationMenuItem>
+                                <NavigationMenuTrigger>
+                                    FORMATION
+                                </NavigationMenuTrigger>
+                                <NavigationMenuContent>
+                                    <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                                        {components4.map((component, index) => (
+                                            <ListItem
+                                                key={index}
+                                                title={component.title}
+                                                href={component.href}
+                                            >
+                                                {component.description}
+                                            </ListItem>
+                                        ))}
+                                    </ul>
+                                </NavigationMenuContent>
+                            </NavigationMenuItem>
+                        </NavigationMenuList>
+                    </NavigationMenu>
+
+                    <div className="hidden items-center gap-4 lg:flex">
+                        <Link
+                            to={LOGIN}
+                            className={cn(
+                                "px-4 py-2 rounded-md text-sm font-medium",
+                                "bg-orange-600 dark:bg-teal-500",
+                                "text-white dark:text-gray-900",
+                                "hover:bg-orange-700 dark:hover:bg-teal-400",
+                                "transition-colors duration-200",
+                                "shadow-sm hover:shadow-md"
+                            )}
+                        >
+                            Se connecter
+                        </Link>
+                        <ModeToggle />
+                    </div>
+
+                    {/* Mobile Navigation */}
+                    <Sheet>
+                        <SheetTrigger asChild className="lg:hidden">
+                            <Button variant="outline" size="icon">
+                                <MenuIcon className="h-4 w-4" />
+                            </Button>
+                        </SheetTrigger>
+                        <SheetContent
+                            side="top"
+                            className="max-h-screen overflow-auto"
+                        >
+                            <SheetHeader>
+                                <SheetTitle>
+                                    <Link
+                                        to="/"
+                                        className="flex items-center gap-2"
+                                    >
+                                        <img
+                                            src={ellogo}
+                                            alt="LIMATI Logo"
+                                            className="max-h-12"
+                                        />
+                                    </Link>
+                                </SheetTitle>
+                            </SheetHeader>
+                            <div className="flex flex-col p-4">
+                                <Accordion
+                                    type="single"
+                                    collapsible
+                                    className="w-full"
+                                >
+                                    <AccordionItem value="laboratoire">
+                                        <AccordionTrigger className="text-base hover:no-underline">
+                                            LE LABORATOIRE
+                                        </AccordionTrigger>
+                                        <AccordionContent>
+                                            <div className="grid gap-2">
+                                                {labItems.map((item, index) => (
+                                                    <a
+                                                        key={index}
+                                                        href={item.href}
+                                                        className="rounded-md p-3 transition-colors hover:bg-muted/70"
+                                                    >
+                                                        <div>
+                                                            <p className="mb-1 font-semibold text-foreground">
+                                                                {item.title}
+                                                            </p>
+                                                            <p className="text-sm text-muted-foreground">
+                                                                {
+                                                                    item.description
+                                                                }
+                                                            </p>
+                                                        </div>
+                                                    </a>
+                                                ))}
+                                            </div>
+                                        </AccordionContent>
+                                    </AccordionItem>
+
+                                    <AccordionItem value="recherche">
+                                        <AccordionTrigger className="text-base hover:no-underline">
+                                            LA RECHERCHE
+                                        </AccordionTrigger>
+                                        <AccordionContent>
+                                            <div className="grid gap-2">
+                                                {components1.map(
+                                                    (item, index) => (
+                                                        <a
+                                                            key={index}
+                                                            href={item.href}
+                                                            className="rounded-md p-3 transition-colors hover:bg-muted/70"
+                                                        >
+                                                            <div>
+                                                                <p className="mb-1 font-semibold text-foreground">
+                                                                    {item.title}
+                                                                </p>
+                                                                <p className="text-sm text-muted-foreground">
+                                                                    {
+                                                                        item.description
+                                                                    }
+                                                                </p>
+                                                            </div>
+                                                        </a>
+                                                    )
+                                                )}
+                                            </div>
+                                        </AccordionContent>
+                                    </AccordionItem>
+
+                                    <AccordionItem value="collaborations">
+                                        <AccordionTrigger className="text-base hover:no-underline">
+                                            COLLABORATIONS
+                                        </AccordionTrigger>
+                                        <AccordionContent>
+                                            <div className="grid gap-2">
+                                                {components2.map(
+                                                    (item, index) => (
+                                                        <a
+                                                            key={index}
+                                                            href={item.href}
+                                                            className="rounded-md p-3 transition-colors hover:bg-muted/70"
+                                                        >
+                                                            <div>
+                                                                <p className="mb-1 font-semibold text-foreground">
+                                                                    {item.title}
+                                                                </p>
+                                                                <p className="text-sm text-muted-foreground">
+                                                                    {
+                                                                        item.description
+                                                                    }
+                                                                </p>
+                                                            </div>
+                                                        </a>
+                                                    )
+                                                )}
+                                            </div>
+                                        </AccordionContent>
+                                    </AccordionItem>
+
+                                    <AccordionItem value="productions">
+                                        <AccordionTrigger className="text-base hover:no-underline">
+                                            PRODUCTIONS SCIENTIFIQUES
+                                        </AccordionTrigger>
+                                        <AccordionContent>
+                                            <div className="grid gap-2">
+                                                {components3.map(
+                                                    (item, index) => (
+                                                        <a
+                                                            key={index}
+                                                            href={item.href}
+                                                            className="rounded-md p-3 transition-colors hover:bg-muted/70"
+                                                        >
+                                                            <div>
+                                                                <p className="mb-1 font-semibold text-foreground">
+                                                                    {item.title}
+                                                                </p>
+                                                                <p className="text-sm text-muted-foreground">
+                                                                    {
+                                                                        item.description
+                                                                    }
+                                                                </p>
+                                                            </div>
+                                                        </a>
+                                                    )
+                                                )}
+                                            </div>
+                                        </AccordionContent>
+                                    </AccordionItem>
+
+                                    <AccordionItem value="formation">
+                                        <AccordionTrigger className="text-base hover:no-underline">
+                                            FORMATION
+                                        </AccordionTrigger>
+                                        <AccordionContent>
+                                            <div className="grid gap-2">
+                                                {components4.map(
+                                                    (item, index) => (
+                                                        <a
+                                                            key={index}
+                                                            href={item.href}
+                                                            className="rounded-md p-3 transition-colors hover:bg-muted/70"
+                                                        >
+                                                            <div>
+                                                                <p className="mb-1 font-semibold text-foreground">
+                                                                    {item.title}
+                                                                </p>
+                                                                <p className="text-sm text-muted-foreground">
+                                                                    {
+                                                                        item.description
+                                                                    }
+                                                                </p>
+                                                            </div>
+                                                        </a>
+                                                    )
+                                                )}
+                                            </div>
+                                        </AccordionContent>
+                                    </AccordionItem>
+                                </Accordion>
+
+                                <div className="mt-6 flex flex-col gap-4">
+                                    <Link
+                                        to={LOGIN}
+                                        className={cn(
+                                            "px-4 py-2 rounded-md text-sm font-medium text-center",
+                                            "bg-orange-600 dark:bg-teal-500",
+                                            "text-white dark:text-gray-900",
+                                            "hover:bg-orange-700 dark:hover:bg-teal-400",
+                                            "transition-colors duration-200",
+                                            "shadow-sm hover:shadow-md"
+                                        )}
+                                    >
+                                        Se connecter
+                                    </Link>
+                                    <div className="flex justify-center">
+                                        <ModeToggle />
+                                    </div>
+                                </div>
+                            </div>
+                        </SheetContent>
+                    </Sheet>
+                </nav>
+            </div>
+        </section>
+    );
+}

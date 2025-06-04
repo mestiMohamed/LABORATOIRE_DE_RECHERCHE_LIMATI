@@ -17,6 +17,7 @@ import ChercheurManageProjets from "./Components/Chercheur/ChercheurManageProjet
 import ChercheurChefManageMembers from "./Components/Chercheur/Chef/ChercheurChefManageMembers.jsx";
 import ChercheurChefManageProjects from "./Components/Chercheur/Chef/ChercheurChefManageProjects.jsx";
 import ChercheurManagePublications from "./Components/Chercheur/ChercheurManagePublications.jsx";
+import PresentationDuLabo from "./Components/Acceuil Componenets/PresentationDuLabo.jsx";
 
 const ADMIN_BASE_ROUTE = "/admin";
 const CHERCHEUR_BASE_ROUTE = "/chercheur";
@@ -57,6 +58,14 @@ const router = createBrowserRouter([
         path: "/",
         element: <Acceuil />, // Accessible à tous
     },
+
+    // hna fin ghadiri les pages
+    
+    {
+        path: "/presentation-du-laboratoire",
+        element: <PresentationDuLabo />
+    },
+
     {
         path: "/",
         element: <GuestLayout />,

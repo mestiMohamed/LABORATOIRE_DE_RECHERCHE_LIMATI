@@ -59,7 +59,7 @@ const Footer2 = ({
     const isExternal = (url) => /^https?:\/\//.test(url);
 
     return (
-        <section className="py-10 container mx-auto text-white dark:text-black">
+        <section className="py-10 container mx-auto text-white">
             <div className="container ">
                 <footer role="contentinfo" aria-label="Pied de page LIMATI">
                     <div className="grid grid-cols-2 gap-8 lg:grid-cols-6 mb-5">
