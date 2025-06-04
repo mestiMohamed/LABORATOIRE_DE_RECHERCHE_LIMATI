@@ -20,6 +20,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/me/publications', [PublicationController::class, 'getMyPublications']);
     Route::get('/me/projets', [ProjteDeRecherchecontroller::class, 'getMyProject']);
 
+    Route::get('/chercheurs-disponibles', [ChercheurController::class, 'chercheursDisponibles']);
+    Route::put('/users/{user}/assign-equipe', [ChercheurController::class, 'assignEquipe']);
+    Route::put('/users/{user}/remove-equipe', [ChercheurController::class, 'removeEquipe']);
+
 
 
 
@@ -73,4 +77,3 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:sanctum']], function (
 
 Route::get('/admin/events-by-month', [EventController::class, 'eventsPerMonth']);
 Route::get('/admin/par-type', [ProjteDeRecherchecontroller::class, 'parType']);
-

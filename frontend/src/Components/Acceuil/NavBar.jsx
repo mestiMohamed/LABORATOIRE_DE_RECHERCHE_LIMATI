@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
+import ellogo from  '../../assets/ellogo.png'
 
 import { cn } from "@/lib/utils";
 import {
@@ -16,39 +17,40 @@ import { ModeToggle } from "../mode-toggle";
 
 const components1 = [
     {
-        title: "SUJET SCIENTIFIQUES",
+        title: "SUJETS SCIENTIFIQUES",
         href: "/docs/primitives/alert-dialog",
         description:
-            "A modal dialog that interrupts the user with important content and expects a response.",
+            "Thématiques de recherche explorées par LIMATI, en mathématiques fondamentales, appliquées et informatique.",
     },
     {
-        title: "DOMAINES D'PPLICATION",
+        title: "DOMAINES D'APPLICATION",
         href: "/docs/primitives/hover-card",
         description:
-            "For sighted users to preview content available behind a link.",
+            "Champs dans lesquels les recherches du laboratoire sont appliquées : santé, finance, cybersécurité, etc.",
     },
     {
-        title: "ACTION STRATEGIQUE CALCULE, DONNEES, AI",
+        title: "ACTION STRATEGIQUE CALCULÉ, DONNÉES, AI",
         href: "/docs/primitives/progress",
         description:
-            "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
+            "Axes stratégiques autour du calcul scientifique, de la science des données et de l’intelligence artificielle.",
     },
     {
-        title: "DEPARTEMENTS ET EQUIPES",
+        title: "DÉPARTEMENTS ET ÉQUIPES",
         href: "/docs/primitives/scroll-area",
-        description: "Visually or semantically separates content.",
+        description:
+            "Structuration du laboratoire en groupes de recherche selon les thématiques scientifiques.",
     },
     {
-        title: "PLATFORMES",
+        title: "PLATEFORMES",
         href: "/docs/primitives/tabs",
         description:
-            "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
+            "Outils, infrastructures numériques et ressources technologiques utilisées dans les projets du laboratoire.",
     },
     {
         title: "PARTICIPATION GDR",
         href: "/docs/primitives/tooltip",
         description:
-            "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
+            "Engagement du LIMATI dans des Groupements De Recherche à l’échelle nationale.",
     },
 ];
 
@@ -57,269 +59,310 @@ const components2 = [
         title: "STRUCTURES COMMUNES",
         href: "/docs/primitives/alert-dialog",
         description:
-            "A modal dialog that interrupts the user with important content and expects a response.",
+            "Structures mutualisées avec d’autres laboratoires ou institutions pour renforcer la recherche.",
     },
     {
         title: "ÉCOSYSTÈME PIA",
         href: "/docs/primitives/hover-card",
         description:
-            "For sighted users to preview content available behind a link.",
+            "Projets et partenariats dans le cadre du Programme d’Investissements d’Avenir (PIA).",
     },
     {
-        title: "GROUPEMENTS D'INTÉRÊT SCIENTI.(GIS)",
+        title: "GROUPEMENTS D'INTÉRÊT SCIENTIFIQUE (GIS)",
         href: "/docs/primitives/progress",
         description:
-            "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
+            "Partenariats structurants autour de problématiques scientifiques d’envergure nationale.",
     },
     {
-        title: "GROUPEMENT DE SERVICE (GDS)",
+        title: "GROUPEMENTS DE SERVICE (GDS)",
         href: "/docs/primitives/scroll-area",
-        description: "Visually or semantically separates content.",
+        description:
+            "Groupements offrant des services scientifiques partagés entre plusieurs laboratoires.",
     },
     {
-        title: "PARTENARIATS INDUSTRIEL",
+        title: "PARTENARIATS INDUSTRIELS",
         href: "/docs/primitives/tabs",
         description:
-            "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
+            "Collaborations avec le secteur industriel pour l’innovation et le transfert technologique.",
     },
     {
         title: "PARTICIPATION GDR",
         href: "/docs/primitives/tooltip",
         description:
-            "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
+            "Adhésion à des réseaux de recherche (GDR) favorisant les échanges scientifiques.",
     },
     {
         title: "FINANCEURS PUBLICS",
         href: "/docs/primitives/tooltip",
         description:
-            "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
+            "Liste des institutions publiques finançant les projets du laboratoire.",
     },
     {
         title: "INTERNATIONAL",
         href: "/docs/primitives/tooltip",
         description:
-            "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
+            "Projets, partenariats et coopérations menés à l’échelle internationale.",
     },
 ];
+
 const components4 = [
     {
         title: "LIMATI PARTENAIRE FORMATIONS",
         href: "/docs/primitives/alert-dialog",
         description:
-            "A modal dialog that interrupts the user with important content and expects a response.",
+            "Contribution du LIMATI à des formations universitaires ou spécialisées en mathématiques et informatique.",
     },
     {
         title: "FAIRE SON STAGE A LIMATI",
         href: "/docs/primitives/hover-card",
         description:
-            "For sighted users to preview content available behind a link.",
+            "Opportunités de stages pour étudiants de licence, master ou écoles d’ingénieurs.",
     },
     {
         title: "FAIRE UN DOCTORAT A LIMATI",
         href: "/docs/primitives/progress",
         description:
-            "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
+            "Encadrement doctoral et sujets de thèse proposés au sein du laboratoire.",
     },
     {
-        title: "EVENEMENTS",
+        title: "ÉVÉNEMENTS",
         href: "/docs/primitives/scroll-area",
-        description: "Visually or semantically separates content.",
+        description:
+            "Colloques, séminaires, journées portes ouvertes et autres événements scientifiques organisés par LIMATI.",
     },
 ];
+
 const components3 = [
     {
         title: "PUBLICATIONS",
         href: "/docs/primitives/alert-dialog",
         description:
-            "A modal dialog that interrupts the user with important content and expects a response.",
+            "Articles scientifiques, conférences, livres et autres publications du LIMATI.",
     },
     {
         title: "LOGICIELS",
         href: "/docs/primitives/hover-card",
         description:
-            "For sighted users to preview content available behind a link.",
+            "Outils et applications développés par les chercheurs dans le cadre des projets du laboratoire.",
     },
 ];
 
 export function NavigationMenuDemo() {
     return (
-        <NavigationMenu viewport={false}>
-            <NavigationMenuList className="flex justify-between gap-16" >
+        <>
+            <div className="flex justify-between items-center gap-20">
                 <div>
-                    <NavigationMenuItem>
-                        <NavigationMenuLink asChild>
-                            <Link
-                                to="/"
-                                className="text-6xl font-bold hover:text-primary transition-colors"
-                            >
-                                LIMATI
-                            </Link>
-                        </NavigationMenuLink>
-                    </NavigationMenuItem>
-                </div>
-                <div className="flex">
-                    <NavigationMenuItem>
-                        <NavigationMenuTrigger className="bg-transparent hover:bg-white/20 data-[state=open]:bg-white/20">
-                            LE LABORATOIRE
-                        </NavigationMenuTrigger>
-                        <NavigationMenuContent>
-                            <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                                <li className="row-span-3">
-                                    <NavigationMenuLink asChild>
-                                        <a
-                                            className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                                            href="/"
-                                        >
-                                            <div className="mb-2 mt-4 text-lg font-medium">
-                                                shadcn/ui
-                                            </div>
-                                            <p className="text-sm leading-tight text-muted-foreground">
-                                                Beautifully designed components
-                                                built with Radix UI and Tailwind
-                                                CSS.
-                                            </p>
-                                        </a>
-                                    </NavigationMenuLink>
-                                </li>
-                                <ListItem href="/docs" title="PRESENTATION">
-                                    Re-usable components built using Radix UI
-                                    and Tailwind CSS.
-                                </ListItem>
-                                <ListItem
-                                    href="/docs/installation"
-                                    title="DIRECTION, INSTANCES ET MISSIONS"
-                                >
-                                    How to install dependencies and structure
-                                    your app.
-                                </ListItem>
-                                <ListItem
-                                    href="/docs/primitives/typography"
-                                    title="ORGANIGRAMME"
-                                >
-                                    Styles for headings, paragraphs, lists...etc
-                                </ListItem>
-                                <ListItem
-                                    href="/docs/primitives/typography"
-                                    title="LIMATI EN CHIFFRES"
-                                >
-                                    Styles for headings, paragraphs, lists...etc
-                                </ListItem>
-                                <ListItem
-                                    href="/docs/primitives/typography"
-                                    title="LIMATI S'ENGAGE"
-                                >
-                                    Styles for headings, paragraphs, lists...etc
-                                </ListItem>
-                                <ListItem
-                                    href="/docs/primitives/typography"
-                                    title="LE RAPPORT D'ACTIVITE DE LIMATI"
-                                >
-                                    Styles for headings, paragraphs, lists...etc
-                                </ListItem>
-                                <ListItem
-                                    href="/docs/primitives/typography"
-                                    title="LE MAGAZINE NOIRE SUR BLAC (NSB)"
-                                >
-                                    Styles for headings, paragraphs, lists...etc
-                                </ListItem>
-                            </ul>
-                        </NavigationMenuContent>
-                    </NavigationMenuItem>
-                    <NavigationMenuItem>
-                        <NavigationMenuTrigger className="bg-transparent hover:bg-white/20 data-[state=open]:bg-white/20">
-                            LA RECHERCHE
-                        </NavigationMenuTrigger>
-                        <NavigationMenuContent>
-                            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                                {components1.map((component) => (
-                                    <ListItem
-                                        key={component.title}
-                                        title={component.title}
-                                        href={component.href}
-                                    >
-                                        {component.description}
-                                    </ListItem>
-                                ))}
-                            </ul>
-                        </NavigationMenuContent>
-                    </NavigationMenuItem>
-                    <NavigationMenuItem>
-                        <NavigationMenuTrigger className="bg-transparent hover:bg-white/20 data-[state=open]:bg-white/20">
-                            COLLABORATIONS
-                        </NavigationMenuTrigger>
-                        <NavigationMenuContent>
-                            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                                {components2.map((component) => (
-                                    <ListItem
-                                        key={component.title}
-                                        title={component.title}
-                                        href={component.href}
-                                    >
-                                        {component.description}
-                                    </ListItem>
-                                ))}
-                            </ul>
-                        </NavigationMenuContent>
-                    </NavigationMenuItem>
-                    <NavigationMenuItem>
-                        <NavigationMenuTrigger className="bg-transparent hover:bg-white/20 data-[state=open]:bg-white/20">
-                            PRODUCTIONS SCIENTIFIQUES
-                        </NavigationMenuTrigger>
-                        <NavigationMenuContent>
-                            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                                {components3.map((component) => (
-                                    <ListItem
-                                        key={component.title}
-                                        title={component.title}
-                                        href={component.href}
-                                    >
-                                        {component.description}
-                                    </ListItem>
-                                ))}
-                            </ul>
-                        </NavigationMenuContent>
-                    </NavigationMenuItem>
-                    <NavigationMenuItem>
-                        <NavigationMenuTrigger className="bg-transparent hover:bg-white/20 data-[state=open]:bg-white/20">
-                            FORMATION
-                        </NavigationMenuTrigger>
-                        <NavigationMenuContent>
-                            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                                {components4.map((component) => (
-                                    <ListItem
-                                        key={component.title}
-                                        title={component.title}
-                                        href={component.href}
-                                    >
-                                        {component.description}
-                                    </ListItem>
-                                ))}
-                            </ul>
-                        </NavigationMenuContent>
-                    </NavigationMenuItem>
-                    <NavigationMenuItem className="ml-4">
-                        <NavigationMenuLink asChild>
-                            <Link
-                                to={LOGIN}
-                                className={cn(
-                                    "px-4 py-2 rounded-md text-sm font-medium",
-                                    "bg-orange-600 dark:bg-teal-500", // Fond orange vif/bleu-vert
-                                    "text-white dark:text-gray-900", // Texte contrasté
-                                    "hover:bg-orange-700 dark:hover:bg-teal-400", // Hover légèrement plus foncé/clair
-                                    "transition-colors duration-200",
-                                    "shadow-sm hover:shadow-md"
-                                )}
-                            >
-                                Se connecter
-                            </Link>
-                        </NavigationMenuLink>
-                    </NavigationMenuItem>
+                    <Link
+                        to="/"
+                        className="text-4xl font-bold hover:text-primary transition-colors"
+                    >
+                        {/*<span className=" text-orange-600 dark:text-teal-400 transition-colors duration-200">
+                            LIMA
+                        </span>
+                        <span className=" text-teal-400 dark:text-orange-600 transition-colors duration-200">
+                            TI
+                        </span>*/}
+
+                        <img src={ellogo} alt="" className="w-25" />
+                        
+                    </Link>
                 </div>
                 <div>
-                    <ModeToggle />
+                    <NavigationMenu viewport={false}>
+                        <NavigationMenuList className="flex justify-between gap-16">
+                            <div className="flex">
+                                <NavigationMenuItem>
+                                    <NavigationMenuTrigger className="bg-transparent hover:bg-white/20 data-[state=open]:bg-white/20">
+                                        LE LABORATOIRE
+                                    </NavigationMenuTrigger>
+                                    <NavigationMenuContent>
+                                        <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                                            <li className="row-span-3">
+                                                <NavigationMenuLink asChild>
+                                                    <a
+                                                        className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
+                                                        href="/"
+                                                    >
+                                                        <div className="mb-2 mt-4 text-lg font-medium">
+                                                            shadcn/ui
+                                                        </div>
+                                                        <p className="text-sm leading-tight text-muted-foreground">
+                                                            Beautifully designed
+                                                            components built
+                                                            with Radix UI and
+                                                            Tailwind CSS.
+                                                        </p>
+                                                    </a>
+                                                </NavigationMenuLink>
+                                            </li>
+                                            <ListItem
+                                                href="/docs"
+                                                title="PRESENTATION"
+                                            >
+                                                Aperçu global du laboratoire
+                                                LIMATI : sa mission, son
+                                                positionnement scientifique et
+                                                ses valeurs.
+                                            </ListItem>
+                                            <ListItem
+                                                href="/docs/installation"
+                                                title="DIRECTION, INSTANCES ET MISSIONS"
+                                            >
+                                                Organisation de la direction,
+                                                instances décisionnelles et
+                                                missions principales du
+                                                laboratoire.
+                                            </ListItem>
+                                            <ListItem
+                                                href="/docs/primitives/typography"
+                                                title="ORGANIGRAMME"
+                                            >
+                                                Schéma représentant la structure
+                                                hiérarchique et fonctionnelle du
+                                                LIMATI.
+                                            </ListItem>
+                                            <ListItem
+                                                href="/docs/primitives/typography"
+                                                title="LIMATI EN CHIFFRES"
+                                            >
+                                                Données clés : nombre de
+                                                chercheurs, publications,
+                                                projets, partenariats, etc.
+                                            </ListItem>
+                                            <ListItem
+                                                href="/docs/primitives/typography"
+                                                title="LIMATI S'ENGAGE"
+                                            >
+                                                Engagements du LIMATI en matière
+                                                de science ouverte, éthique et
+                                                développement durable.
+                                            </ListItem>
+                                            <ListItem
+                                                href="/docs/primitives/typography"
+                                                title="LE RAPPORT D'ACTIVITÉ DE LIMATI"
+                                            >
+                                                Bilan annuel des actions
+                                                scientifiques, partenariales et
+                                                pédagogiques du laboratoire.
+                                            </ListItem>
+                                            <ListItem
+                                                href="/docs/primitives/typography"
+                                                title="LE MAGAZINE NOIRE SUR BLANC (NSB)"
+                                            >
+                                                Magazine édité par le
+                                                laboratoire : actualités,
+                                                interviews, dossiers
+                                                scientifiques.
+                                            </ListItem>
+                                        </ul>
+                                    </NavigationMenuContent>
+                                </NavigationMenuItem>
+                                <NavigationMenuItem>
+                                    <NavigationMenuTrigger className="bg-transparent hover:bg-white/20 data-[state=open]:bg-white/20">
+                                        LA RECHERCHE
+                                    </NavigationMenuTrigger>
+                                    <NavigationMenuContent>
+                                        <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+                                            {components1.map((component) => (
+                                                <ListItem
+                                                    key={component.title}
+                                                    title={component.title}
+                                                    href={component.href}
+                                                >
+                                                    {component.description}
+                                                </ListItem>
+                                            ))}
+                                        </ul>
+                                    </NavigationMenuContent>
+                                </NavigationMenuItem>
+                                <NavigationMenuItem>
+                                    <NavigationMenuTrigger className="bg-transparent hover:bg-white/20 data-[state=open]:bg-white/20">
+                                        COLLABORATIONS
+                                    </NavigationMenuTrigger>
+                                    <NavigationMenuContent>
+                                        <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+                                            {components2.map((component) => (
+                                                <ListItem
+                                                    key={component.title}
+                                                    title={component.title}
+                                                    href={component.href}
+                                                >
+                                                    {component.description}
+                                                </ListItem>
+                                            ))}
+                                        </ul>
+                                    </NavigationMenuContent>
+                                </NavigationMenuItem>
+                                <NavigationMenuItem>
+                                    <NavigationMenuTrigger className="bg-transparent hover:bg-white/20 data-[state=open]:bg-white/20">
+                                        PRODUCTIONS SCIENTIFIQUES
+                                    </NavigationMenuTrigger>
+                                    <NavigationMenuContent>
+                                        <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+                                            {components3.map((component) => (
+                                                <ListItem
+                                                    key={component.title}
+                                                    title={component.title}
+                                                    href={component.href}
+                                                >
+                                                    {component.description}
+                                                </ListItem>
+                                            ))}
+                                        </ul>
+                                    </NavigationMenuContent>
+                                </NavigationMenuItem>
+                                <NavigationMenuItem>
+                                    <NavigationMenuTrigger className="bg-transparent hover:bg-white/20 data-[state=open]:bg-white/20">
+                                        FORMATION
+                                    </NavigationMenuTrigger>
+                                    <NavigationMenuContent>
+                                        <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+                                            {components4.map((component) => (
+                                                <ListItem
+                                                    key={component.title}
+                                                    title={component.title}
+                                                    href={component.href}
+                                                >
+                                                    {component.description}
+                                                </ListItem>
+                                            ))}
+                                        </ul>
+                                    </NavigationMenuContent>
+                                </NavigationMenuItem>
+                            </div>
+                        </NavigationMenuList>
+                    </NavigationMenu>
                 </div>
-            </NavigationMenuList>
-        </NavigationMenu>
+                <div>
+                    <NavigationMenu>
+                        <NavigationMenuList className="flex gap-3">
+                            <NavigationMenuItem className="ml-4">
+                                <NavigationMenuLink asChild>
+                                    <Link
+                                        to={LOGIN}
+                                        className={cn(
+                                            "px-4 py-2 rounded-md text-sm font-medium",
+                                            "bg-orange-600 dark:bg-teal-500", // Fond orange vif/bleu-vert
+                                            "text-white dark:text-gray-900", // Texte contrasté
+                                            "hover:bg-orange-700 dark:hover:bg-teal-400", // Hover légèrement plus foncé/clair
+                                            "transition-colors duration-200",
+                                            "shadow-sm hover:shadow-md"
+                                        )}
+                                    >
+                                        Se connecter
+                                    </Link>
+                                </NavigationMenuLink>
+                            </NavigationMenuItem>
+                            <NavigationMenuItem>
+                                <div>
+                                    <ModeToggle />
+                                </div>
+                            </NavigationMenuItem>
+                        </NavigationMenuList>
+                    </NavigationMenu>
+                </div>
+            </div>
+        </>
     );
 }
 

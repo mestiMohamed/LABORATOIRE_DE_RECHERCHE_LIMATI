@@ -18,7 +18,6 @@ import ChercheurChefManageMembers from "./Components/Chercheur/Chef/ChercheurChe
 import ChercheurChefManageProjects from "./Components/Chercheur/Chef/ChercheurChefManageProjects.jsx";
 import ChercheurManagePublications from "./Components/Chercheur/ChercheurManagePublications.jsx";
 
-
 const ADMIN_BASE_ROUTE = "/admin";
 const CHERCHEUR_BASE_ROUTE = "/chercheur";
 const EQUIPE_BASE_ROUTE = "/equipe";
@@ -31,6 +30,14 @@ export const ADMIN_MANAGE_EQUIPES_ROUTE = ADMIN_BASE_ROUTE + "/manage-equipes";
 export const ADMIN_MANAGE_PROJETS_ROUTE = ADMIN_BASE_ROUTE + "/manage-projets";
 export const ADMIN_MANAGE_PUBLICATIONS_ROUTE =
     ADMIN_BASE_ROUTE + "/manage-publications";
+export const ADMIN_MANAGE_ACCOUNT_ROUTE = ADMIN_BASE_ROUTE + "/account";
+export const ADMIN_MANAGE_NOTIFICATIONS_ROUTE =
+    ADMIN_BASE_ROUTE + "/notifications";
+
+export const CHERCHEUR_MANAGE_ACCOUNT_ROUTE = ADMIN_BASE_ROUTE + "/account";
+export const CHERCHEUR_MANAGE_NOTIFICATIONS_ROUTE =
+    ADMIN_BASE_ROUTE + "/notifications";
+
 export const CHERCHEUR_MANAGE_PUBLICATIONS_ROUTE =
     CHERCHEUR_BASE_ROUTE + "/manage-publications";
 export const CHERCHEUR_MANAGE_PROJETS_ROUTE =
@@ -43,7 +50,7 @@ export const CHERCHEUR_CHEF_MANAGE_MEMBERS_ROUTE =
 export const CHERCHEUR_MANAGE_PROJECTS_ROUTE =
     EQUIPE_BASE_ROUTE + "/manage-projets";
 
-export const LOGIN = '/login';
+export const LOGIN = "/login";
 
 const router = createBrowserRouter([
     {

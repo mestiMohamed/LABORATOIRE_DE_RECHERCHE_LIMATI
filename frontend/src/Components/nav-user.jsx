@@ -28,6 +28,8 @@ import {
 } from "@/components/ui/sidebar";
 import { useStateContext } from "../Contexts/ContextProvider";
 import axiosClient from "../axiosClient";
+import { Link, Navigate } from "react-router-dom";
+import { ADMIN_MANAGE_ACCOUNT_ROUTE, ADMIN_MANAGE_NOTIFICATIONS_ROUTE } from "../router";
 
 export function NavUser({}) {
     const { isMobile } = useSidebar();
@@ -92,7 +94,7 @@ export function NavUser({}) {
                                 </Avatar>
                                 <div className="grid flex-1 text-left text-sm leading-tight">
                                     <span className="truncate font-medium">
-                                        {user.name}
+                                        {user.firstname} {user.lastname}
                                     </span>
                                     <span className="truncate text-xs">
                                         {user.email}
@@ -102,25 +104,20 @@ export function NavUser({}) {
                         </DropdownMenuLabel>
                         <DropdownMenuSeparator />
                         <DropdownMenuGroup>
-                            <DropdownMenuItem>
-                                <Sparkles />
-                                Upgrade to Pro
-                            </DropdownMenuItem>
-                        </DropdownMenuGroup>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuGroup>
-                            <DropdownMenuItem>
-                                <BadgeCheck />
-                                Account
-                            </DropdownMenuItem>
-                            <DropdownMenuItem>
-                                <CreditCard />
-                                Billing
-                            </DropdownMenuItem>
-                            <DropdownMenuItem>
-                                <Bell />
-                                Notifications
-                            </DropdownMenuItem>
+                            <Link to={ADMIN_MANAGE_ACCOUNT_ROUTE}>
+                                <DropdownMenuItem>
+                                    <div className="flex items-center gap-2">
+                                        <BadgeCheck />
+                                        <div>Account </div>
+                                    </div>
+                                </DropdownMenuItem>
+                            </Link>
+                            <Link to={ADMIN_MANAGE_NOTIFICATIONS_ROUTE}>
+                                <DropdownMenuItem>
+                                    <Bell />
+                                    Notifications
+                                </DropdownMenuItem>
+                            </Link>
                         </DropdownMenuGroup>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem

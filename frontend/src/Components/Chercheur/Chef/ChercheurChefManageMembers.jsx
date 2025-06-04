@@ -8,6 +8,7 @@ import { Plus } from "lucide-react";
 import ChercheurUpsertForm from "../../../Components/Forms/ChercheurUpsertForm";
 import ChefEquipeChercheurList from "../../data-table/ChefEquipeChercheurList";
 import EquipeApi from "../../services/Api/EquipeApi";
+import MembreAdd from "../../Forms/MembreAdd";
 
 function ChercheurChefManageMembers() {
     const { user, setUser } = useStateContext();
@@ -32,10 +33,10 @@ function ChercheurChefManageMembers() {
             <Tabs defaultValue="items_list" className="w-full">
                 <TabsList className="grid w-full grid-cols-2">
                     <TabsTrigger value="items_list">
-                        Liste des chercheurs
+                        Liste des membres
                     </TabsTrigger>
                     <TabsTrigger value="add_item">
-                        Ajouter un chercheur
+                        Ajouter un membre
                     </TabsTrigger>
                 </TabsList>
 
@@ -46,12 +47,10 @@ function ChercheurChefManageMembers() {
                 <TabsContent value="add_item" className="mt-6">
                     <div className="rounded-lg border p-6">
                         <h2 className="text-lg font-semibold mb-4">
-                            Ajouter un nouveau chercheur
+                            Ajouter un nouveau membre 
                         </h2>
                         <Separator className="my-4" />
-                        <ChercheurUpsertForm
-                            handleSubmit={(values) => EquipeApi.create(values)}
-                        />
+                        <MembreAdd />
                     </div>
                 </TabsContent>
             </Tabs>

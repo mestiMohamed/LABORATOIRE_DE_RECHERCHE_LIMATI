@@ -121,22 +121,23 @@ function ChefEquipeChercheurList(props) {
                     <div className="flex gap-4">
                         <AlertDialog>
                             <AlertDialogTrigger asChild>
-                                <Button size={"sm"}>Supprimer</Button>
+                                <Button size={"sm"}>
+                                    Retirer de l’équipe
+                                </Button>
                             </AlertDialogTrigger>
                             <AlertDialogContent>
                                 <AlertDialogHeader>
                                     <AlertDialogTitle>
-                                        Êtes-vous absolument sûr de supprimer{" "}
+                                        Êtes-vous sûr de vouloir retirer{" "}
                                         <span className="font-bold">
                                             {name}
-                                        </span>
-                                        ?
+                                        </span>{" "}
+                                        de votre équipe ?
                                     </AlertDialogTitle>
                                     <AlertDialogDescription>
-                                        Cette action est irréversible. Cela
-                                        supprimera définitivement cet élément et
-                                        toutes ses données associées de nos
-                                        serveurs.
+                                        Ce chercheur ne fera plus partie de
+                                        votre équipe, mais son compte sera
+                                        conservé.
                                     </AlertDialogDescription>
                                 </AlertDialogHeader>
                                 <AlertDialogFooter>
@@ -145,30 +146,45 @@ function ChefEquipeChercheurList(props) {
                                     </AlertDialogCancel>
                                     <AlertDialogAction
                                         onClick={async () => {
-                                            const deletingLoader =
+                                            const removingLoader =
                                                 toast.loading(
-                                                    "Suppression en cours ..."
+                                                    "Retrait en cours..."
                                                 );
-                                            const {
-                                                data: deletedChercheur,
-                                                status,
-                                            } = await ChercheurApi.delete(id);
-                                            toast.dismiss(deletingLoader);
-                                            if (status === 200) {
-                                                setData(
-                                                    data.filter(
-                                                        (chercheur) =>
-                                                            chercheur.id !== id
-                                                    )
+                                            try {
+                                                const {
+                                                    data: response,
+                                                    status,
+                                                } =
+                                                    await ChercheurApi.removeFromEquipe(
+                                                        id
+                                                    );
+                                                toast.dismiss(removingLoader);
+
+                                                if (status === 200) {
+                                                    setData((prevData) =>
+                                                        prevData.filter(
+                                                            (chercheur) =>
+                                                                chercheur.id !==
+                                                                id
+                                                        )
+                                                    );
+                                                    toast.success(
+                                                        "Chercheur retiré de l’équipe",
+                                                        {
+                                                            description:
+                                                                "Ce chercheur ne fait plus partie de votre équipe.",
+                                                            icon: (
+                                                                <Trash2Icon />
+                                                            ),
+                                                        }
+                                                    );
+                                                }
+                                            } catch (error) {
+                                                toast.dismiss(removingLoader);
+                                                toast.error(
+                                                    "Erreur lors du retrait du chercheur"
                                                 );
-                                                toast.success(
-                                                    "Chercheur supprimé",
-                                                    {
-                                                        description:
-                                                            "Chercheur supprimer avec succées!",
-                                                        icon: <Trash2Icon />,
-                                                    }
-                                                );
+                                                console.error(error);
                                             }
                                         }}
                                     >
@@ -177,121 +193,6 @@ function ChefEquipeChercheurList(props) {
                                 </AlertDialogFooter>
                             </AlertDialogContent>
                         </AlertDialog>
-                        <Sheet
-                            open={openUpdateDialog}
-                            onOpenChange={setOpenUpdateDialog}
-                        >
-                            <SheetTrigger asChild>
-                                <Button size="sm" variant="outline">
-                                    Modifier
-                                </Button>
-                            </SheetTrigger>
-
-                            <SheetContent>
-                                <SheetHeader>
-                                    <SheetTitle>
-                                        Modifier événement{" "}
-                                        <strong>{name}</strong>
-                                    </SheetTitle>
-
-                                    <SheetDescription>
-                                        This action cannot be undone. This will
-                                        permanently delete your account and
-                                        remove your data from our servers.
-                                    </SheetDescription>
-
-                                    <ChercheurUpsertForm
-                                        values={row.original}
-                                        handleSubmit={async (
-                                            formData,
-                                            options = {}
-                                        ) => {
-                                            try {
-                                                // Détermine si c'est un FormData (pour les fichiers)
-                                                const isFormData =
-                                                    formData instanceof
-                                                    FormData;
-
-                                                // Configure les headers automatiquement
-                                                const requestOptions = {
-                                                    ...options,
-                                                    headers: {
-                                                        ...options.headers,
-                                                        "Content-Type":
-                                                            isFormData
-                                                                ? "multipart/form-data"
-                                                                : "application/json",
-                                                    },
-                                                };
-
-                                                const result =
-                                                    await ChercheurApi.update(
-                                                        row.original.id,
-                                                        isFormData
-                                                            ? formData
-                                                            : convertToFormData(
-                                                                  formData
-                                                              ),
-                                                        requestOptions
-                                                    );
-
-                                                setOpenUpdateDialog(false);
-
-                                                // Optionnel : actualiser les données si nécessaire
-                                                if (
-                                                    typeof refetch ===
-                                                    "function"
-                                                ) {
-                                                    await refetch();
-                                                }
-
-                                                return result;
-                                            } catch (error) {
-                                                console.error(
-                                                    "Échec de la mise à jour:",
-                                                    {
-                                                        error:
-                                                            error.response
-                                                                ?.data ||
-                                                            error.message,
-                                                        payload: formData,
-                                                    }
-                                                );
-
-                                                // Transforme les erreurs de l'API en format compatible avec react-hook-form
-                                                if (
-                                                    error.response?.data?.errors
-                                                ) {
-                                                    const formErrors = {};
-                                                    Object.entries(
-                                                        error.response.data
-                                                            .errors
-                                                    ).forEach(
-                                                        ([field, messages]) => {
-                                                            formErrors[field] =
-                                                                {
-                                                                    type: "server",
-                                                                    message:
-                                                                        Array.isArray(
-                                                                            messages
-                                                                        )
-                                                                            ? messages.join(
-                                                                                  ", "
-                                                                              )
-                                                                            : messages,
-                                                                };
-                                                        }
-                                                    );
-                                                    throw formErrors;
-                                                }
-
-                                                throw error;
-                                            }
-                                        }}
-                                    />
-                                </SheetHeader>
-                            </SheetContent>
-                        </Sheet>
                     </div>
                 );
             },

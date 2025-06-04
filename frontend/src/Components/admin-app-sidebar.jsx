@@ -60,12 +60,15 @@ export function AdminAppSidebar({ ...props }) {
             className="fixed left-0 top-[64px] h-[calc(100vh-64px)] border-r"
             {...props}
         >
+            <SidebarHeader className="pt-4">
+                <NavUser />
+            </SidebarHeader>
             <SidebarContent className="mt-4 space-y-4">
                 <NavMain items={data.navMain} />
             </SidebarContent>
 
             <SidebarFooter className="pb-4">
-                <NavUser />
+                
             </SidebarFooter>
 
             <SidebarRail />

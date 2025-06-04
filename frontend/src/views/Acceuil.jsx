@@ -9,6 +9,8 @@ import Actualite from "../Components/Acceuil/Actualite.jsx";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Link } from "react-router-dom";
+import Footer2 from "../Components/ui/footer.jsx";
+import { Gallery4 } from "../Components/Gallery.jsx";
 
 function Acceuil(props) {
     const [scrolled, setScrolled] = useState(false);
@@ -64,7 +66,7 @@ function Acceuil(props) {
                             LE LABORATOIRE
                         </h1>
 
-                        <p className="text-muted-foreground leading-relaxed text-base">
+                        <p className="leading-7 [&:not(:first-child)]:mt-6">
                             Le Laboratoire LIMATI est une Unité Mixte de
                             Recherche du Centre National de la Recherche
                             Scientifique (CNRS), de l'Institut National
@@ -82,12 +84,12 @@ function Acceuil(props) {
                 </section>
                 <section className="container mx-auto flex justify-center items-center my-15 flex-col gap-4">
                     <div className="flex flex-col items-start gap-4">
-                        <h1 className="text-2xl font-bold">ACTUALITÉS</h1>
+                        <h1 className="text-2xl font-bold">ÉVÉNEMENTS</h1>
                         <Link
                             to="/hey"
                             className="inline-block text-sm text-orange-600 dark:text-teal-400 underline underline-offset-4 hover:text-orange-700 dark:hover:text-teal-300 transition-colors"
                         >
-                            Voir toutes les actualités
+                            Voir tous les événements
                         </Link>
                     </div>
                     <CarouselEvents />
@@ -108,20 +110,22 @@ function Acceuil(props) {
                             <br />
                             DE RECHERCHE
                         </h2>
-                        <p className="text-sm text-foreground leading-relaxed mb-3 max-w-xl">
-                            Le Laplace compte 12 groupes de recherches
-                            constitués d'une dizaine de permanents chercheurs et
-                            enseignants-chercheurs et d'un nombre équivalent de
-                            doctorants et post-doctorants et renforcés par les
-                            ingénieurs et techniciens des différents services en
-                            soutien à la recherche.
+                        <p className="leading-7 [&:not(:first-child)]:mt-6">
+                            Le LIMATI compte 12 groupes de recherches constitués
+                            d'une dizaine de chercheurs et
+                            enseignants-chercheurs permanents, d'un nombre
+                            équivalent de doctorants et post-doctorants, et est
+                            renforcé par les ingénieurs et techniciens des
+                            différents services en soutien à la recherche.
                         </p>
-                        <Button
-                            variant="link"
-                            className="text-orange-600 dark:text-teal-400 p-0 h-auto underline underline-offset-4 text-sm hover:text-orange-500 dark:hover:text-teal-300 transition-colors"
-                        >
-                            Voir les équipes
-                        </Button>
+                        <Link to={'/login'}>
+                            <Button
+                                variant="link"
+                                className="text-orange-600 dark:text-teal-400 p-0 h-auto underline underline-offset-4 text-sm hover:text-orange-500 dark:hover:text-teal-300 transition-colors cursor-pointer"
+                            >
+                                Voir les équipes
+                            </Button>
+                        </Link>
                     </motion.div>
 
                     <motion.div
@@ -137,7 +141,7 @@ function Acceuil(props) {
                         />
                     </motion.div>
                 </section>
-                <section className="my-16">
+                <section className="mt-16">
                     <div className="flex flex-col gap-6 items-center">
                         <div className="flex flex-col items-start gap-4">
                             <h1 className="text-2xl font-bold">ACTUALITÉS</h1>
@@ -153,6 +157,12 @@ function Acceuil(props) {
                             <Actualite />
                         </div>
                     </div>
+                </section>
+                <section className="mx-20">
+                    <Gallery4 />
+                </section>
+                <section className="bg-black dark:bg-white">
+                    <Footer2 />
                 </section>
             </main>
         </>

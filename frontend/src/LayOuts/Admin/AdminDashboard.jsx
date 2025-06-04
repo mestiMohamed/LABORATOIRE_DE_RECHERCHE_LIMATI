@@ -6,6 +6,7 @@ import {
     CardTitle,
 } from "../../Components/ui/card";
 import { useState, useEffect } from "react";
+import { Skeleton } from "@/components/ui/skeleton";
 
 import axiosClient from "../../axiosClient";
 
@@ -52,7 +53,15 @@ function AdminDashboard() {
     }, []);
 
     if (loading) {
-        return <div>Chargement...</div>;
+        return (
+            <div className="flex flex-col space-y-3 w-full">
+                <Skeleton className="h-[125px] w-full rounded-xl" />
+                <div className="space-y-2 w-full">
+                    <Skeleton className="h-4 w-full" />
+                    <Skeleton className="h-4 w-full" />
+                </div>
+            </div>
+        );
     }
 
     return (

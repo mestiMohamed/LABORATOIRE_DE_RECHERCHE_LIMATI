@@ -91,4 +91,37 @@ class ChercheurController extends Controller
             'is_active' => $user->is_active,
         ]);
     }
+
+    // Retourne les utilisateurs sans équipe
+    public function chercheursDisponibles()
+    {
+        return User::whereNull('equipe_id')->get();
+    }
+
+    // Attribue une équipe à un utilisateur
+    public function assignEquipe(Request $request, User $user)
+    {
+        $request->validate([
+            'equipe_id' => 'required|exists:equipes,id',
+        ]);
+
+        $user->equipe_id = $request->equipe_id;
+        $user->save();
+
+        return response()->json(['message' => 'Membre ajouté à l’équipe.']);
+    }
+
+    public function removeEquipe($userId)
+    {
+        $user = User::find($userId);
+
+        if (!$user) {
+            return response()->json(['message' => 'Utilisateur non trouvé'], 404);
+        }
+
+        $user->equipe_id = null; // Retirer l'equipe_id
+        $user->save();
+
+        return response()->json(['message' => 'Équipe supprimée avec succès'], 200);
+    }
 }

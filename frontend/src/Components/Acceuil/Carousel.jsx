@@ -30,7 +30,7 @@ export function CarouselPlugin() {
                 "LIMATI : L’INNOVATION NUMÉRIQUE AU CŒUR DE LA RECHERCHE Exploration avancée en intelligence artificielle, algorithmique et systèmes intelligents",
         },
         {
-            image: amphi,
+            image: it2,
             title: "MATHÉMATIQUES",
             description: "LIMATI : LA PUISSANCE DES MATHÉMATIQUES POUR COMPRENDRE ET INNOVER Recherche fondamentale et appliquée en géométrie, logique, et modélisation mathématique",
         },

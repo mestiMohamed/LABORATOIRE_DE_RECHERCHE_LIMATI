@@ -9,11 +9,20 @@ import {
     FormLabel,
     FormMessage,
 } from "../../Components/ui/form.js";
+
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select";
 import { CheckCircle2, XCircle, Loader2 } from "lucide-react";
 import { Input } from "../../Components/ui/input.jsx";
 import { Button } from "../../Components/ui/button.jsx";
 import { Loader } from "lucide-react";
 import { toast } from "sonner";
+import { DatePickerDemo } from "../date-picker.jsx";
 
 export default function ChercheurUpsertForm({ handleSubmit, values }) {
     const isUpdate = values !== undefined;
@@ -105,7 +114,10 @@ export default function ChercheurUpsertForm({ handleSubmit, values }) {
     } = form;
 
     const onSubmit = async (values) => {
-        console.log("Valeurs du formulaire:", JSON.parse(JSON.stringify(values)));
+        console.log(
+            "Valeurs du formulaire:",
+            JSON.parse(JSON.stringify(values))
+        );
         const loaderId = toast.loading(
             <div className="flex items-center gap-2">
                 <Loader2 className="h-4 w-4 animate-spin" />
@@ -162,7 +174,6 @@ export default function ChercheurUpsertForm({ handleSubmit, values }) {
                 },
             });
             console.log("Réponse de l'API:", response); // Ajoutez ce log
-
 
             // Gestion de la réponse
             if ([200, 201].includes(response?.status)) {
@@ -310,12 +321,18 @@ export default function ChercheurUpsertForm({ handleSubmit, values }) {
 
                 <FormField
                     control={form.control}
+                    className="w-full"
                     name="date_of_birth"
                     render={({ field }) => (
                         <FormItem>
                             <FormLabel>Date de naissance</FormLabel>
                             <FormControl>
-                                <Input type="date" {...field} />
+                                <FormControl>
+                                    <DatePickerDemo
+                                        value={field.value}
+                                        onChange={field.onChange}
+                                    />
+                                </FormControl>
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -329,16 +346,85 @@ export default function ChercheurUpsertForm({ handleSubmit, values }) {
                         <FormItem>
                             <FormLabel>Sexe</FormLabel>
                             <FormControl>
-                                <select
-                                    {...field}
-                                    className="w-full rounded-md border px-3 py-2"
+                                <Select
+                                    onValueChange={field.onChange}
+                                    value={field.value}
                                 >
-                                    <option value="">
-                                        Sélectionner le sexe
-                                    </option>
-                                    <option value="m">Homme</option>
-                                    <option value="f">Femme</option>
-                                </select>
+                                    <SelectTrigger className="w-full">
+                                        <SelectValue placeholder="Sexe" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="m">Homme</SelectItem>
+                                        <SelectItem value="f">Femme</SelectItem>
+                                    </SelectContent>
+                                </Select>
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+
+                <FormField
+                    control={form.control}
+                    name="blood_type"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Groupe sanguin</FormLabel>
+                            <FormControl>
+                                {/*<select
+                                                    {...field}
+                                                    className="w-full rounded-md border px-3 py-2"
+                                                >
+                                                    <option value="">
+                                                        Sélectionner un groupe
+                                                        sanguin
+                                                    </option>
+                                                    <option value="O-">
+                                                        O-
+                                                    </option>
+                                                    <option value="O+">
+                                                        O+
+                                                    </option>
+                                                    <option value="A+">
+                                                        A+
+                                                    </option>
+                                                    <option value="A-">
+                                                        A-
+                                                    </option>
+                                                    <option value="B+">
+                                                        B+
+                                                    </option>
+                                                    <option value="B-">
+                                                        B-
+                                                    </option>
+                                                    <option value="AB+">
+                                                        AB+
+                                                    </option>
+                                                    <option value="AB-">
+                                                        AB-
+                                                    </option>
+                                                </select>*/}
+                                <Select
+                                    onValueChange={field.onChange}
+                                    value={field.value}
+                                >
+                                    <SelectTrigger className="w-full">
+                                        <SelectValue
+                                            placeholder=" Sélectionner un groupe
+                                                        sanguin"
+                                        />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="O-">O-</SelectItem>
+                                        <SelectItem value="O+">O+</SelectItem>
+                                        <SelectItem value="A+">A+</SelectItem>
+                                        <SelectItem value="A-">A-</SelectItem>
+                                        <SelectItem value="B+">B+</SelectItem>
+                                        <SelectItem value="B-">B-</SelectItem>
+                                        <SelectItem value="AB+">AB+</SelectItem>
+                                        <SelectItem value="AB-">AB-</SelectItem>
+                                    </SelectContent>
+                                </Select>
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -353,35 +439,6 @@ export default function ChercheurUpsertForm({ handleSubmit, values }) {
                             <FormLabel>Adresse</FormLabel>
                             <FormControl>
                                 <Input {...field} />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-
-                <FormField
-                    control={form.control}
-                    name="blood_type"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Groupe sanguin</FormLabel>
-                            <FormControl>
-                                <select
-                                    {...field}
-                                    className="w-full rounded-md border px-3 py-2"
-                                >
-                                    <option value="">
-                                        Sélectionner un groupe sanguin
-                                    </option>
-                                    <option value="O-">O-</option>
-                                    <option value="O+">O+</option>
-                                    <option value="A+">A+</option>
-                                    <option value="A-">A-</option>
-                                    <option value="B+">B+</option>
-                                    <option value="B-">B-</option>
-                                    <option value="AB+">AB+</option>
-                                    <option value="AB-">AB-</option>
-                                </select>
                             </FormControl>
                             <FormMessage />
                         </FormItem>

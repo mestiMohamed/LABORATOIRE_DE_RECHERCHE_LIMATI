@@ -112,7 +112,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       {...props}
     >
       <SidebarHeader className="pt-4">
-        <TeamSwitcher teams={data.teams} />
+        <NavUser 
+          name={user?.name || data.user.name}
+          email={user?.email || data.user.email}
+          avatar={user?.avatar || data.user.avatar}
+        />
       </SidebarHeader>
       
       <SidebarContent className="mt-4">
@@ -138,11 +142,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 </SidebarContent>
       
       <SidebarFooter className="pb-4">
-        <NavUser 
-          name={user?.name || data.user.name}
-          email={user?.email || data.user.email}
-          avatar={user?.avatar || data.user.avatar}
-        />
+        
       </SidebarFooter>
       
       <SidebarRail />

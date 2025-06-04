@@ -214,7 +214,10 @@ export function RegisterForm({
                                                 Date de naissance
                                             </FormLabel>
                                             <FormControl>
-                                                <Input type="date" {...field} />
+                                                <DatePickerDemo
+                                                    value={field.value}
+                                                    onChange={field.onChange}
+                                                />
                                             </FormControl>
                                             <FormMessage />
                                         </FormItem>

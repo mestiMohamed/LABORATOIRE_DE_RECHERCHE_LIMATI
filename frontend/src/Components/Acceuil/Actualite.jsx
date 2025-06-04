@@ -21,12 +21,8 @@ function ActualiteCard({ title, date, description, link, image, index }) {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, delay: index * 0.1 }}
         >
-            <Card className="w-[350px] h-[500px] flex flex-col justify-between">
+            <Card className="w-[350px] h-[500px] flex flex-col gap-5 border-0 shadow-none bg-background/0">
                 <CardHeader>
-                    <CardTitle>{title}</CardTitle>
-                    <CardDescription>{date}</CardDescription>
-                </CardHeader>
-                <CardContent>
                     {image && (
                         <img
                             src={image}
@@ -34,12 +30,16 @@ function ActualiteCard({ title, date, description, link, image, index }) {
                             className="mb-4 w-full h-40 object-cover rounded-md"
                         />
                     )}
+                </CardHeader>
+                <CardContent className="flex flex-col gap-2"> 
+                    <CardTitle>{title}</CardTitle>
+                    <CardDescription>{date}</CardDescription>
                     <p className="text-sm text-gray-700">{description}</p>
                 </CardContent>
                 <CardFooter>
                     <Button
                         variant="link"
-                        className="inline-block text-sm text-orange-600 dark:text-teal-400 underline underline-offset-4 hover:text-orange-700 dark:hover:text-teal-300 transition-colors"
+                        className="inline-block text-sm text-orange-600 dark:text-teal-400 underline underline-offset-4 hover:text-teal-300 dark:hover:text-orange-600 transition-colors cursor-pointer"
                     >
                         {link}
                     </Button>
@@ -103,7 +103,7 @@ function Actualite() {
     ];
 
     return (
-        <div className="container mx-auto py-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 justify-items-center">
+        <div className="container mx-auto py-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-1 justify-items-center">
             {actualites.map((item, index) => (
                 <ActualiteCard
                     key={index}
