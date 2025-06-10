@@ -146,7 +146,7 @@ export default function PublicationsUpSertForm({ handleSubmit, values }) {
                             <FormLabel>ID Chercheur</FormLabel>
                             <FormControl>
                                 <Textarea
-                                    placeholder="Chercheur ID"
+                                    placeholder="Chercheura ID"
                                     {...field}
                                 />
                             </FormControl>

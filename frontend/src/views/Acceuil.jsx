@@ -11,6 +11,9 @@ import { useInView } from "react-intersection-observer";
 import { Link } from "react-router-dom";
 import Footer2 from "../Components/ui/footer.jsx";
 import { Gallery4 } from "../Components/Gallery.jsx";
+import { Hero115 } from "../Components/Hero.jsx";
+import { Community2 } from "../Components/Community.jsx";
+import { Logos8 } from "../Components/Partenaires.jsx";
 
 function Acceuil(props) {
     const [scrolled, setScrolled] = useState(false);
@@ -52,11 +55,16 @@ function Acceuil(props) {
                     <ResponsiveNavigationMenu className="m-0 p-0" />
                 </div>
             </header>
-
+                
             {/* Contenu principal avec padding-top pour compenser la navbar fixe */}
             <main className="pt-18">
                 {" "}
                 {/* Ajustez cette valeur selon la hauteur de votre navbar */}
+
+                <section className=" container mx-auto">
+                    <Hero115 />
+                </section>
+
                 <section className="flex justify-center items-center">
                     <CarouselPlugin />
                 </section>
@@ -141,7 +149,7 @@ function Acceuil(props) {
                         />
                     </motion.div>
                 </section>
-                <section className="mt-16">
+                <section className="my-16">
                     <div className="flex flex-col gap-6 items-center">
                         <div className="flex flex-col items-start gap-4">
                             <h1 className="text-2xl font-bold">ACTUALITÉS</h1>
@@ -158,10 +166,19 @@ function Acceuil(props) {
                         </div>
                     </div>
                 </section>
-                <section className="mx-20">
+
+                <section className="my-16 container mx-auto">
+                    <Logos8 />
+                </section>
+
+                <section className="my-16 container mx-auto">
+                    <Community2 />
+                </section>
+
+                <section className="mx-20 mt-16">
                     <Gallery4 />
                 </section>
-                <section className="bg-black">
+                <section className="border-t">
                     <Footer2 />
                 </section>
             </main>

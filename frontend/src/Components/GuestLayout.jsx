@@ -6,11 +6,11 @@ function GuestLayout() {
     const { token, role } = useStateContext();
 
     if (token && role === "admin") {
-        return <Navigate to="/admin/dashboard" replace />;
+        return <Navigate to="/admin/tableau-de-bord" replace />;
     }
 
     if (token && role === "user") {
-        return <Navigate to="/chercheur/dashboard" replace />;
+        return <Navigate to="/chercheur/tableau-de-bord" replace />;
     }
 
     return <Outlet />;

@@ -18,12 +18,15 @@ import ChercheurChefManageMembers from "./Components/Chercheur/Chef/ChercheurChe
 import ChercheurChefManageProjects from "./Components/Chercheur/Chef/ChercheurChefManageProjects.jsx";
 import ChercheurManagePublications from "./Components/Chercheur/ChercheurManagePublications.jsx";
 import PresentationDuLabo from "./Components/Acceuil Componenets/PresentationDuLabo.jsx";
+import NotFound from "./views/NotFound.jsx";
+import ChercheurManageAccount from "./Components/Chercheur/ChercheurManageAccount.jsx";
 
 const ADMIN_BASE_ROUTE = "/admin";
 const CHERCHEUR_BASE_ROUTE = "/chercheur";
 const EQUIPE_BASE_ROUTE = "/equipe";
-export const CHERCHEUR_DASHBOARD_ROUTE = "/chercheur/dashboard";
-export const ADMIN_DASHBOARD_ROUTE = ADMIN_BASE_ROUTE + "/dashboard";
+export const LOGIN_PAGE = '/login'
+export const CHERCHEUR_DASHBOARD_ROUTE = "/chercheur/tableau-de-bord";
+export const ADMIN_DASHBOARD_ROUTE = ADMIN_BASE_ROUTE + "/tableau-de-bord";
 export const ADMIN_MANAGE_EVENTS_ROUTE = ADMIN_BASE_ROUTE + "/manage-events";
 export const ADMIN_MANAGE_CHERCHEURS_ROUTE =
     ADMIN_BASE_ROUTE + "/manage-chercheurs";
@@ -43,6 +46,9 @@ export const CHERCHEUR_MANAGE_PUBLICATIONS_ROUTE =
     CHERCHEUR_BASE_ROUTE + "/manage-publications";
 export const CHERCHEUR_MANAGE_PROJETS_ROUTE =
     CHERCHEUR_BASE_ROUTE + "/manage-projets";
+export const CHERCHEUR_MANAGE_ACOUNT_ROUTE =
+    CHERCHEUR_BASE_ROUTE + "/account";
+
 
 // equipe
 
@@ -91,6 +97,10 @@ const router = createBrowserRouter([
                     {
                         path: CHERCHEUR_MANAGE_PUBLICATIONS_ROUTE,
                         element: <ChercheurManagePublications />,
+                    },
+                    {
+                        path: CHERCHEUR_MANAGE_ACOUNT_ROUTE,
+                        element: <ChercheurManageAccount />,
                     },
 
                     // equipe management
@@ -144,7 +154,7 @@ const router = createBrowserRouter([
     },
     {
         path: "*",
-        element: <p>Not found</p>,
+        element: <NotFound />,
     },
 ]);
 

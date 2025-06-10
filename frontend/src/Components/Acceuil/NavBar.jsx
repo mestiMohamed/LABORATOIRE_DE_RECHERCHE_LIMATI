@@ -2,10 +2,10 @@
 
 import React from "react";
 
-import { MenuIcon } from "lucide-react";
+import { LogIn, MenuIcon } from "lucide-react";
 import { Link } from "react-router-dom";
-import ellogo from "../../assets/ellogo.png";
-import { LOGIN } from "../../router";
+import sh1 from "../../assets/logos/sh1.png";
+import { LOGIN, LOGIN_PAGE } from "../../router";
 import { ModeToggle } from "../mode-toggle";
 
 import {
@@ -243,11 +243,8 @@ export function ResponsiveNavigationMenu() {
             <div className="container">
                 <nav className="flex items-center justify-between gap-50">
                     <Link to="/" className="flex items-center gap-2">
-                        <img
-                            src={ellogo}
-                            alt="LIMATI Logo"
-                            className="max-h-12"
-                        />
+                        <img src={sh1} alt="LIMATI Logo" className="max-h-12" />
+                        LIMATI
                     </Link>
 
                     {/* Desktop Navigation */}
@@ -257,7 +254,7 @@ export function ResponsiveNavigationMenu() {
                     >
                         <NavigationMenuList>
                             <NavigationMenuItem>
-                                <NavigationMenuTrigger>
+                                <NavigationMenuTrigger className="bg-transparent font-semibold">
                                     LE LABORATOIRE
                                 </NavigationMenuTrigger>
                                 <NavigationMenuContent>
@@ -301,7 +298,7 @@ export function ResponsiveNavigationMenu() {
                             </NavigationMenuItem>
 
                             <NavigationMenuItem>
-                                <NavigationMenuTrigger>
+                                <NavigationMenuTrigger className="bg-transparent font-semibold">
                                     LA RECHERCHE
                                 </NavigationMenuTrigger>
                                 <NavigationMenuContent>
@@ -326,7 +323,7 @@ export function ResponsiveNavigationMenu() {
                             </NavigationMenuItem>
 
                             <NavigationMenuItem>
-                                <NavigationMenuTrigger>
+                                <NavigationMenuTrigger className="bg-transparent font-semibold">
                                     COLLABORATIONS
                                 </NavigationMenuTrigger>
                                 <NavigationMenuContent>
@@ -345,7 +342,7 @@ export function ResponsiveNavigationMenu() {
                             </NavigationMenuItem>
 
                             <NavigationMenuItem>
-                                <NavigationMenuTrigger>
+                                <NavigationMenuTrigger className="bg-transparent font-semibold">
                                     PRODUCTIONS SCIENTIFIQUES
                                 </NavigationMenuTrigger>
                                 <NavigationMenuContent>
@@ -364,7 +361,7 @@ export function ResponsiveNavigationMenu() {
                             </NavigationMenuItem>
 
                             <NavigationMenuItem>
-                                <NavigationMenuTrigger>
+                                <NavigationMenuTrigger className="bg-transparent font-semibold">
                                     FORMATION
                                 </NavigationMenuTrigger>
                                 <NavigationMenuContent>
@@ -385,19 +382,23 @@ export function ResponsiveNavigationMenu() {
                     </NavigationMenu>
 
                     <div className="hidden items-center gap-4 lg:flex">
-                        <Link
-                            to={LOGIN}
-                            className={cn(
-                                "px-4 py-2 rounded-md text-sm font-medium",
-                                "bg-orange-600 dark:bg-teal-500",
-                                "text-white dark:text-gray-900",
-                                "hover:bg-orange-700 dark:hover:bg-teal-400",
-                                "transition-colors duration-200",
-                                "shadow-sm hover:shadow-md"
-                            )}
-                        >
-                            Se connecter
-                        </Link>
+                        <NavigationMenu>
+                            <NavigationMenuList>
+                                <NavigationMenuItem className="">
+                                    <NavigationMenuLink
+                                        asChild
+                                        className={navigationMenuTriggerStyle()}
+                                    >
+                                        <Link to={LOGIN_PAGE} className="bg-transparent">
+                                            <div className="flex items-center gap-2 font-semibold">
+                                                <LogIn /> 
+                                                Se Connecter
+                                            </div>
+                                        </Link>
+                                    </NavigationMenuLink>
+                                </NavigationMenuItem>
+                            </NavigationMenuList>
+                        </NavigationMenu>
                         <ModeToggle />
                     </div>
 
@@ -419,10 +420,11 @@ export function ResponsiveNavigationMenu() {
                                         className="flex items-center gap-2"
                                     >
                                         <img
-                                            src={ellogo}
+                                            src={sh1}
                                             alt="LIMATI Logo"
                                             className="max-h-12"
                                         />
+                                        LIMATI
                                     </Link>
                                 </SheetTitle>
                             </SheetHeader>

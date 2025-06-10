@@ -4,6 +4,10 @@ import { ResponsiveNavigationMenu } from "../Acceuil/NavBar.jsx";
 import { useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import Footer2 from "../../Components/ui/footer.jsx";
+import { Community1 } from "../Intro.jsx";
+import { Feature73 } from "../PresentationHeader.jsx";
+import { Team1 } from "../Team.jsx";
+import { Stats6 } from "../LimatiEnChiffre.jsx";
 
 function PresentationDuLabo(props) {
     const [scrolled, setScrolled] = useState(false);
@@ -47,7 +51,18 @@ function PresentationDuLabo(props) {
 
             <main className="pt-18">
 
-                
+                <section className="my-15 container mx-auto">
+                    <Community1 />
+                </section>
+                <section className="my-15 container mx-auto">
+                    <Feature73 />
+                </section>
+                <section className="my-15 container mx-auto">
+                    <Team1 />
+                </section>
+                <section className="mt-15 w-full">
+                    <Stats6 />
+                </section>
                 
                 <section className="bg-black">
                     <Footer2 />

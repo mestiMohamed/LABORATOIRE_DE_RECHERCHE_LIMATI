@@ -39,15 +39,7 @@ function ChercheurDashboardLayout(props) {
                     </div>
                     <div>
                         <ul className="flex place-items-center">
-                            <li className="ml-5 px-2 py-1">
-                                <Link
-                                    className={"flex"}
-                                    to={CHERCHEUR_DASHBOARD_ROUTE}
-                                >
-                                    <GaugeIcon className={"mx-1"} />
-                                    Dashboard
-                                </Link>
-                            </li>
+                            
                             <li className="ml-5 px-2 py-1">
                                 <ModeToggle />
                             </li>

@@ -25,6 +25,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/users/{user}/remove-equipe', [ChercheurController::class, 'removeEquipe']);
 
 
+    Route::get('/chercheur/publications-par-mois', [ChercheurController::class, 'publicationsParMois']);
+    Route::get('/chercheur/projets-par-mois', [ChercheurController::class, 'projetsParMois']);
+    Route::put('/profile/update', [ChercheurController::class, 'updateProfile']);
+
+
+
 
 
     //Route::apiResource('/users',UserController::class);
@@ -77,3 +83,5 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:sanctum']], function (
 
 Route::get('/admin/events-by-month', [EventController::class, 'eventsPerMonth']);
 Route::get('/admin/par-type', [ProjteDeRecherchecontroller::class, 'parType']);
+
+

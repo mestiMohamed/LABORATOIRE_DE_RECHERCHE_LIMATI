@@ -12,18 +12,23 @@ import {
   Users,
   BookText,
   FolderCog,
+  GaugeIcon,
+  BadgeCheck,
+  LogOut,
 } from "lucide-react";
 import { NavMain } from "@/components/nav-main";
 import { NavUser } from "@/Components/nav-user";
-import { TeamSwitcher } from "@/components/team-switcher";
 import { NavProjects } from "./nav-projects";
 import {
   Sidebar,
+  SidebarMenu,
+  SidebarMenuItem ,
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar";
+import { Button } from "./ui/button";
 
 // Type definitions
 type Team = {
@@ -81,6 +86,11 @@ const data: SidebarData = {
   ],
   navMain: [
     {
+      title: "Tableau de bord",
+      url: "/chercheur/tableau-de-bord",
+      icon: GaugeIcon,
+    },
+    {
       title: "Gestion des projets",
       url: "/chercheur/manage-projets",
       icon: Columns3Cog,
@@ -90,11 +100,16 @@ const data: SidebarData = {
       url: "/chercheur/manage-publications",
       icon: NotebookPen,
     },
+    {
+      title: "Compte & paramétre",
+      url: "chercheur/account",
+      icon: BadgeCheck,
+    },
   ],
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const { user, setUser } = useStateContext();
+  const { user, setUser, setToken } = useStateContext();
   const [navItems, setNavItems] = React.useState<NavItem[]>(data.navMain);
 
   useEffect(() => {
@@ -102,6 +117,14 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       setUser(data);
     });
   }, [setUser]);
+
+  const onLogout = (ev) => {
+          ev.preventDefault();
+          axiosClient.get("/logout").then(({}) => {
+              setUser(null);
+              setToken(null);
+          });
+      };
 
   
 
@@ -120,30 +143,41 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       
       <SidebarContent className="mt-4">
-  <NavMain items={navItems} />
+        <NavMain items={navItems} />
 
-  {user?.is_chef_equipe && (
-    <NavProjects
-      label="Espace Équipe"
-      projects={[
-        {
-          name: "Gérer les membres",
-          url: "/equipe/manage-members",
-          icon: Users,
-        },
-        {
-          name: "Projets de recherche",
-          url: "/equipe/manage-projets",
-          icon: FolderCog,
-        },
-      ]}
-    />
-  )}
-</SidebarContent>
+        {user.is_chef_equipe == 1 && (
+          <NavProjects
+            label="Espace Équipe"
+            projects={[
+              {
+                name: "Gérer les membres",
+                url: "/equipe/manage-members",
+                icon: Users,
+              },
+              {
+                name: "Projets de recherche",
+                url: "/equipe/manage-projets",
+                icon: FolderCog,
+              },
+            ]}
+          />
+        )}
+      </SidebarContent>
       
       <SidebarFooter className="pb-4">
-        
-      </SidebarFooter>
+  <SidebarMenu>
+    <SidebarMenuItem>
+      <Button
+        onClick={onLogout}
+        className="w-full text-left px-4  text-sm  rounded-md flex items-center cursor-pointer"
+      >
+        <LogOut className="mr-2 h-4 w-4" />
+        <span>Déconnexion</span>
+      </Button>
+    </SidebarMenuItem>
+  </SidebarMenu>
+</SidebarFooter>
+
       
       <SidebarRail />
     </Sidebar>

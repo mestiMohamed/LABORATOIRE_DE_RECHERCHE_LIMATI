@@ -1,130 +1,138 @@
-import { Separator } from "@/components/ui/Separator";
-import lg from '../../assets/ellogo.png'
+import React from "react";
+import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
+import limati from "../../assets/footer/limati.png";
+const defaultSections = [
+    {
+        title: "Product",
+        links: [
+            { name: "Overview", href: "#" },
+            { name: "Pricing", href: "#" },
+            { name: "Marketplace", href: "#" },
+            { name: "Features", href: "#" },
+        ],
+    },
+    {
+        title: "Company",
+        links: [
+            { name: "About", href: "#" },
+            { name: "Team", href: "#" },
+            { name: "Blog", href: "#" },
+            { name: "Careers", href: "#" },
+        ],
+    },
+    {
+        title: "Resources",
+        links: [
+            { name: "Help", href: "#" },
+            { name: "Sales", href: "#" },
+            { name: "Advertise", href: "#" },
+            { name: "Privacy", href: "#" },
+        ],
+    },
+];
+
+const defaultSocialLinks = [
+    { icon: <FaInstagram className="size-5" />, href: "#", label: "Instagram" },
+    { icon: <FaFacebook className="size-5" />, href: "#", label: "Facebook" },
+    { icon: <FaTwitter className="size-5" />, href: "#", label: "Twitter" },
+    { icon: <FaLinkedin className="size-5" />, href: "#", label: "LinkedIn" },
+];
+
+const defaultLegalLinks = [
+    { name: "Terms and Conditions", href: "#" },
+    { name: "Privacy Policy", href: "#" },
+];
 
 const Footer2 = ({
     logo = {
-        src: lg, // Remplace par ton vrai logo si besoin
-        alt: "Logo LIMATI",
-        title: "LIMATI",
-        url: "/",
+        url: "https://www.shadcnblocks.com",
+        src: "https://www.shadcnblocks.com/images/block/logos/shadcnblockscom-icon.svg",
+        alt: "logo",
+        title: "Shadcnblocks.com",
     },
-    tagline = "Laboratoire d’Informatique, Mathématiques Appliquées et Technologies de l’Information – Université Sultan Moulay Slimane",
-    menuItems = [
-        {
-            title: "Recherche",
-            links: [
-                { text: "Équipes de recherche", url: "/equipes" },
-                { text: "Projets de recherche", url: "/projets" },
-                { text: "Publications scientifiques", url: "/publications" },
-            ],
-        },
-        {
-            title: "Formation",
-            links: [
-                { text: "Sujets de thèse", url: "/theses" },
-                { text: "Encadrements", url: "/encadrements" },
-                { text: "Stages et mémoires", url: "/stages" },
-            ],
-        },
-        {
-            title: "À propos",
-            links: [
-                { text: "Présentation du laboratoire", url: "/presentation" },
-                { text: "Membres enseignants", url: "/chercheurs" },
-                { text: "Contact", url: "/contact" },
-            ],
-        },
-        {
-            title: "Liens utiles",
-            links: [
-                {
-                    text: "Université Sultan Moulay Slimane",
-                    url: "https://usms.ac.ma",
-                },
-                {
-                    text: "Faculté des Sciences et Techniques",
-                    url: "https://www.fstbm.ac.ma",
-                },
-                { text: "CNRST Maroc", url: "https://www.cnrst.ma" },
-            ],
-        },
-    ],
-    copyright = "© 2024 LIMATI - Université Sultan Moulay Slimane. Tous droits réservés.",
-    bottomLinks = [
-        { text: "Mentions légales", url: "/mentions-legales" },
-        { text: "Politique de confidentialité", url: "/confidentialite" },
-        { text: "Plan du site", url: "/plan-site" },
-    ],
+    sections = defaultSections,
+    description = "A collection of components for your startup business or side project.",
+    socialLinks = defaultSocialLinks,
+    copyright = "© 2024 Shadcnblocks.com. All rights reserved.",
+    legalLinks = defaultLegalLinks,
 }) => {
-    const isExternal = (url) => /^https?:\/\//.test(url);
-
     return (
-        <section className="py-10 container mx-auto text-white">
-            <div className="container ">
-                <footer role="contentinfo" aria-label="Pied de page LIMATI">
-                    <div className="grid grid-cols-2 gap-8 lg:grid-cols-6 mb-5">
-                        <div className="col-span-2 mb-8 lg:mb-0">
-                            <div className="flex items-center lg:justify-start">
-                                <a href={logo.url}>
-                                    <img
-                                        src={logo.src}
-                                        alt={logo.alt}
-                                        title={logo.title}
-                                        className="w-40"
-                                    />
-                                </a>
-                                <p className="text-xl font-semibold">
-                                    {logo.title}
-                                </p>
-                            </div>
-                            <p className="mt-4 font-bold">{tagline}</p>
+        <section className="pt-20 container mx-auto">
+            <div className="container">
+                <div className="flex w-full flex-col justify-between gap-10 lg:flex-row lg:items-start lg:text-left">
+                    <div className="flex w-full flex-col justify-between gap-6 lg:items-start">
+                        {/* Logo */}
+                        <div className="flex items-center gap-2 lg:justify-start">
+                            <a href={logo.url}>
+                                <img
+                                    src={logo.src}
+                                    alt={logo.alt}
+                                    title={logo.title}
+                                    className="h-8"
+                                />
+                            </a>
+                            <h2 className="text-xl font-semibold">
+                                {logo.title}
+                            </h2>
                         </div>
-
-                        {menuItems.map((section, sectionIdx) => (
-                            <div key={sectionIdx} className="flex flex-col  justify-center">
+                        <p className="max-w-[70%] text-sm text-muted-foreground">
+                            {description}
+                        </p>
+                        <ul className="flex items-center space-x-6 text-muted-foreground">
+                            {socialLinks.map((social, idx) => (
+                                <li
+                                    key={idx}
+                                    className="font-medium hover:text-primary"
+                                >
+                                    <a
+                                        href={social.href}
+                                        aria-label={social.label}
+                                    >
+                                        {social.icon}
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                    <div className="grid w-full gap-6 md:grid-cols-3 lg:gap-20">
+                        {sections.map((section, sectionIdx) => (
+                            <div key={sectionIdx}>
                                 <h3 className="mb-4 font-bold">
                                     {section.title}
                                 </h3>
-                                <ul className="space-y-4 text-muted-foreground">
+                                <ul className="space-y-3 text-sm text-muted-foreground">
                                     {section.links.map((link, linkIdx) => (
                                         <li
                                             key={linkIdx}
                                             className="font-medium hover:text-primary"
                                         >
-                                            <a
-                                                href={link.url}
-                                                {...(isExternal(link.url) && {
-                                                    target: "_blank",
-                                                    rel: "noopener noreferrer",
-                                                })}
-                                            >
-                                                {link.text}
-                                            </a>
+                                            <a href={link.href}>{link.name}</a>
                                         </li>
                                     ))}
                                 </ul>
                             </div>
                         ))}
                     </div>
+                </div>
+                <div className="mt-8 flex flex-col justify-between gap-4 border-t pt-8 text-xs font-medium text-muted-foreground md:flex-row md:items-center md:text-left">
+                    <p className="order-2 lg:order-1">{copyright}</p>
+                    <ul className="order-1 flex flex-col gap-2 md:order-2 md:flex-row">
+                        {legalLinks.map((link, idx) => (
+                            <li key={idx} className="hover:text-primary">
+                                <a href={link.href}> {link.name}</a>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
 
-                    <div className="px-10">
-                        <Separator className=" bg-gray-300 dark:bg-gray-300 px-10" />
-                    </div>
-
-                    <div className=" flex flex-col justify-between gap-4 pt-8 text-sm font-medium text-muted-foreground md:flex-row md:items-center">
-                        <p>{copyright}</p>
-                        <ul className="flex gap-4">
-                            {bottomLinks.map((link, linkIdx) => (
-                                <li
-                                    key={linkIdx}
-                                    className="underline hover:text-primary"
-                                >
-                                    <a href={link.url}>{link.text}</a>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                </footer>
+                {/* IMAGE LIMATI SANS MARGE */}
+                <div className="mt-0 p-0 m-0 w-full">
+                    <img
+                        src={limati}
+                        alt="limati"
+                        className="m-0 p-0 w-full object-cover"
+                    />
+                </div>
             </div>
         </section>
     );

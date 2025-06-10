@@ -17,8 +17,11 @@ class UpdateChercheurRequest extends FormRequest
     {
         return [
             'name' => 'sometimes|string|max:255',
-            'email' => 'sometimes|email|unique:users,email,' . $this->route('user')->id,
-
+            'email' => [
+                'sometimes',
+                'email',
+                Rule::unique('users', 'email')->ignore(auth()->id()),
+            ],
             'password' => 'sometimes|nullable|string|min:8|confirmed',
             'date_of_birth' => 'sometimes|date',
             'gender' => 'sometimes|in:m,f',

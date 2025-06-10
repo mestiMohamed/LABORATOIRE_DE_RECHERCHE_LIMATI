@@ -43,5 +43,9 @@ const ChercheurApi = {
     removeFromEquipe(id) {
         return axiosClient.put(`/users/${id}/remove-equipe`);
     },
+
+    
+
+    
 };
 export default ChercheurApi;

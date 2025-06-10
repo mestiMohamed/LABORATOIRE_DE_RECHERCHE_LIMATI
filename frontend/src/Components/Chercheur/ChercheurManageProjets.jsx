@@ -21,6 +21,7 @@ import { useEffect } from "react";
 import axiosClient from "../../axiosClient";
 import ProjetDeRechercheApi from "../../Components/services/Api/ProjetDeRechercheApi";
 import ChercheurProjetsList from "../data-table/ChercheurProjetsList";
+import ChercheurProjetDeRechercheUpSetForm from "../Forms/ChercheurProjetDeRechercheUpSetForm";
 
 function ChercheurManageProjets() {
 
@@ -61,7 +62,7 @@ function ChercheurManageProjets() {
                             Ajouter une nouvelle équipe
                         </h2>
                         <Separator className="my-4" />
-                        <ProjetDeRechercheUpSertForm
+                        <ChercheurProjetDeRechercheUpSetForm
                             handleSubmit={(values) =>
                                 ProjetDeRechercheApi.create(values)
                             }

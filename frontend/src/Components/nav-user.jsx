@@ -29,12 +29,15 @@ import {
 import { useStateContext } from "../Contexts/ContextProvider";
 import axiosClient from "../axiosClient";
 import { Link, Navigate } from "react-router-dom";
-import { ADMIN_MANAGE_ACCOUNT_ROUTE, ADMIN_MANAGE_NOTIFICATIONS_ROUTE } from "../router";
+import {
+    CHERCHEUR_MANAGE_ACCOUNT_ROUTE,
+    ADMIN_MANAGE_NOTIFICATIONS_ROUTE
+} from "../router";
 
 export function NavUser({}) {
     const { isMobile } = useSidebar();
 
-    const { user, token, setUser, setToken } = useStateContext();
+    const { user, role,  setUser, setToken } = useStateContext();
 
     const onLogout = (ev) => {
         ev.preventDefault();
@@ -44,6 +47,10 @@ export function NavUser({}) {
         });
     };
 
+    const accountRoute =
+        role === "user"
+            ? "/chercheur/account"
+            : "/admin/account";
     return (
         <SidebarMenu>
             <SidebarMenuItem>
@@ -104,11 +111,11 @@ export function NavUser({}) {
                         </DropdownMenuLabel>
                         <DropdownMenuSeparator />
                         <DropdownMenuGroup>
-                            <Link to={ADMIN_MANAGE_ACCOUNT_ROUTE}>
+                            <Link to={accountRoute}>
                                 <DropdownMenuItem>
                                     <div className="flex items-center gap-2">
                                         <BadgeCheck />
-                                        <div>Account </div>
+                                        <div>Account</div>
                                     </div>
                                 </DropdownMenuItem>
                             </Link>

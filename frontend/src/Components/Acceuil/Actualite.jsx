@@ -103,7 +103,7 @@ function Actualite() {
     ];
 
     return (
-        <div className="container mx-auto py-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-1 justify-items-center">
+        <div className="container mx-auto  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-1 justify-items-center">
             {actualites.map((item, index) => (
                 <ActualiteCard
                     key={index}

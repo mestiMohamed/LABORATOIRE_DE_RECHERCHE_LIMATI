@@ -29,7 +29,7 @@ export function NavMain({
             <Link to={item.url} className="w-full">
               <SidebarMenuButton
                 tooltip={item.title}
-                className={item.isActive ? "bg-muted" : ""}
+                className={item.isActive ? "bg-muted" : ""+"cursor-pointer"}
               >
                 {item.icon && <item.icon className="mr-2 h-4 w-4" />}
                 <span>{item.title}</span>

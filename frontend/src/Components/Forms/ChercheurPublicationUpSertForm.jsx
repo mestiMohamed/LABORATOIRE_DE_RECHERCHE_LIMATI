@@ -25,6 +25,10 @@ export default function ChercheurPublicationsUpSertForm({ handleSubmit, values }
     const formSchema = z.object({
         titre: z.string().min(2, "Le titre est requis"),
         contenu: z.string().min(5, "La description est trop courte"),
+        user_id: z.coerce
+            .number()
+            .int()
+            .positive(),
         status: z.string().min(1, "Le statut est requis"),
     });
 

@@ -11,6 +11,7 @@ import PublicationApi from "../../Components/services/Api/PublicationApi";
 import PublicationsUpSertForm from "../../Components/Forms/PublicationsUpSertForm";
 import AdminPublicationList from "../../Components/data-table/AdminPublicationList";
 import ChercheurPublicationList from "../data-table/ChercheurPublicationList";
+import ChercheurPublicationsUpSertForm from "../Forms/ChercheurPublicationUpSertForm";
 
 function ChercheurManagePublications() {
     const { user, setUser } = useStateContext();
@@ -52,7 +53,7 @@ function ChercheurManagePublications() {
                             Ajouter une nouvelle publication
                         </h2>
                         <Separator className="my-4" />
-                        <PublicationsUpSertForm
+                        <ChercheurPublicationsUpSertForm
                             handleSubmit={(values) => PublicationApi.create(values)}
                         />
                     </div>

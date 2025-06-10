@@ -10,6 +10,7 @@ import ProjetDeRechercheUpSertForm from "../../../Components/Forms/ProjetDeRecha
 
 import ProjetDeRechercheApi from "../../../Components/services/Api/ProjetDeRechercheApi";
 import ChefEquipeProjetsList from "../../data-table/ChefEquipeProjetList";
+import EquipeProjetDeRechercheUpSetForm from "../../Forms/EquipeProjetDeRechercheUpSertForm";
 
 function ChercheurChefManageProjects() {
 
@@ -50,7 +51,7 @@ function ChercheurChefManageProjects() {
                             Ajouter une nouvelle équipe
                         </h2>
                         <Separator className="my-4" />
-                        <ProjetDeRechercheUpSertForm
+                        <EquipeProjetDeRechercheUpSetForm
                             handleSubmit={(values) =>
                                 ProjetDeRechercheApi.create(values)
                             }

@@ -24,7 +24,7 @@ class StoreProjetDeRechercheRequest extends FormRequest
         return [
             'name' => 'required|string|min:2',
             'description' => 'string',
-            'user_id' => 'required',
+            'user_id' => '',
             'equipe_id' => '',
             'date_debut' => 'required',
             'date_fin' => 'required',
