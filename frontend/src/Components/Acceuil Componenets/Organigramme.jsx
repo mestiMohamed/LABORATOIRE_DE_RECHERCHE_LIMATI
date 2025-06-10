@@ -52,7 +52,9 @@ function Organigramme (props) {
             <main className="pt-18">
 
                 
-                
+                <section>
+                    
+                </section>
                 <section className="bg-black">
                     <Footer2 />
                 </section>
