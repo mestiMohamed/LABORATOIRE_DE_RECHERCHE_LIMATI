@@ -1,5 +1,12 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-
+import av1 from "../assets/images_d'acceuil/img/prof1.jpg"
+import av2 from "../assets/images_d'acceuil/img/prof2.jpg"
+import av3 from "../assets/images_d'acceuil/img/prof3.jpg"
+import av4 from "../assets/images_d'acceuil/img/prof4.jpg"
+import av5 from "../assets/images_d'acceuil/img/prof5.jpg"
+import av6 from "../assets/images_d'acceuil/img/prof6.jpg"
+import av7 from "../assets/images_d'acceuil/img/prof7.jpg"
+import av8 from "../assets/images_d'acceuil/img/prof8.jpg"
 const Team1 = ({
     heading = "Nos membres",
     subheading = "Laboratoire LIMATI",
@@ -7,51 +14,51 @@ const Team1 = ({
     members = [
         {
             id: "person-1",
-            name: "Name",
-            role: "Role",
-            avatar: "https://shadcnblocks.com/images/block/avatar-1.webp",
+            name: "john doe",
+            role: "Responsable du laboratoire",
+            avatar: av1,
         },
         {
             id: "person-2",
-            name: "Name",
-            role: "Role",
-            avatar: "https://shadcnblocks.com/images/block/avatar-2.webp",
+            name: "Jane Smith",
+            role: "Chercheure senior",
+            avatar: av2,
         },
         {
             id: "person-3",
-            name: "Name",
-            role: "Role",
-            avatar: "https://shadcnblocks.com/images/block/avatar-3.webp",
+            name: "Alice Johnson",
+            role: "chercheure junior",
+            avatar: av3,
         },
         {
             id: "person-4",
-            name: "Name",
-            role: "Role",
-            avatar: "https://shadcnblocks.com/images/block/avatar-4.webp",
+            name: "Bob Brown",
+            role: "chercheure senior",
+            avatar: av4,
         },
         {
             id: "person-5",
-            name: "Name",
-            role: "Role",
-            avatar: "https://shadcnblocks.com/images/block/avatar-5.webp",
+            name: "Charlie Davis",
+            role: "Chercheur junior",
+            avatar: av5,
         },
         {
             id: "person-6",
-            name: "Name",
-            role: "Role",
-            avatar: "https://shadcnblocks.com/images/block/avatar-6.webp",
+            name: "Emily Wilson",
+            role: "Chercheuse senior",
+            avatar: av6,
         },
         {
             id: "person-7",
-            name: "Name",
-            role: "Role",
-            avatar: "https://shadcnblocks.com/images/block/avatar-7.webp",
+            name: "Michael Taylor",
+            role: "Chercheur junior",
+            avatar: av7,
         },
         {
             id: "person-8",
-            name: "Name",
-            role: "Role",
-            avatar: "https://shadcnblocks.com/images/block/avatar-8.webp",
+            name: "alex Miller",
+            role: "Chercheuse senior",
+            avatar: av8,
         },
     ],
 }) => {

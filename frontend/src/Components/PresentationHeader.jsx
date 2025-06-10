@@ -5,6 +5,10 @@ import {
     AccordionContent,
 } from "../Components/ui/accordion";
 
+import img1 from "../assets/images_d'acceuil/img/img1.jpg";
+import img2 from "../assets/images_d'acceuil/img/img2.jpg";
+import img3 from "../assets/images_d'acceuil/img/img3.jpg";
+
 const Feature73 = ({
     features = [
         {
@@ -12,21 +16,21 @@ const Feature73 = ({
             title: "QUI SOMMES-NOUS ?",
             description:
                 "Le Laboratoire d’Innovation en Mathématiques et Applications et Technologies de l’Information (LIMATI) est une structure de recherche affiliée à FP-BM. Situé sur le campus de Beni Mellal, le LIMATI rassemble enseignants-chercheurs, ingénieurs et étudiants autour de projets interdisciplinaires mêlant mathématiques appliquées, informatique et technologies de l’information. Il s’inscrit dans une dynamique de recherche et d’innovation orientée vers les sciences du numérique et leurs applications concrètes. Le LIMATI contribue activement à la stratégie scientifique de l’établissement, en favorisant les synergies entre formation, recherche et transfert technologique dans le domaine des sciences exactes et de l’ingénierie.",
-            image: "https://www.shadcnblocks.com/images/block/placeholder-1.svg",
+            image: img1,
         },
         {
             id: "feature-2",
             title: "QUE FAISONS NOUS ?",
             description:
                 "Au LIMATI, nous menons des recherches en mathématiques appliquées et en informatique, en lien avec les technologies de l’information. Nos travaux visent à développer des solutions innovantes dans des domaines comme la modélisation, les systèmes intelligents, l’analyse de données et la cybersécurité, en collaboration avec des acteurs académiques et industriels.",
-            image: "https://www.shadcnblocks.com/images/block/placeholder-2.svg",
+            image: img2,
         },
         {
             id: "feature-3",
             title: "Nos domaines d’application stratégiques",
             description:
                 "Les recherches menées au LIMATI se concrétisent dans six domaines clés, au cœur des défis technologiques et sociétaux actuels : ",
-            image: "https://www.shadcnblocks.com/images/block/placeholder-3.svg",
+            image: img3,
         },
     ],
 }) => {
