@@ -48,7 +48,7 @@ const components1 = [
     },
     {
         title: "DÉPARTEMENTS ET ÉQUIPES",
-        href: "departements-et-equipes",
+        href: "/departements-et-equipes",
         description:
             "Structuration du laboratoire en groupes de recherche selon les thématiques scientifiques.",
     },
@@ -83,8 +83,8 @@ const components3 = [
             "Articles scientifiques, conférences, livres et autres publications du LIMATI.",
     },
     {
-        title: "LOGICIELS",
-        href: "/logiciels",
+        title: "PROJETS DE RECHERCHE",
+        href: "/projets-de-recherche",
         description:
             "Outils et applications développés par les chercheurs dans le cadre des projets du laboratoire.",
     },
@@ -96,12 +96,6 @@ const labItems = [
         href: "/presentation-du-laboratoire",
         description:
             "Aperçu global du laboratoire LIMATI : sa mission, son positionnement scientifique et ses valeurs.",
-    },
-    {
-        title: "DIRECTION, INSTANCES ET MISSIONS",
-        href: "/directions-instances-missions",
-        description:
-            "Organisation de la direction, instances décisionnelles et missions principales du laboratoire.",
     },
     {
         title: "ORGANIGRAMME",
@@ -203,7 +197,7 @@ export function ResponsiveNavigationMenu() {
                                                     to={item.href}
                                                     className="block"
                                                 >
-                                                    <div className="text-black font-semibold">
+                                                    <div className="text-black font-semibold dark:text-white">
                                                         {item.title}
                                                     </div>
                                                     <div className="text-sm text-gray-500">
@@ -228,7 +222,7 @@ export function ResponsiveNavigationMenu() {
                                                     to={component.href}
                                                     className="block"
                                                 >
-                                                    <div className="text-black font-semibold">
+                                                    <div className="text-black font-semibold dark:text-white">
                                                         {component.title}
                                                     </div>
                                                     <div className="text-sm text-gray-500">
@@ -253,7 +247,7 @@ export function ResponsiveNavigationMenu() {
                                                     to={component.href}
                                                     className="block"
                                                 >
-                                                    <div className="text-black font-semibold">
+                                                    <div className="text-black font-semibold dark:text-white">
                                                         {component.title}
                                                     </div>
                                                     <div className="text-sm text-gray-500">
@@ -278,7 +272,7 @@ export function ResponsiveNavigationMenu() {
                                                     to={component.href}
                                                     className="block"
                                                 >
-                                                    <div className="text-black font-semibold">
+                                                    <div className="text-black font-semibold dark:text-white">
                                                         {component.title}
                                                     </div>
                                                     <div className="text-sm text-gray-500">

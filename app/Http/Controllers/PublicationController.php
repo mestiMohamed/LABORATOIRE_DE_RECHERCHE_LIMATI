@@ -100,4 +100,11 @@ class PublicationController extends Controller
 
         return PublicationResource::collection($publications);
     }
+
+    public function getPubs(): AnonymousResourceCollection
+    {
+        return PublicationResource::collection(
+            Publication::with('user')->paginate(6) // 6 publications par page
+        );
+    }
 }

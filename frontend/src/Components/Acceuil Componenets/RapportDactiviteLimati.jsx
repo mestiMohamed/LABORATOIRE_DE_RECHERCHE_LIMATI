@@ -8,6 +8,7 @@ import { Community1 } from "../Intro.jsx";
 import { Feature73 } from "../PresentationHeader.jsx";
 import { Team1 } from "../Team.jsx";
 import { Stats6 } from "../LimatiEnChiffre.jsx";
+import { RapportLimati } from "../RapportLimati.jsx";
 
 function RapportDactiviteLimati (props) {
     const [scrolled, setScrolled] = useState(false);
@@ -51,7 +52,9 @@ function RapportDactiviteLimati (props) {
 
             <main className="pt-18">
 
-                
+                <section className="mx-20">
+                    <RapportLimati />
+                </section>
                 
                 <section className="bg-black">
                     <Footer2 />

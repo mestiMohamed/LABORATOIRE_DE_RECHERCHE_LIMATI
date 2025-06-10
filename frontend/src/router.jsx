@@ -20,7 +20,6 @@ import ChercheurManagePublications from "./Components/Chercheur/ChercheurManageP
 import PresentationDuLabo from "./Components/Acceuil Componenets/PresentationDuLabo.jsx";
 import NotFound from "./views/NotFound.jsx";
 import ChercheurManageAccount from "./Components/Chercheur/ChercheurManageAccount.jsx";
-import DirectionsInstancesMissions from "./Components/Acceuil Componenets/DirectionsInstancesMissions.jsx";
 import Organigramme from "./Components/Acceuil Componenets/Organigramme.jsx";
 import LimatiEnChiffre from "./Components/Acceuil Componenets/LimatiEnChiffre.jsx";
 import LimatiSengage from "./Components/Acceuil Componenets/LimatiSengage.jsx";
@@ -29,10 +28,10 @@ import SujetsScientifiques from "./Components/Acceuil Componenets/SujetsScientif
 import DomainesDapplications from "./Components/Acceuil Componenets/DomainesDapplications.jsx";
 import DepartementsEtEquipes from "./Components/Acceuil Componenets/DepartementEtEquipes.jsx";
 import Publications from "./Components/Acceuil Componenets/Publications.jsx";
-import Logiciels from "./Components/Acceuil Componenets/Logiciels.jsx";
 import FaireStageEnLimati from "./Components/Acceuil Componenets/FaireStageEnLimati.jsx";
 import FaireDoctoratLimati from "./Components/Acceuil Componenets/FaireDoctoratLimati.jsx";
 import Evenements from "./Components/Acceuil Componenets/Evenements.jsx";
+import ProjetDeRechercheNav from "./Components/Acceuil Componenets/ProjetDeRechercheNav.jsx";
 
 const ADMIN_BASE_ROUTE = "/admin";
 const CHERCHEUR_BASE_ROUTE = "/chercheur";
@@ -84,10 +83,7 @@ const router = createBrowserRouter([
         path: "/presentation-du-laboratoire",
         element: <PresentationDuLabo />
     },
-    {
-        path: "/directions-instances-missions",
-        element: <DirectionsInstancesMissions />
-    },
+
     {
         path: "/organigramme",
         element: <Organigramme />
@@ -121,8 +117,8 @@ const router = createBrowserRouter([
         element: <Publications />
     },
     {
-        path: "/logiciels",
-        element: <Logiciels />
+        path: "/projets-de-recherche",
+        element: <ProjetDeRechercheNav />
     },
     {
         path: "/faire-son-stage-a-limati",

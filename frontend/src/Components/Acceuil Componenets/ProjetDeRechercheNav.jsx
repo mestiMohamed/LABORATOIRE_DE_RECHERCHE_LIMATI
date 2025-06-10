@@ -3,13 +3,13 @@ import { ResponsiveNavigationMenu } from "../Acceuil/NavBar.jsx";
 
 import { useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import Footer2 from "../../Components/ui/footer.jsx";
+import Footer2 from "../ui/footer.jsx";
 import { Community1 } from "../Intro.jsx";
 import { Feature73 } from "../PresentationHeader.jsx";
 import { Team1 } from "../Team.jsx";
 import { Stats6 } from "../LimatiEnChiffre.jsx";
 
-function Logiciels (props) {
+function ProjetDeRechercheNav (props) {
     const [scrolled, setScrolled] = useState(false);
 
     useEffect(() => {
@@ -61,4 +61,4 @@ function Logiciels (props) {
     );
 }
 
-export default Logiciels ;
+export default ProjetDeRechercheNav ;

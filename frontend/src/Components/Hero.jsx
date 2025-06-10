@@ -50,7 +50,7 @@ const Hero115 = ({
         }
     }, [inView, controlsLeft, controlsRight]);
     return (
-        <section className="overflow-hidden py-32">
+        <section className="overflow-hidden py-32 mt-28">
             <div className="container">
                 <div className="flex flex-col gap-5">
                     <div className="relative flex flex-col gap-5">

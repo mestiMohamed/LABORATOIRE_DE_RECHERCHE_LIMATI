@@ -6,10 +6,6 @@ import {
 } from "../Components/ui/accordion";
 
 const Feature73 = ({
-    heading = "Powerful Features",
-    description = "Discover the powerful features that make our platform stand out from the rest. Built with the latest technology and designed for maximum productivity.",
-    linkUrl = "https://www.shadcnblocks.com",
-    linkText = "Book a demo",
     features = [
         {
             id: "feature-1",

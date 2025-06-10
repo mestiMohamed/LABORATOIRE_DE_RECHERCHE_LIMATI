@@ -8,6 +8,7 @@ import { Community1 } from "../Intro.jsx";
 import { Feature73 } from "../PresentationHeader.jsx";
 import { Team1 } from "../Team.jsx";
 import { Stats6 } from "../LimatiEnChiffre.jsx";
+import { DomaineDapp } from "../domainesDapplications.jsx";
 
 function DomainesDapplications (props) {
     const [scrolled, setScrolled] = useState(false);
@@ -51,7 +52,9 @@ function DomainesDapplications (props) {
 
             <main className="pt-18">
 
-                
+                <section className="container mx-auto"> 
+                    <DomaineDapp />
+                </section>
                 
                 <section className="bg-black">
                     <Footer2 />

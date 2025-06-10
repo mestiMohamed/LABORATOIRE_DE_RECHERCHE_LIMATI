@@ -83,5 +83,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:sanctum']], function (
 
 Route::get('/admin/events-by-month', [EventController::class, 'eventsPerMonth']);
 Route::get('/admin/par-type', [ProjteDeRecherchecontroller::class, 'parType']);
+Route::get('/events/upcoming', [EventController::class, 'upcomingEvents']);
+Route::get('/publications/public', [PublicationController::class, 'getPubs']);
 
 

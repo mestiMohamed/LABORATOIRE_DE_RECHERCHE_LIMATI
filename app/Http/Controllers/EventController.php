@@ -101,4 +101,16 @@ class EventController extends Controller
 
         return response()->json($formattedData);
     }
+
+    public function upcomingEvents()
+    {
+        $today = Carbon::now();
+
+        $events = Event::with('eventType')
+            ->where('date_debut', '>', $today)
+            ->orderBy('date_debut', 'asc')
+            ->get();
+
+        return EventResource::collection($events);
+    }
 }

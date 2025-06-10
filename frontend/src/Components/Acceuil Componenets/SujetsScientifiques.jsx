@@ -8,8 +8,9 @@ import { Community1 } from "../Intro.jsx";
 import { Feature73 } from "../PresentationHeader.jsx";
 import { Team1 } from "../Team.jsx";
 import { Stats6 } from "../LimatiEnChiffre.jsx";
+import { SujetsScientifiquesNav } from "../SujetsScientifiques.jsx";
 
-function SujetsScientifiques (props) {
+function SujetsScientifiques(props) {
     const [scrolled, setScrolled] = useState(false);
 
     useEffect(() => {
@@ -50,9 +51,10 @@ function SujetsScientifiques (props) {
             </header>
 
             <main className="pt-18">
+                <section className="container mx-auto">
+                    <SujetsScientifiquesNav />
+                </section>
 
-                
-                
                 <section className="bg-black">
                     <Footer2 />
                 </section>
@@ -61,4 +63,4 @@ function SujetsScientifiques (props) {
     );
 }
 
-export default SujetsScientifiques ;
+export default SujetsScientifiques;
