@@ -36,115 +36,40 @@ import { cn } from "@/lib/utils";
 const components1 = [
     {
         title: "SUJETS SCIENTIFIQUES",
-        href: "/docs/primitives/alert-dialog",
+        href: "/sujets-scientifiques",
         description:
             "Thématiques de recherche explorées par LIMATI, en mathématiques fondamentales, appliquées et informatique.",
     },
     {
         title: "DOMAINES D'APPLICATION",
-        href: "/docs/primitives/hover-card",
+        href: "/domaines-dapplication",
         description:
             "Champs dans lesquels les recherches du laboratoire sont appliquées : santé, finance, cybersécurité, etc.",
     },
     {
-        title: "ACTION STRATEGIQUE CALCULÉ, DONNÉES, AI",
-        href: "/docs/primitives/progress",
-        description:
-            "Axes stratégiques autour du calcul scientifique, de la science des données et de l'intelligence artificielle.",
-    },
-    {
         title: "DÉPARTEMENTS ET ÉQUIPES",
-        href: "/docs/primitives/scroll-area",
+        href: "departements-et-equipes",
         description:
             "Structuration du laboratoire en groupes de recherche selon les thématiques scientifiques.",
-    },
-    {
-        title: "PLATEFORMES",
-        href: "/docs/primitives/tabs",
-        description:
-            "Outils, infrastructures numériques et ressources technologiques utilisées dans les projets du laboratoire.",
-    },
-    {
-        title: "PARTICIPATION GDR",
-        href: "/docs/primitives/tooltip",
-        description:
-            "Engagement du LIMATI dans des Groupements De Recherche à l'échelle nationale.",
-    },
-];
-
-const components2 = [
-    {
-        title: "STRUCTURES COMMUNES",
-        href: "/docs/primitives/alert-dialog",
-        description:
-            "Structures mutualisées avec d'autres laboratoires ou institutions pour renforcer la recherche.",
-    },
-    {
-        title: "ÉCOSYSTÈME PIA",
-        href: "/docs/primitives/hover-card",
-        description:
-            "Projets et partenariats dans le cadre du Programme d'Investissements d'Avenir (PIA).",
-    },
-    {
-        title: "GROUPEMENTS D'INTÉRÊT SCIENTIFIQUE (GIS)",
-        href: "/docs/primitives/progress",
-        description:
-            "Partenariats structurants autour de problématiques scientifiques d'envergure nationale.",
-    },
-    {
-        title: "GROUPEMENTS DE SERVICE (GDS)",
-        href: "/docs/primitives/scroll-area",
-        description:
-            "Groupements offrant des services scientifiques partagés entre plusieurs laboratoires.",
-    },
-    {
-        title: "PARTENARIATS INDUSTRIELS",
-        href: "/docs/primitives/tabs",
-        description:
-            "Collaborations avec le secteur industriel pour l'innovation et le transfert technologique.",
-    },
-    {
-        title: "PARTICIPATION GDR",
-        href: "/docs/primitives/tooltip",
-        description:
-            "Adhésion à des réseaux de recherche (GDR) favorisant les échanges scientifiques.",
-    },
-    {
-        title: "FINANCEURS PUBLICS",
-        href: "/docs/primitives/tooltip",
-        description:
-            "Liste des institutions publiques finançant les projets du laboratoire.",
-    },
-    {
-        title: "INTERNATIONAL",
-        href: "/docs/primitives/tooltip",
-        description:
-            "Projets, partenariats et coopérations menés à l'échelle internationale.",
     },
 ];
 
 const components4 = [
     {
-        title: "LIMATI PARTENAIRE FORMATIONS",
-        href: "/docs/primitives/alert-dialog",
-        description:
-            "Contribution du LIMATI à des formations universitaires ou spécialisées en mathématiques et informatique.",
-    },
-    {
         title: "FAIRE SON STAGE A LIMATI",
-        href: "/docs/primitives/hover-card",
+        href: "/faire-son-stage-a-limati",
         description:
             "Opportunités de stages pour étudiants de licence, master ou écoles d'ingénieurs.",
     },
     {
         title: "FAIRE UN DOCTORAT A LIMATI",
-        href: "/docs/primitives/progress",
+        href: "/faire-un-doctorat-a-limati",
         description:
             "Encadrement doctoral et sujets de thèse proposés au sein du laboratoire.",
     },
     {
         title: "ÉVÉNEMENTS",
-        href: "/docs/primitives/scroll-area",
+        href: "/événemnents",
         description:
             "Colloques, séminaires, journées portes ouvertes et autres événements scientifiques organisés par LIMATI.",
     },
@@ -153,13 +78,13 @@ const components4 = [
 const components3 = [
     {
         title: "PUBLICATIONS",
-        href: "/docs/primitives/alert-dialog",
+        href: "/publications",
         description:
             "Articles scientifiques, conférences, livres et autres publications du LIMATI.",
     },
     {
         title: "LOGICIELS",
-        href: "/docs/primitives/hover-card",
+        href: "/logiciels",
         description:
             "Outils et applications développés par les chercheurs dans le cadre des projets du laboratoire.",
     },
@@ -174,39 +99,33 @@ const labItems = [
     },
     {
         title: "DIRECTION, INSTANCES ET MISSIONS",
-        href: "/docs/installation",
+        href: "/directions-instances-missions",
         description:
             "Organisation de la direction, instances décisionnelles et missions principales du laboratoire.",
     },
     {
         title: "ORGANIGRAMME",
-        href: "/docs/primitives/typography",
+        href: "/organigramme",
         description:
             "Schéma représentant la structure hiérarchique et fonctionnelle du LIMATI.",
     },
     {
         title: "LIMATI EN CHIFFRES",
-        href: "/docs/primitives/typography",
+        href: "/limati-en-chiffre",
         description:
             "Données clés : nombre de chercheurs, publications, projets, partenariats, etc.",
     },
     {
         title: "LIMATI S'ENGAGE",
-        href: "/docs/primitives/typography",
+        href: "/limati-s-engage",
         description:
             "Engagements du LIMATI en matière de science ouverte, éthique et développement durable.",
     },
     {
         title: "LE RAPPORT D'ACTIVITÉ DE LIMATI",
-        href: "/docs/primitives/typography",
+        href: "/le-rapport-dactivite-de-limati",
         description:
             "Bilan annuel des actions scientifiques, partenariales et pédagogiques du laboratoire.",
-    },
-    {
-        title: "LE MAGAZINE NOIRE SUR BLANC (NSB)",
-        href: "/docs/primitives/typography",
-        description:
-            "Magazine édité par le laboratoire : actualités, interviews, dossiers scientifiques.",
     },
 ];
 
@@ -324,36 +243,23 @@ export function ResponsiveNavigationMenu() {
 
                             <NavigationMenuItem>
                                 <NavigationMenuTrigger className="bg-transparent font-semibold">
-                                    COLLABORATIONS
-                                </NavigationMenuTrigger>
-                                <NavigationMenuContent>
-                                    <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                                        {components2.map((component, index) => (
-                                            <ListItem
-                                                key={index}
-                                                title={component.title}
-                                                href={component.href}
-                                            >
-                                                {component.description}
-                                            </ListItem>
-                                        ))}
-                                    </ul>
-                                </NavigationMenuContent>
-                            </NavigationMenuItem>
-
-                            <NavigationMenuItem>
-                                <NavigationMenuTrigger className="bg-transparent font-semibold">
                                     PRODUCTIONS SCIENTIFIQUES
                                 </NavigationMenuTrigger>
                                 <NavigationMenuContent>
                                     <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
                                         {components3.map((component, index) => (
-                                            <ListItem
-                                                key={index}
-                                                title={component.title}
-                                                href={component.href}
-                                            >
-                                                {component.description}
+                                            <ListItem key={index}>
+                                                <Link
+                                                    to={component.href}
+                                                    className="block"
+                                                >
+                                                    <div className="text-black font-semibold">
+                                                        {component.title}
+                                                    </div>
+                                                    <div className="text-sm text-gray-500">
+                                                        {component.description}
+                                                    </div>
+                                                </Link>
                                             </ListItem>
                                         ))}
                                     </ul>
@@ -367,12 +273,18 @@ export function ResponsiveNavigationMenu() {
                                 <NavigationMenuContent>
                                     <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
                                         {components4.map((component, index) => (
-                                            <ListItem
-                                                key={index}
-                                                title={component.title}
-                                                href={component.href}
-                                            >
-                                                {component.description}
+                                            <ListItem key={index}>
+                                                <Link
+                                                    to={component.href}
+                                                    className="block"
+                                                >
+                                                    <div className="text-black font-semibold">
+                                                        {component.title}
+                                                    </div>
+                                                    <div className="text-sm text-gray-500">
+                                                        {component.description}
+                                                    </div>
+                                                </Link>
                                             </ListItem>
                                         ))}
                                     </ul>
@@ -389,9 +301,12 @@ export function ResponsiveNavigationMenu() {
                                         asChild
                                         className={navigationMenuTriggerStyle()}
                                     >
-                                        <Link to={LOGIN_PAGE} className="bg-transparent">
+                                        <Link
+                                            to={LOGIN_PAGE}
+                                            className="bg-transparent"
+                                        >
                                             <div className="flex items-center gap-2 font-semibold">
-                                                <LogIn /> 
+                                                <LogIn />
                                                 Se Connecter
                                             </div>
                                         </Link>
@@ -492,36 +407,6 @@ export function ResponsiveNavigationMenu() {
                                         </AccordionContent>
                                     </AccordionItem>
 
-                                    <AccordionItem value="collaborations">
-                                        <AccordionTrigger className="text-base hover:no-underline">
-                                            COLLABORATIONS
-                                        </AccordionTrigger>
-                                        <AccordionContent>
-                                            <div className="grid gap-2">
-                                                {components2.map(
-                                                    (item, index) => (
-                                                        <a
-                                                            key={index}
-                                                            href={item.href}
-                                                            className="rounded-md p-3 transition-colors hover:bg-muted/70"
-                                                        >
-                                                            <div>
-                                                                <p className="mb-1 font-semibold text-foreground">
-                                                                    {item.title}
-                                                                </p>
-                                                                <p className="text-sm text-muted-foreground">
-                                                                    {
-                                                                        item.description
-                                                                    }
-                                                                </p>
-                                                            </div>
-                                                        </a>
-                                                    )
-                                                )}
-                                            </div>
-                                        </AccordionContent>
-                                    </AccordionItem>
-
                                     <AccordionItem value="productions">
                                         <AccordionTrigger className="text-base hover:no-underline">
                                             PRODUCTIONS SCIENTIFIQUES
@@ -530,9 +415,9 @@ export function ResponsiveNavigationMenu() {
                                             <div className="grid gap-2">
                                                 {components3.map(
                                                     (item, index) => (
-                                                        <a
+                                                        <Link
                                                             key={index}
-                                                            href={item.href}
+                                                            to={item.href}
                                                             className="rounded-md p-3 transition-colors hover:bg-muted/70"
                                                         >
                                                             <div>
@@ -545,7 +430,7 @@ export function ResponsiveNavigationMenu() {
                                                                     }
                                                                 </p>
                                                             </div>
-                                                        </a>
+                                                        </Link>
                                                     )
                                                 )}
                                             </div>

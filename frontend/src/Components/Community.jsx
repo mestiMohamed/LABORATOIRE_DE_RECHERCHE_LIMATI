@@ -32,7 +32,7 @@ const Community2 = () => {
                     </a>
                     <a
                         className="group rounded-md border border-border p-6"
-                        href="#"
+                        href="https://linkedin.com/in/limati-limati-52990736a"
                     >
                         <div className="flex items-center justify-between gap-4">
                             <FaLinkedin className="size-5" />
@@ -63,7 +63,7 @@ const Community2 = () => {
                     </a>
                     <a
                         className="group rounded-md border border-border p-6"
-                        href="#"
+                        href="https://discord.gg/MXTYApjb"
                     >
                         <div className="flex items-center justify-between gap-4">
                             <FaDiscord className="size-5" />
