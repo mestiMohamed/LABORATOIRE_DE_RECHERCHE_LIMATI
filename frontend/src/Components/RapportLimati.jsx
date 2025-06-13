@@ -2,6 +2,11 @@
 
 import { ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { useEffect, useState } from "react";
+import limati2021 from "../assets/rapportLimati/2021.png"
+import limati2022 from "../assets/rapportLimati/2022.png"
+import limati2023 from "../assets/rapportLimati/2023.png"
+import limati2024 from "../assets/rapportLimati/2024.png"
+import limati2025 from "../assets/rapportLimati/2025.png"
 
 import { Button } from "@/components/ui/button";
 import {
@@ -20,7 +25,7 @@ const RapportLimati = ({
             summary:
                 "Rapport d'activité 2021",
             url: "#",
-            image: "https://shadcnblocks.com/images/block/placeholder-dark-1.svg",
+            image: limati2021,
         },
         {
             id: "item-2",
@@ -28,7 +33,7 @@ const RapportLimati = ({
             summary:
                 "Rapport d'activité 2022",
             url: "#",
-            image: "https://shadcnblocks.com/images/block/placeholder-dark-1.svg",
+            image: limati2022,
         },
         {
             id: "item-3",
@@ -36,7 +41,7 @@ const RapportLimati = ({
             summary:
                 "Rapport d'activité 2023",
             url: "#",
-            image: "https://shadcnblocks.com/images/block/placeholder-dark-1.svg",
+            image: limati2023,
         },
         {
             id: "item-4",
@@ -44,7 +49,7 @@ const RapportLimati = ({
             summary:
                 "Rapport d'activité 2024",
             url: "#",
-            image: "https://shadcnblocks.com/images/block/placeholder-dark-1.svg",
+            image: limati2024,
         },
         {
             id: "item-5",
@@ -52,7 +57,7 @@ const RapportLimati = ({
             summary:
                 "Rapport d'activité 2025",
             url: "#",
-            image: "https://shadcnblocks.com/images/block/placeholder-dark-1.svg",
+            image: limati2025,
         },
     ],
 }) => {

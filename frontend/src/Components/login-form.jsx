@@ -16,16 +16,16 @@ import {
     FormLabel,
     FormMessage,
 } from "@/components/ui/form";
-import img from "../assets/logo.png";
+import img from "../assets/logos/login2.jpg";
 import { Link } from "react-router-dom";
 
 // Define the form schema using Zod
 const formSchema = z.object({
     email: z.string().email({
-        message: "Please enter a valid email address",
+        message: "Veuillez entrer une adresse e-mail valide",
     }),
     password: z.string().min(8, {
-        message: "Password must be at least 8 characters long",
+        message: "Le mot de passe doit contenir au moins 8 caractères",
     }),
 });
 
@@ -76,10 +76,10 @@ export function LoginForm({ className, onSubmit, ...props }) {
                             <div className="flex flex-col gap-6">
                                 <div className="flex flex-col items-center text-center">
                                     <h1 className="text-2xl font-bold">
-                                        Welcome back
+                                        Bienvenue de retour
                                     </h1>
                                     <p className="text-muted-foreground text-balance">
-                                        Login to your Acme Inc account
+                                        Connectez-vous à votre compte LIMATI
                                     </p>
                                 </div>
 
@@ -89,7 +89,7 @@ export function LoginForm({ className, onSubmit, ...props }) {
                                     name="email"
                                     render={({ field }) => (
                                         <FormItem>
-                                            <FormLabel>Email</FormLabel>
+                                            <FormLabel>Adresse e-mail</FormLabel>
                                             <FormControl>
                                                 <Input
                                                     placeholder="m@example.com"
@@ -108,12 +108,12 @@ export function LoginForm({ className, onSubmit, ...props }) {
                                     render={({ field }) => (
                                         <FormItem>
                                             <div className="flex items-center">
-                                                <FormLabel>Password</FormLabel>
+                                                <FormLabel>Mot de passe</FormLabel>
                                                 <a
                                                     href="#"
                                                     className="ml-auto text-sm underline-offset-2 hover:underline"
                                                 >
-                                                    Forgot your password?
+                                                    	Mot de passe oublié ?
                                                 </a>
                                             </div>
                                             <FormControl>
@@ -132,12 +132,12 @@ export function LoginForm({ className, onSubmit, ...props }) {
                                     className="w-full gap-2 cursor-pointer"
                                     disabled={isSubmitting}
                                 >
-                                    Login
+                                    Se connecter
                                 </Button>
 
                                 <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
                                     <span className="bg-card text-muted-foreground relative z-10 px-2">
-                                        Or continue with
+                                        Ou continuer avec
                                     </span>
                                 </div>
 
@@ -157,7 +157,7 @@ export function LoginForm({ className, onSubmit, ...props }) {
                                             />
                                         </svg>
                                         <span className="sr-only">
-                                            Login with Apple
+                                            Connexion avec Apple
                                         </span>
                                     </Button>
                                     <Button
@@ -175,7 +175,7 @@ export function LoginForm({ className, onSubmit, ...props }) {
                                             />
                                         </svg>
                                         <span className="sr-only">
-                                            Login with Google
+                                            Connexion avec Google
                                         </span>
                                     </Button>
                                     <Button
@@ -193,18 +193,18 @@ export function LoginForm({ className, onSubmit, ...props }) {
                                             />
                                         </svg>
                                         <span className="sr-only">
-                                            Login with Meta
+                                            Connexion avec Meta
                                         </span>
                                     </Button>
                                 </div>
 
                                 <div className="text-center text-sm">
-                                    Don&apos;t have an account?{" "}
+                                    Pas encore de compte ?
                                     <Link
                                         to={"/register"}
                                         className="underline underline-offset-4"
                                     >
-                                        Sign up
+                                        Créez-en un
                                     </Link>
                                 </div>
                             </div>
@@ -215,16 +215,16 @@ export function LoginForm({ className, onSubmit, ...props }) {
                         <img
                             src={img}
                             alt="Image"
-                            className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
+                            className="absolute inset-0 h-full w-full object-cover"
                         />
                     </div>
                 </CardContent>
             </Card>
 
             <div className="text-muted-foreground *:[a]:hover:text-primary text-center text-xs text-balance *:[a]:underline *:[a]:underline-offset-4">
-                By clicking continue, you agree to our{" "}
-                <a href="#">Terms of Service</a> and{" "}
-                <a href="#">Privacy Policy</a>.
+                En cliquant sur Continuer, vous acceptez nos...{" "}
+                <a href="#">Conditions d'utilisation</a> and{" "}
+                <a href="#">Politique de confidentialité</a>.
             </div>
         </div>
     );

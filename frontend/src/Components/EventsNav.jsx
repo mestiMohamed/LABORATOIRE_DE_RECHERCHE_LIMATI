@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
+import ev2 from "../assets/logos/0501.jpg"
 import axiosClient from "../axiosClient";
 
 import { Badge } from "@/components/ui/badge";
@@ -16,40 +17,7 @@ const EventsNav = ({
     heading = "Prochains événements",
     description = "Restez informé des événements organisés par le laboratoire : séminaires, conférences, ateliers et plus.",
     buttonText = "View all articles",
-    evs = [
-        {
-            id: "ev-1",
-            title: "Getting Started with shadcn/ui Components",
-            summary: "",
-            label: "Tutorial",
-            author: "Sarah Chen",
-            published: "1 Jan 2024",
-            url: "https://shadcnblocks.com",
-            image: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-dark-1.svg",
-        },
-        {
-            id: "ev-2",
-            title: "Building Accessible Web Applications",
-            summary:
-                "Explore how to create inclusive web experiences using shadcn/ui's accessible components. Discover practical tips for implementing ARIA labels, keyboard navigation, and semantic HTML.",
-            label: "Accessibility",
-            author: "Marcus Rodriguez",
-            published: "1 Jan 2024",
-            url: "https://shadcnblocks.com",
-            image: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-dark-1.svg",
-        },
-        {
-            id: "ev-3",
-            title: "Modern Design Systems with Tailwind CSS",
-            summary:
-                "Dive into creating scalable design systems using Tailwind CSS and shadcn/ui. Learn how to maintain consistency while building flexible and maintainable component libraries.",
-            label: "Design Systems",
-            author: "Emma Thompson",
-            published: "1 Jan 2024",
-            url: "https://shadcnblocks.com",
-            image: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-dark-1.svg",
-        },
-    ],
+    
 }) => {
     const [events, setEvents] = useState([]);
 
@@ -93,7 +61,7 @@ const EventsNav = ({
                                     className="transition-opacity duration-200 fade-in hover:opacity-70"
                                 >
                                     <img
-                                        src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-dark-1.svg"
+                                        src={ev2}
                                         alt={ev.title}
                                         className="h-full w-full object-cover object-center rounded-2xl"
                                     />

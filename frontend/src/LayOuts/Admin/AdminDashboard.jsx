@@ -14,6 +14,7 @@ import { Button } from "../../Components/ui/button";
 import { CalendarRange, Layers, SquareMenu, User } from "lucide-react";
 import { EventsChart } from "../../Components/charts/EventsChart";
 import { ProjetDeRechercheChart } from "../../Components/charts/ProjetDeRechercheChart";
+import { DashCharts } from "../../Components/DashCharts";
 
 function AdminDashboard() {
     const [stats, setStats] = useState({
@@ -67,10 +68,7 @@ function AdminDashboard() {
     return (
         <>
             <div className="flex items-center justify-between space-y-2">
-                <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
-                <div className="flex items-center space-x-2">
-                    <Button>Télécharger</Button>
-                </div>
+                <h2 className="text-3xl font-bold tracking-tight">Tableau de bord</h2>
             </div>
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
                 {/* Chercheurs */}
@@ -139,14 +137,8 @@ function AdminDashboard() {
                     </CardContent>
                 </Card>
             </div>
-            <div className="flex gap-4">
-                <div className="w-1/2">
-                    <EventsChart />
-                </div>
-                <div className="w-1/2">
-                    <ProjetDeRechercheChart />
-                </div>
-            </div>
+            <DashCharts />
+            
         </>
     );
 }

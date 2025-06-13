@@ -5,6 +5,7 @@ import React from "react";
 import { LogIn, MenuIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 import sh1 from "../../assets/logos/sh1.png";
+import logo from "../../assets/logos/realLimati.png"
 import { LOGIN, LOGIN_PAGE } from "../../router";
 import { ModeToggle } from "../mode-toggle";
 
@@ -156,8 +157,7 @@ export function ResponsiveNavigationMenu() {
             <div className="container">
                 <nav className="flex items-center justify-between gap-50">
                     <Link to="/" className="flex items-center gap-2">
-                        <img src={sh1} alt="LIMATI Logo" className="max-h-12" />
-                        LIMATI
+                        <img src={logo} alt="LIMATI Logo" className="max-h-12" />
                     </Link>
 
                     {/* Desktop Navigation */}
@@ -178,7 +178,7 @@ export function ResponsiveNavigationMenu() {
                                                     className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
                                                     href="/"
                                                 >
-                                                    <div className="mb-2 mt-4 text-lg font-medium">
+                                                    <div className="mb-2 mt-4 text-lg font-medium font-semibold">
                                                         LIMATI
                                                     </div>
                                                     <p className="text-sm leading-tight text-muted-foreground">

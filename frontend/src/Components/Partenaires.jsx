@@ -1,4 +1,9 @@
-
+import logofp from "../assets/logos/logo-fp.png"
+import logousms from "../assets/logos/logo_usms1.png"
+import logoinwi from "../assets/logos/Logo_inwi.png"
+import logokarama from "../assets/logos/logo-KaramaBus.png"
+import logolenovo from "../assets/logos/lenovo_logo.png"
+import logoalbarid from "../assets/logos/Al_Barik_Bank_logo.png"
 
 const Logos8 = ({
     title = "Nos partenaires",
@@ -6,28 +11,33 @@ const Logos8 = ({
     logos = [
         {
             name: "Vercel",
-            logo: "https://shadcnblocks.com/images/block/logos/vercel-wordmark.svg",
-            className: "h-7 w-auto",
+            logo: logofp,
+            className: "h-16 w-24"
         },
         {
             name: "Astro",
-            logo: "https://shadcnblocks.com/images/block/logos/tailwind-wordmark.svg",
-            className: "h-5 w-auto",
+            logo: logousms,
+            className: "h-16 w-20"
         },
         {
             name: "Supabase",
-            logo: "https://shadcnblocks.com/images/block/logos/supabase-wordmark.svg",
-            className: "h-6 w-auto",
+            logo: logoinwi,
+            className: "h-16 w-36"
         },
         {
             name: "Figma",
-            logo: "https://shadcnblocks.com/images/block/logos/figma-wordmark.svg",
-            className: "h-5 w-auto",
+            logo: logokarama,
+            className: "h-16 w-44"
         },
         {
-            name: "Astro",
-            logo: "https://shadcnblocks.com/images/block/logos/astro-wordmark.svg",
-            className: "h-6 w-auto",
+            name: "lenovo",
+            logo: logolenovo,
+            className: "h-36 w-44"
+        },
+        {
+            name: "albarid",
+            logo: logoalbarid,
+            className: "h-24 w-44"
         },
     ],
 }) => {
@@ -43,8 +53,8 @@ const Logos8 = ({
                                 key={index}
                                 src={logo.logo}
                                 alt={`${logo.name} logo`}
-                                width={109}
-                                height={48}
+                                width={309}
+                                height={100}
                                 className={logo.className}
                             />
                         ))}

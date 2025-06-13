@@ -1,5 +1,11 @@
 import { Separator } from "@/components/ui/separator";
 
+import sj1 from "../assets/sujets/sj1.jpg"
+import sj2 from "../assets/sujets/sj2.jpg"
+import sj3 from "../assets/sujets/sj3.jpg"
+import sj4 from "../assets/sujets/sj4.jpg"
+import sj5 from "../assets/sujets/sj5.jpg"
+
 const SujetsScientifiquesNav = () => {
     return (
         <section className="py-32">
@@ -19,7 +25,7 @@ const SujetsScientifiquesNav = () => {
                     <div className="grid gap-16 lg:grid-cols-3 xl:gap-24">
                         <div className="flex flex-col gap-10 border-border sm:flex-row lg:col-span-2 lg:pr-16 xl:pr-24">
                             <img
-                                src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg"
+                                src={sj1}
                                 alt="placeholder"
                                 className="aspect-29/35 h-full w-full max-w-60 rounded-2xl object-cover"
                             />
@@ -45,7 +51,7 @@ const SujetsScientifiquesNav = () => {
                     <div className="grid gap-16 lg:grid-cols-3 xl:gap-24">
                         <div className="flex flex-col gap-10 border-border sm:flex-row lg:col-span-2 lg:pr-16 xl:pr-24">
                             <img
-                                src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg"
+                                src={sj2}
                                 alt="placeholder"
                                 className="aspect-29/35 h-full w-full max-w-60 rounded-2xl object-cover"
                             />
@@ -70,7 +76,7 @@ const SujetsScientifiquesNav = () => {
                     <div className="grid gap-16 lg:grid-cols-3 xl:gap-24">
                         <div className="flex flex-col gap-10 border-border sm:flex-row lg:col-span-2 lg:pr-16 xl:pr-24">
                             <img
-                                src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg"
+                                src={sj3}
                                 alt="placeholder"
                                 className="aspect-29/35 h-full w-full max-w-60 rounded-2xl object-cover"
                             />
@@ -94,7 +100,7 @@ const SujetsScientifiquesNav = () => {
                     <div className="grid gap-16 lg:grid-cols-3 xl:gap-24">
                         <div className="flex flex-col gap-10 border-border sm:flex-row lg:col-span-2 lg:pr-16 xl:pr-24">
                             <img
-                                src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg"
+                                src={sj4}
                                 alt="placeholder"
                                 className="aspect-29/35 h-full w-full max-w-60 rounded-2xl object-cover"
                             />

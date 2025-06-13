@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { LoginForm } from "../Components/login-form";
 import axiosClient from "../axiosClient";
 import { useStateContext } from "../contexts/contextprovider";
-import { CHERCHEUR_DASHBOARD_ROUTE } from "../router";
 import { ResponsiveNavigationMenu } from "../Components/Acceuil/NavBar";
 
 import {

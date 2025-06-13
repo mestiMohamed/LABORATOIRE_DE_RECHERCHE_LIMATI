@@ -3,6 +3,7 @@ import { useStateContext } from "../../Contexts/ContextProvider";
 import { useEffect } from "react";
 import axiosClient from "../../axiosClient";
 import { Feature166 } from "./Dashboard Componenets/Feature";
+import { Feature13 } from "../ChercheurDash";
 
 function ChercheurDashboard(props) {
     const {user, setUser} = useStateContext()
@@ -15,7 +16,9 @@ function ChercheurDashboard(props) {
 
     return (
         <>
-            <Feature166 />
+            <div className="w-full">
+                <Feature13 />
+            </div>
         </>
     );
 }

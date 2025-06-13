@@ -64,7 +64,7 @@ function PresentationDuLabo(props) {
                     <Stats6 />
                 </section>
                 
-                <section className="bg-black">
+                <section className="">
                     <Footer2 />
                 </section>
             </main>

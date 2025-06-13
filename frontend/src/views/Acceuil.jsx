@@ -3,7 +3,7 @@ import { ResponsiveNavigationMenu } from "../Components/Acceuil/NavBar";
 import { CarouselPlugin } from "../Components/Acceuil/Carousel";
 import { CarouselEvents } from "../Components/Acceuil/CarouselEvents.jsx";
 import { Button } from "../Components/ui/button.js";
-import imgEq from "../assets/images_d'acceuil/2025.png";
+import imgEq from "../assets/images_d'acceuil/equipeImg.jpg";
 import khotot from "../assets/images_d'acceuil/khotot.png";
 import Actualite from "../Components/Acceuil/Actualite.jsx";
 import { motion, useAnimation } from "framer-motion";
@@ -76,7 +76,7 @@ function Acceuil(props) {
 
                     <section className=" container mx-auto px-4 items-center flex flex-col py-40 bg-background">
                         <div className="space-y-6 max-w-3xl">
-                            <h1 className="text-3xl tracking-tight text-orange-600 dark:text-teal-400">
+                            <h1 className="text-3xl tracking-tight text-[#bc0600] dark:text-teal-400">
                                 LE LABORATOIRE
                             </h1>
 
@@ -90,7 +90,7 @@ function Acceuil(props) {
 
                             <Link
                                 to="/presentation-du-laboratoire"
-                                className="inline-block text-sm text-orange-600 dark:text-teal-400 underline underline-offset-4 hover:text-orange-700 dark:hover:text-teal-300 transition-colors"
+                                className="inline-block text-sm text-[#bc0600] dark:text-teal-400 underline underline-offset-4 hover:text-orange-700 dark:hover:text-teal-300 transition-colors"
                             >
                                 Voir la présentation du laboratoire
                             </Link>
@@ -101,7 +101,7 @@ function Acceuil(props) {
                             <h1 className="text-2xl font-bold">ÉVÉNEMENTS</h1>
                             <Link
                                 to="/hey"
-                                className="inline-block text-sm text-orange-600 dark:text-teal-400 underline underline-offset-4 hover:text-orange-700 dark:hover:text-teal-300 transition-colors"
+                                className="inline-block text-sm text-[#bc0600] dark:text-teal-400 underline underline-offset-4 hover:text-orange-700 dark:hover:text-teal-300 transition-colors"
                             >
                                 Voir tous les événements
                             </Link>
@@ -119,7 +119,7 @@ function Acceuil(props) {
                             className="flex flex-col justify-center px-6 py-8"
                         >
                             {/* Contenu texte */}
-                            <h2 className="text-xl md:text-2xl font-bold text-orange-600 dark:text-teal-400 mb-3 leading-tight">
+                            <h2 className="text-xl md:text-2xl font-bold text-[#bc0600] dark:text-teal-400 mb-3 leading-tight">
                                 NOS ÉQUIPES
                                 <br />
                                 DE RECHERCHE
@@ -136,7 +136,7 @@ function Acceuil(props) {
                             <Link to={"/login"}>
                                 <Button
                                     variant="link"
-                                    className="text-orange-600 dark:text-teal-400 p-0 h-auto underline underline-offset-4 text-sm hover:text-orange-500 dark:hover:text-teal-300 transition-colors cursor-pointer"
+                                    className="text-[#bc0600] dark:text-teal-400 p-0 h-auto underline underline-offset-4 text-sm hover:text-orange-500 dark:hover:text-teal-300 transition-colors cursor-pointer"
                                 >
                                     Voir les équipes
                                 </Button>
@@ -164,7 +164,7 @@ function Acceuil(props) {
                                 </h1>
                                 <Link
                                     to="/hey"
-                                    className="inline-block text-sm text-orange-600 dark:text-teal-400 underline underline-offset-4 hover:text-orange-700 dark:hover:text-teal-300 transition-colors"
+                                    className="inline-block text-sm text-[#bc0600] dark:text-teal-400 underline underline-offset-4 hover:text-orange-700 dark:hover:text-teal-300 transition-colors"
                                 >
                                     Voir toutes les actualités
                                 </Link>

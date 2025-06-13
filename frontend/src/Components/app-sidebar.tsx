@@ -131,10 +131,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar
       collapsible="icon"
-      className="fixed left-0 top-[64px] h-[calc(100vh-64px)] border-r bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+      className="fixed left-0 h-[100vh] border-r bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
       {...props}
     >
-      <SidebarHeader className="pt-4">
+      <SidebarHeader className="pt-8">
         <NavUser 
           name={user?.name || data.user.name}
           email={user?.email || data.user.email}

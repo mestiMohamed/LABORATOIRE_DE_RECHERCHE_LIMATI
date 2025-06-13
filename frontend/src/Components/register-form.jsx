@@ -5,7 +5,6 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -27,7 +26,7 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 
-import img from "../assets/logo.png";
+import img from "../assets/logos/login2.jpg";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
@@ -99,10 +98,10 @@ export function RegisterForm({
                                 <div className="flex flex-col gap-6">
                                     <div className="flex flex-col items-center text-center">
                                         <h1 className="text-2xl font-bold">
-                                            Create an account
+                                            Créer un compte
                                         </h1>
                                         <p className="text-muted-foreground text-balance">
-                                            Join Acme Inc today
+                                            Rejoignez LIMATI dès aujourd'hui
                                         </p>
                                     </div>
 
@@ -112,10 +111,12 @@ export function RegisterForm({
                                         name="name"
                                         render={({ field }) => (
                                             <FormItem>
-                                                <FormLabel>Full Name</FormLabel>
+                                                <FormLabel>
+                                                    Nom complet
+                                                </FormLabel>
                                                 <FormControl>
                                                     <Input
-                                                        placeholder="John Doe"
+                                                        placeholder="Mohamed MESTI"
                                                         ref={nameRef}
                                                         {...field}
                                                     />
@@ -131,10 +132,12 @@ export function RegisterForm({
                                         name="email"
                                         render={({ field }) => (
                                             <FormItem>
-                                                <FormLabel>Email</FormLabel>
+                                                <FormLabel>
+                                                    Adresse e-mail
+                                                </FormLabel>
                                                 <FormControl>
                                                     <Input
-                                                        placeholder="m@example.com"
+                                                        placeholder="exemple@domaine.com"
                                                         ref={emailRef}
                                                         {...field}
                                                     />
@@ -150,7 +153,9 @@ export function RegisterForm({
                                         name="password"
                                         render={({ field }) => (
                                             <FormItem>
-                                                <FormLabel>Password</FormLabel>
+                                                <FormLabel>
+                                                    Mot de passe
+                                                </FormLabel>
                                                 <FormControl>
                                                     <Input
                                                         type="password"
@@ -171,7 +176,7 @@ export function RegisterForm({
                                         render={({ field }) => (
                                             <FormItem>
                                                 <FormLabel>
-                                                    Confirm Password
+                                                    Confirmer le mot de passe
                                                 </FormLabel>
                                                 <FormControl>
                                                     <Input
@@ -287,39 +292,6 @@ export function RegisterForm({
                                                     Groupe sanguin
                                                 </FormLabel>
                                                 <FormControl>
-                                                    {/*<select
-                                                    {...field}
-                                                    className="w-full rounded-md border px-3 py-2"
-                                                >
-                                                    <option value="">
-                                                        Sélectionner un groupe
-                                                        sanguin
-                                                    </option>
-                                                    <option value="O-">
-                                                        O-
-                                                    </option>
-                                                    <option value="O+">
-                                                        O+
-                                                    </option>
-                                                    <option value="A+">
-                                                        A+
-                                                    </option>
-                                                    <option value="A-">
-                                                        A-
-                                                    </option>
-                                                    <option value="B+">
-                                                        B+
-                                                    </option>
-                                                    <option value="B-">
-                                                        B-
-                                                    </option>
-                                                    <option value="AB+">
-                                                        AB+
-                                                    </option>
-                                                    <option value="AB-">
-                                                        AB-
-                                                    </option>
-                                                </select>*/}
                                                     <Select
                                                         onValueChange={
                                                             field.onChange
@@ -384,12 +356,12 @@ export function RegisterForm({
                                     />
 
                                     <Button type="submit" className="w-full">
-                                        Register
+                                        S'inscrire
                                     </Button>
 
                                     <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
                                         <span className="bg-card text-muted-foreground relative z-10 px-2">
-                                            Or continue with
+                                            Ou continuer avec
                                         </span>
                                     </div>
 
@@ -409,7 +381,7 @@ export function RegisterForm({
                                                 />
                                             </svg>
                                             <span className="sr-only">
-                                                Register with Apple
+                                                S'inscrire avec Apple
                                             </span>
                                         </Button>
                                         <Button
@@ -427,7 +399,7 @@ export function RegisterForm({
                                                 />
                                             </svg>
                                             <span className="sr-only">
-                                                Register with Google
+                                                S'inscrire avec Google
                                             </span>
                                         </Button>
                                         <Button
@@ -445,18 +417,18 @@ export function RegisterForm({
                                                 />
                                             </svg>
                                             <span className="sr-only">
-                                                Register with Meta
+                                                S'inscrire avec Meta
                                             </span>
                                         </Button>
                                     </div>
 
                                     <div className="text-center text-sm">
-                                        Already have an account?{" "}
+                                        Vous avez déjà un compte ?{" "}
                                         <Link
                                             to={"/login"}
                                             className="underline underline-offset-4"
                                         >
-                                            Sign in
+                                            Se connecter
                                         </Link>
                                     </div>
                                 </div>
@@ -475,9 +447,9 @@ export function RegisterForm({
             </Card>
 
             <div className="text-muted-foreground *:[a]:hover:text-primary text-center text-xs text-balance *:[a]:underline *:[a]:underline-offset-4">
-                By clicking continue, you agree to our{" "}
-                <a href="#">Terms of Service</a> and{" "}
-                <a href="#">Privacy Policy</a>.
+                En cliquant sur continuer, vous acceptez nos{" "}
+                <a href="#">Conditions d'utilisation</a> et notre{" "}
+                <a href="#">Politique de confidentialité</a>.
             </div>
         </div>
     );

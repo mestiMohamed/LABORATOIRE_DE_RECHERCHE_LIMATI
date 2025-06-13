@@ -31,23 +31,6 @@ function ChercheurDashboardLayout(props) {
 
     return (
         <div className="flex flex-col h-screen">
-            {/* Header fixe */}
-            <header className="sticky top-0 z-50 bg-background border-b">
-                <div className="items-center justify-between flex bg-opacity-90 px-12 py-4 mx-auto">
-                    <div className="text-2xl font-semibold inline-flex items-center">
-                        LIMATI
-                    </div>
-                    <div>
-                        <ul className="flex place-items-center">
-                            
-                            <li className="ml-5 px-2 py-1">
-                                <ModeToggle />
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </header>
-
             {/* Contenu principal avec sidebar */}
             <div className="flex flex-1 overflow-hidden">
                 <SidebarProvider>

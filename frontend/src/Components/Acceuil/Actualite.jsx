@@ -10,6 +10,13 @@ import {
     CardTitle,
 } from "@/components/ui/card";
 
+import acc1 from "../../assets/acceuilActualite/acc1.jpg"
+import acc2 from "../../assets/acceuilActualite/acc2.jpg"
+import acc3 from "../../assets/acceuilActualite/acc3.jpg"
+import acc4 from "../../assets/acceuilActualite/acc4.jpg"
+import acc5 from "../../assets/acceuilActualite/acc5.jpg"
+import acc6 from "../../assets/acceuilActualite/acc6.jpg"
+
 function ActualiteCard({ title, date, description, link, image, index }) {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true });
@@ -39,7 +46,7 @@ function ActualiteCard({ title, date, description, link, image, index }) {
                 <CardFooter>
                     <Button
                         variant="link"
-                        className="inline-block text-sm text-orange-600 dark:text-teal-400 underline underline-offset-4 hover:text-teal-300 dark:hover:text-orange-600 transition-colors cursor-pointer"
+                        className="inline-block text-sm text-[#bc0600] dark:text-teal-400 underline underline-offset-4 hover:text-teal-300 dark:hover:text-[#bc0600] transition-colors cursor-pointer"
                     >
                         {link}
                     </Button>
@@ -57,7 +64,7 @@ function Actualite() {
             description:
                 "Des chercheurs présentent les dernières avancées en deep learning et modélisation mathématique à l'ENS Paris.",
             link: "Lire plus",
-            image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=350&q=80",
+            image: acc1,
         },
         {
             title: "Nouveaux algorithmes de cryptographie post-quantique",
@@ -65,7 +72,7 @@ function Actualite() {
             description:
                 "Des mathématiciens publient un protocole sécurisé basé sur les réseaux euclidiens, résistant aux ordinateurs quantiques.",
             link: "Lire plus",
-            image: "https://images.unsplash.com/photo-1549924231-f129b911e442?auto=format&fit=crop&w=350&q=80",
+            image: acc2,
         },
         {
             title: "Outils mathématiques pour l’optimisation énergétique",
@@ -73,7 +80,7 @@ function Actualite() {
             description:
                 "L’Université de Toulouse propose une plateforme exploitant la programmation linéaire pour réduire la consommation électrique.",
             link: "Lire plus",
-            image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=350&q=80",
+            image: acc3,
         },
         // 3 nouvelles cartes
         {
@@ -82,7 +89,7 @@ function Actualite() {
             description:
                 "Formation intensive à Lyon sur la conception et l’implémentation de réseaux neuronaux profonds.",
             link: "Lire plus",
-            image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=350&q=80",
+            image: acc4,
         },
         {
             title: "Nouvelles découvertes en théorie des graphes",
@@ -90,7 +97,7 @@ function Actualite() {
             description:
                 "Un article révolutionnaire sur les graphes dynamiques a été publié dans la revue Science.",
             link: "Lire plus",
-            image: "https://images.unsplash.com/photo-1517433456452-f9633a875f6f?auto=format&fit=crop&w=350&q=80",
+            image: acc6,
         },
         {
             title: "Conférence sur la sécurité informatique",
@@ -98,7 +105,7 @@ function Actualite() {
             description:
                 "Experts internationaux débattent des dernières menaces et des solutions de cybersécurité.",
             link: "Lire plus",
-            image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=350&q=80",
+            image: acc5,
         },
     ];
 

@@ -1,6 +1,8 @@
 import { ArrowRight } from "lucide-react";
 import { ITFaq } from "./ITdep";
 import { MathFaq } from "./MATHdep";
+import it from "../assets/dep et equipe/it.jpg"
+import ma from "../assets/dep et equipe/math.jpg"
 
 const DepEtEq = () => {
     return (
@@ -26,7 +28,7 @@ const DepEtEq = () => {
                     <div className="flex flex-col overflow-clip rounded-xl border border-border md:col-span-2 md:grid md:grid-cols-2 md:gap-6 lg:gap-8">
                         <div className="md:min-h-[24rem] lg:min-h-[28rem] xl:min-h-[32rem]">
                             <img
-                                src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg"
+                                src={it}
                                 alt="Feature 1"
                                 className="aspect-16/9 h-full w-full object-cover object-center"
                             />
@@ -41,7 +43,7 @@ const DepEtEq = () => {
                         </div>
                         <div className="md:min-h-[24rem] lg:min-h-[28rem] xl:min-h-[32rem]">
                             <img
-                                src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-2.svg"
+                                src={ma}
                                 alt="Feature 2"
                                 className="aspect-16/9 h-full w-full object-cover object-center"
                             />

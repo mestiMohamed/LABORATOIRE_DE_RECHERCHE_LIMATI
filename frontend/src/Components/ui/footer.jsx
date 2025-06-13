@@ -1,32 +1,33 @@
 import React from "react";
+import logolimati from "../../assets/logos/realLimati.png"
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 import limati from "../../assets/footer/limati.png";
 const defaultSections = [
     {
-        title: "Product",
+        title: "Contact",
         links: [
-            { name: "Overview", href: "#" },
-            { name: "Pricing", href: "#" },
-            { name: "Marketplace", href: "#" },
-            { name: "Features", href: "#" },
+            { name: "Annuaire", href: "#" },
+            { name: "Pour nous écrire", href: "#" },
+            { name: "Accéder à l’IRIT", href: "#" },
+            { name: "Déclaration de visites", href: "#" },
         ],
     },
     {
-        title: "Company",
+        title: "Liens utiles",
         links: [
-            { name: "About", href: "#" },
-            { name: "Team", href: "#" },
-            { name: "Blog", href: "#" },
-            { name: "Careers", href: "#" },
+            { name: "Présentation", href: "#" },
+            { name: "Départements et équipes", href: "#" },
+            { name: "Publications", href: "#" },
+            { name: "Événements", href: "#" },
         ],
     },
     {
-        title: "Resources",
+        title: "Navigation",
         links: [
-            { name: "Help", href: "#" },
-            { name: "Sales", href: "#" },
-            { name: "Advertise", href: "#" },
-            { name: "Privacy", href: "#" },
+            { name: "Accueil", href: "#" },
+            { name: "Présentation", href: "#" },
+            { name: "Toutes les actualités", href: "#" },
+            { name: "Galerie", href: "#" },
         ],
     },
 ];
@@ -45,15 +46,15 @@ const defaultLegalLinks = [
 
 const Footer2 = ({
     logo = {
-        url: "https://www.shadcnblocks.com",
-        src: "https://www.shadcnblocks.com/images/block/logos/shadcnblockscom-icon.svg",
+        url: "/",
+        src: logolimati,
         alt: "logo",
-        title: "Shadcnblocks.com",
+        title: "",
     },
     sections = defaultSections,
-    description = "A collection of components for your startup business or side project.",
+    description = "Le Laboratoire d’Innovation en Mathématiques et Applications et Technologies de l’Information (LIMATI)",
     socialLinks = defaultSocialLinks,
-    copyright = "© 2024 Shadcnblocks.com. All rights reserved.",
+    copyright = "© 2025 limati. All rights reserved.",
     legalLinks = defaultLegalLinks,
 }) => {
     return (
@@ -68,7 +69,7 @@ const Footer2 = ({
                                     src={logo.src}
                                     alt={logo.alt}
                                     title={logo.title}
-                                    className="h-8"
+                                    className="h-16"
                                 />
                             </a>
                             <h2 className="text-xl font-semibold">

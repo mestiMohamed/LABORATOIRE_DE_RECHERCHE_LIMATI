@@ -9,39 +9,44 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel";
 import AI from "../../assets/images_d'acceuil/2025.png";
+import ev1 from "../../assets/acceuilEvents/ev1.jpg";
+import ev2 from "../../assets/acceuilEvents/ev2.jpg";
+import ev3 from "../../assets/acceuilEvents/ev3.jpg";
+import ev4 from "../../assets/acceuilEvents/ev4.jpg";
+import ev5 from "../../assets/acceuilEvents/ev5.jpg";
 
 export function CarouselEvents() {
     const events = [
         {
             title: "Conférence IA 2025",
-            image: AI,
+            image: ev2,
             date: "12 Juin 2025",
             description:
                 "Un événement sur les dernières innovations en intelligence artificielle.",
         },
         {
             title: "Hackathon Étudiant",
-            image: AI,
+            image: ev1,
             date: "5 Juillet 2025",
             description:
                 "24h pour résoudre des défis technologiques en équipe.",
         },
         {
             title: "Séminaire Cybersécurité",
-            image: AI,
+            image: ev3,
             date: "20 Août 2025",
             description:
                 "Présentation des travaux de recherche récents en sécurité informatique.",
         },
         {
             title: "Atelier Dev Web",
-            image: AI,
+            image: ev4,
             date: "15 Septembre 2025",
             description: "Formation pratique aux frameworks modernes du web.",
         },
         {
             title: "Journée Portes Ouvertes",
-            image: AI,
+            image: ev5,
             date: "30 Septembre 2025",
             description:
                 "Découverte des laboratoires et rencontres avec les enseignants.",

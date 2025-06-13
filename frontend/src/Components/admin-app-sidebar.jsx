@@ -2,7 +2,6 @@ import * as React from "react";
 
 import { Sidebar, SidebarContent, SidebarRail } from "@/components/ui/sidebar";
 
-
 import { NavMain } from "@/components/nav-main";
 import { NavUser } from "@/Components/nav-user";
 import { TeamSwitcher } from "@/components/team-switcher";
@@ -15,6 +14,7 @@ import {
     CalendarCog,
     Columns3Cog,
     FolderCog,
+    GaugeIcon,
     NotebookPen,
     Settings2,
     UserCog,
@@ -25,6 +25,11 @@ import { SidebarFooter, SidebarHeader } from "@/components/ui/sidebar";
 // This is sample data.
 const data = {
     navMain: [
+        {
+            title: "Tableau de bord",
+            url: "/admin/tableau-de-bord",
+            icon: GaugeIcon,
+        },
         {
             title: "Gestion des événements",
             url: "/admin/manage-events",
@@ -43,12 +48,12 @@ const data = {
         {
             title: "Gestion des projets",
             url: "/admin/manage-projets",
-            icon: FolderCog
+            icon: FolderCog,
         },
         {
             title: "Gestion des publications scientifiques",
             url: "/admin/manage-publications",
-            icon: BookText
+            icon: BookText,
         },
     ],
 };
@@ -57,19 +62,17 @@ export function AdminAppSidebar({ ...props }) {
     return (
         <Sidebar
             collapsible="icon"
-            className="fixed left-0 top-[64px] h-[calc(100vh-64px)] border-r"
+            className="fixed left-0 h-[100vh] border-r"
             {...props}
         >
-            <SidebarHeader className="pt-4">
+            <SidebarHeader className="pt-8">
                 <NavUser />
             </SidebarHeader>
             <SidebarContent className="mt-4 space-y-4">
                 <NavMain items={data.navMain} />
             </SidebarContent>
 
-            <SidebarFooter className="pb-4">
-                
-            </SidebarFooter>
+            <SidebarFooter className="pb-4"></SidebarFooter>
 
             <SidebarRail />
         </Sidebar>

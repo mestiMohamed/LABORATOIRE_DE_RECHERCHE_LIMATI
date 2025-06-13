@@ -1,6 +1,8 @@
 import { Separator } from "@/components/ui/separator";
 import axiosClient from "../axiosClient";
 import { useState, useEffect } from "react";
+import pub1 from "../assets/pubs/pub1.jpg";
+import pub2 from "../assets/pubs/pub2.jpg";
 
 const PubScientifiquesNav = () => {
     const [publications, setPublications] = useState([]);
@@ -27,119 +29,121 @@ const PubScientifiquesNav = () => {
         <section className="py-32">
             <div className="container">
                 <div className="flex flex-col gap-6 text-center">
-                    <p className="font-medium">4500+ Satisfied Customers</p>
+                    <p className="font-medium">4500+ clients satisfaits</p>
                     <h2 className="text-4xl font-medium md:text-5xl">
-                        Real results from real users
+                        De vrais résultats venant de vrais chercheurs
                     </h2>
                 </div>
+
                 <div className="mt-20">
                     <div className="grid gap-16 lg:grid-cols-3 xl:gap-24">
+                        {/* Publication 1 */}
                         <div className="flex flex-col gap-10 border-border sm:flex-row lg:col-span-2 lg:border-r lg:pr-16 xl:pr-24">
                             <img
-                                src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg"
-                                alt="placeholder"
+                                src={pub1}
+                                alt="Publication 1"
                                 className="aspect-29/35 h-full w-full max-w-60 rounded-2xl object-cover"
                             />
                             <div className="flex h-full flex-col justify-between gap-10">
                                 <q className="sm:text-xl">
-                                    This productivity tool transformed how we
-                                    collaborate. Our team's workflow improved
-                                    dramatically, and we've cut meeting time by
-                                    half while increasing output.
+                                    Un algorithme hybride d’optimisation basé
+                                    sur les colonies de fourmis pour la
+                                    planification des ressources dans le cloud
+                                    computing.
                                 </q>
                                 <div className="flex items-end gap-6">
                                     <div className="flex flex-col gap-1">
                                         <p className="text-lg font-semibold text-primary">
-                                            Michael Rivera
+                                            Dr. Samir Bensaid
                                         </p>
                                         <p className="text-muted-foreground">
-                                            Product Director
+                                            Revue Algérienne d'Informatique -
+                                            2023
                                         </p>
                                     </div>
-                                    <img
-                                        src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/company/fictional-company-logo-2.svg"
-                                        alt="logo"
-                                    />
                                 </div>
                             </div>
                         </div>
+
+                        {/* Statistiques */}
                         <div className="flex gap-10 self-center lg:flex-col">
                             <div className="flex flex-col gap-2">
                                 <p className="text-4xl font-medium text-primary sm:text-5xl">
-                                    98%
+                                    12
                                 </p>
                                 <p className="font-semibold text-primary">
-                                    Customer Satisfaction
+                                    Citations
                                 </p>
                                 <p className="text-muted-foreground">
-                                    From verified reviews
+                                    Indexée par Google Scholar
                                 </p>
                             </div>
                             <div className="flex flex-col gap-2">
                                 <p className="text-4xl font-medium text-primary sm:text-5xl">
-                                    3.8x
+                                    Q2
                                 </p>
                                 <p className="font-semibold text-primary">
-                                    ROI Improvement
+                                    Quartile de la revue
                                 </p>
                                 <p className="text-muted-foreground">
-                                    Within first quarter
+                                    Impact modéré
                                 </p>
                             </div>
                         </div>
                     </div>
+
                     <Separator className="my-20" />
+
                     <div className="grid gap-16 lg:grid-cols-3 xl:gap-24">
+                        {/* Publication 2 */}
                         <div className="flex flex-col gap-10 border-border sm:flex-row lg:col-span-2 lg:border-r lg:pr-16 xl:pr-24">
                             <img
-                                src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-2.svg"
-                                alt="placeholder"
+                                src={pub2}
+                                alt="Publication 2"
                                 className="aspect-29/35 h-full w-full max-w-60 rounded-2xl object-cover"
                             />
                             <div className="flex h-full flex-col justify-between gap-10">
                                 <q className="sm:text-xl">
-                                    The interface is intuitive and customizable
-                                    to our needs. We implemented it across
-                                    departments with minimal training and saw
-                                    immediate results.
+                                    Méthodes de détection d’intrusion basées sur
+                                    le machine learning pour les réseaux
+                                    industriels : revue et perspectives.
                                 </q>
                                 <div className="flex items-end gap-6">
                                     <div className="flex flex-col gap-1">
                                         <p className="text-lg font-semibold text-primary">
-                                            Sarah Chen
+                                            Pr. Nadia Amrani
                                         </p>
                                         <p className="text-muted-foreground">
-                                            Operations Lead
+                                            Journal of Cybersecurity &
+                                            Applications - 2024
                                         </p>
                                     </div>
-                                    <img
-                                        src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/company/fictional-company-logo-3.svg"
-                                        alt="logo"
-                                    />
                                 </div>
                             </div>
                         </div>
+
+                        {/* Statistiques */}
                         <div className="flex gap-10 self-center lg:flex-col">
                             <div className="flex flex-col gap-2">
                                 <p className="text-4xl font-medium text-primary sm:text-5xl">
-                                    4.2x
+                                    8
                                 </p>
                                 <p className="font-semibold text-primary">
-                                    Team Efficiency
+                                    Recherches associées
                                 </p>
                                 <p className="text-muted-foreground">
-                                    Proven productivity gains
+                                    Sujets en cybersécurité
                                 </p>
                             </div>
                             <div className="flex flex-col gap-2">
                                 <p className="text-4xl font-medium text-primary sm:text-5xl">
-                                    72%
+                                    2024
                                 </p>
                                 <p className="font-semibold text-primary">
-                                    Reduced Task Time
+                                    Année de publication
                                 </p>
                                 <p className="text-muted-foreground">
-                                    Across all projects
+                                    Derniers travaux
                                 </p>
                             </div>
                         </div>
