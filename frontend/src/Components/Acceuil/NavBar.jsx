@@ -63,12 +63,6 @@ const components4 = [
             "Opportunités de stages pour étudiants de licence, master ou écoles d'ingénieurs.",
     },
     {
-        title: "FAIRE UN DOCTORAT A LIMATI",
-        href: "/faire-un-doctorat-a-limati",
-        description:
-            "Encadrement doctoral et sujets de thèse proposés au sein du laboratoire.",
-    },
-    {
         title: "ÉVÉNEMENTS",
         href: "/événemnents",
         description:

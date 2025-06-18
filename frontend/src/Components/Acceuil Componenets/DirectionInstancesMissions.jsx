@@ -354,7 +354,7 @@ function DirectionInstanceMissions(props) {
                     <br />
                 </section>
 
-                <section className="bg-black">
+                <section className="">
                     <Footer2 />
                 </section>
             </main>

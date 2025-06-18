@@ -28,6 +28,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/chercheur/publications-par-mois', [ChercheurController::class, 'publicationsParMois']);
     Route::get('/chercheur/projets-par-mois', [ChercheurController::class, 'projetsParMois']);
     Route::put('/profile/update', [ChercheurController::class, 'updateProfile']);
+    Route::get('/publications/recent', [PublicationController::class, 'getRecentPublicationsGroupedByDate']);
+    Route::get('/events/permonth', [EventController::class, 'eventsPerMonth']);
+    Route::get('/projects/last5months', [ProjteDeRecherchecontroller::class, 'projectsLast5Months']);
+
 
 
 

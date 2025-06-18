@@ -53,7 +53,7 @@ function DirectionsInstancesMissions(props) {
 
                 Hi from Directions Instance Missions
                 
-                <section className="bg-black">
+                <section className="">
                     <Footer2 />
                 </section>
             </main>

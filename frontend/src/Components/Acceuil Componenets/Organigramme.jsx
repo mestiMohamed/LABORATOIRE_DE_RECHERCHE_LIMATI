@@ -8,6 +8,7 @@ import { Community1 } from "../Intro.jsx";
 import { Feature73 } from "../PresentationHeader.jsx";
 import { Team1 } from "../Team.jsx";
 import { Stats6 } from "../LimatiEnChiffre.jsx";
+import { OrgContent } from "../OrgContent.jsx";
 
 function Organigramme (props) {
     const [scrolled, setScrolled] = useState(false);
@@ -52,10 +53,10 @@ function Organigramme (props) {
             <main className="pt-18">
 
                 
-                <section>
-                    
+                <section className="container mx-auto my-10">
+                    <OrgContent />
                 </section>
-                <section className="bg-black">
+                <section className="">
                     <Footer2 />
                 </section>
             </main>

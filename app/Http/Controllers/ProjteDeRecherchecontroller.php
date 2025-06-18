@@ -129,4 +129,54 @@ class ProjteDeRecherchecontroller extends Controller
 
         return ProjetDeRechercheResource::collection($projets);
     }
+
+    public function projectsLast5Months()
+    {
+        $now = Carbon::now();
+        $startMonth = $now->copy()->subMonths(5)->startOfMonth();
+        $endMonth = $now->copy()->startOfMonth(); // mois courant exclu
+
+        // Obtenir la liste des 5 mois avant le mois courant, au format YYYY-MM
+        $months = [];
+        for ($i = 5; $i >= 1; $i--) {
+            $months[] = $now->copy()->subMonths($i)->format('Y-m');
+        }
+
+        // Récupérer les projets de cette année (filtrés par date)
+        $thisYearData = DB::table('projet_de_recherches')
+            ->selectRaw('DATE_FORMAT(created_at, "%Y-%m") as month, COUNT(*) as count')
+            ->whereBetween('created_at', [$startMonth, $endMonth])
+            ->whereYear('created_at', $now->year)
+            ->groupBy('month')
+            ->pluck('count', 'month')
+            ->toArray();
+
+        // Récupérer les projets de l'année dernière (pour les mêmes mois)
+        $lastYearStart = $startMonth->copy()->subYear();
+        $lastYearEnd = $endMonth->copy()->subYear();
+
+        $lastYearData = DB::table('projet_de_recherches')
+            ->selectRaw('DATE_FORMAT(created_at, "%Y-%m") as month, COUNT(*) as count')
+            ->whereBetween('created_at', [$lastYearStart, $lastYearEnd])
+            ->whereYear('created_at', $now->year - 1)
+            ->groupBy('month')
+            ->pluck('count', 'month')
+            ->toArray();
+
+        // Construire la réponse : 5 mois avec counts thisYear et lastYear
+        $formattedData = [];
+        foreach ($months as $month) {
+            // Construire le même mois pour l'année dernière (YYYY-MM)
+            $dt = Carbon::createFromFormat('Y-m', $month);
+            $lastYearMonth = $dt->copy()->subYear()->format('Y-m');
+
+            $formattedData[] = [
+                'month' => $month,
+                'thisYear' => $thisYearData[$month] ?? 0,
+                'lastYear' => $lastYearData[$lastYearMonth] ?? 0,
+            ];
+        }
+
+        return response()->json($formattedData);
+    }
 }

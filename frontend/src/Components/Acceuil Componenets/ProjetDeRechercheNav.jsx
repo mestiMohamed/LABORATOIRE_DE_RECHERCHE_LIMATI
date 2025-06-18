@@ -8,6 +8,7 @@ import { Community1 } from "../Intro.jsx";
 import { Feature73 } from "../PresentationHeader.jsx";
 import { Team1 } from "../Team.jsx";
 import { Stats6 } from "../LimatiEnChiffre.jsx";
+import { ProjetsCon } from "../ProjetsCont.jsx";
 
 function ProjetDeRechercheNav (props) {
     const [scrolled, setScrolled] = useState(false);
@@ -51,9 +52,11 @@ function ProjetDeRechercheNav (props) {
 
             <main className="pt-18">
 
+                <section className="container mx-auto">
+                    <ProjetsCon />
+                </section> 
                 
-                
-                <section className="bg-black">
+                <section className="">
                     <Footer2 />
                 </section>
             </main>

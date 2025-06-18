@@ -15,6 +15,8 @@ import { CalendarRange, Layers, SquareMenu, User } from "lucide-react";
 import { EventsChart } from "../../Components/charts/EventsChart";
 import { ProjetDeRechercheChart } from "../../Components/charts/ProjetDeRechercheChart";
 import { DashCharts } from "../../Components/DashCharts";
+import DashAdminChercheurList from "../../Components/data-table/DashAdminChercheurList";
+ 
 
 function AdminDashboard() {
     const [stats, setStats] = useState({
@@ -67,7 +69,7 @@ function AdminDashboard() {
 
     return (
         <>
-            <div className="flex items-center justify-between space-y-2">
+            <div className="flex items-center justify-between space-y-2 mb-4">
                 <h2 className="text-3xl font-bold tracking-tight">Tableau de bord</h2>
             </div>
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -137,7 +139,12 @@ function AdminDashboard() {
                     </CardContent>
                 </Card>
             </div>
-            <DashCharts />
+            <div className="border-2 rounded-2xl px-5 my-5">
+                <DashCharts />
+            </div>
+            <div className="border-2 rounded-2xl p-5 my-5">
+                <DashAdminChercheurList />
+            </div>
             
         </>
     );

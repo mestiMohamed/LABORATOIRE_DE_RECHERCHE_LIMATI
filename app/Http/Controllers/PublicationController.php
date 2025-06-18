@@ -16,6 +16,8 @@ use App\Models\Equipe;
 use Illuminate\Http\Request;
 use App\Models\Publication;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class PublicationController extends Controller
 {
@@ -106,5 +108,18 @@ class PublicationController extends Controller
         return PublicationResource::collection(
             Publication::with('user')->paginate(6) // 6 publications par page
         );
+    }
+
+    public function getRecentPublicationsGroupedByDate()
+    {
+        $dateLimit = Carbon::now()->subDays(30);
+
+        $data = Publication::selectRaw('DATE(created_at) as date, COUNT(*) as articles')
+            ->where('created_at', '>=', $dateLimit)
+            ->groupBy('date')
+            ->orderBy('date')
+            ->get();
+
+        return response()->json($data);
     }
 }

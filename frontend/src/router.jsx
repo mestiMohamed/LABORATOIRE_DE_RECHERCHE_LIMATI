@@ -32,6 +32,8 @@ import FaireStageEnLimati from "./Components/Acceuil Componenets/FaireStageEnLim
 import FaireDoctoratLimati from "./Components/Acceuil Componenets/FaireDoctoratLimati.jsx";
 import Evenements from "./Components/Acceuil Componenets/Evenements.jsx";
 import ProjetDeRechercheNav from "./Components/Acceuil Componenets/ProjetDeRechercheNav.jsx";
+import { Contact2 } from "./Components/NousContacter.jsx";
+import Contact from "./Components/Contact.jsx";
 
 const ADMIN_BASE_ROUTE = "/admin";
 const CHERCHEUR_BASE_ROUTE = "/chercheur";
@@ -87,6 +89,10 @@ const router = createBrowserRouter([
     {
         path: "/organigramme",
         element: <Organigramme />
+    },
+    {
+        path: "nous-contacter",
+        element: <Contact />
     },
     {
         path: "/limati-en-chiffre",

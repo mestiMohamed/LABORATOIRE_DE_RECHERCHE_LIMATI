@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { Label, Pie, PieChart, Sector } from "recharts";
+import axiosClient from "../../axiosClient";
 
 import {
     Card,
@@ -23,49 +24,49 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
+import { useState } from "react";
+import { useEffect } from "react";
 
 export const description = "Un graphique circulaire interactif";
 
-const eventData = [
-    { month: "january", events: 4, fill: "var(--color-january)" },
-    { month: "february", events: 3, fill: "var(--color-february)" },
-    { month: "march", events: 5, fill: "var(--color-march)" },
-    { month: "april", events: 3, fill: "var(--color-april)" },
-    { month: "may", events: 4, fill: "var(--color-may)" },
-];
-
 const chartConfig = {
-    january: {
-        label: "Janvier",
-        color: "var(--chart-1)",
-    },
-    february: {
-        label: "Février",
-        color: "var(--chart-2)",
-    },
-    march: {
-        label: "Mars",
-        color: "var(--chart-3)",
-    },
-    april: {
-        label: "Avril",
-        color: "var(--chart-4)",
-    },
-    may: {
-        label: "Mai",
-        color: "var(--chart-5)",
-    },
+    "2025-01": { label: "Janvier", color: "var(--chart-1)" },
+    "2025-02": { label: "Février", color: "var(--chart-2)" },
+    "2025-03": { label: "Mars", color: "var(--chart-3)" },
+    "2025-04": { label: "Avril", color: "var(--chart-4)" },
+    "2025-05": { label: "Mai", color: "var(--chart-5)" },
 };
 
 export function Chart1() {
     const id = "pie-interactive";
-    const [activeMonth, setActiveMonth] = React.useState(eventData[0].month);
+
+    const [eventData, setEventData] = useState([]);
+
+    const [activeMonth, setActiveMonth] = useState("");
+
+    useEffect(() => {
+        axiosClient
+            .get("/events/permonth")
+            .then((response) => {
+                setEventData(response.data);
+            })
+            .catch((error) => {
+                console.error("Erreur chargement données événements", error);
+            });
+    }, []);
+
+    const months = eventData.map((item) => item.month);
 
     const activeIndex = React.useMemo(
         () => eventData.findIndex((item) => item.month === activeMonth),
-        [activeMonth]
+        [activeMonth, eventData]
     );
-    const months = React.useMemo(() => eventData.map((item) => item.month), []);
+
+    // Couleurs dynamiques pour chaque part du pie
+    const dataWithColors = eventData.map((item) => ({
+        ...item,
+        fill: chartConfig[item.month]?.color || "#8884d8",
+    }));
 
     return (
         <Card data-chart={id} className="flex flex-col">
@@ -73,9 +74,13 @@ export function Chart1() {
             <CardHeader className="flex-row items-start space-y-0 pb-0">
                 <div className="grid gap-1">
                     <CardTitle>Nombre d&apos;événements par mois</CardTitle>
-                    <CardDescription>Janvier - Mai 2025</CardDescription>
+                    <CardDescription>Derniers 6 mois</CardDescription>
                 </div>
-                <Select value={activeMonth} onValueChange={setActiveMonth}>
+                <Select
+                    value={activeMonth}
+                    onValueChange={setActiveMonth}
+                    disabled={months.length === 0}
+                >
                     <SelectTrigger
                         className="ml-auto h-7 w-[130px] rounded-lg pl-2.5"
                         aria-label="Sélectionner un mois"
@@ -83,24 +88,21 @@ export function Chart1() {
                         <SelectValue placeholder="Sélectionner un mois" />
                     </SelectTrigger>
                     <SelectContent align="end" className="rounded-xl">
-                        {months.map((key) => {
-                            const config = chartConfig[key];
-
-                            if (!config) {
-                                return null;
-                            }
+                        {months.map((month) => {
+                            const config = chartConfig[month];
+                            if (!config) return null;
 
                             return (
                                 <SelectItem
-                                    key={key}
-                                    value={key}
+                                    key={month}
+                                    value={month}
                                     className="rounded-lg [&_span]:flex"
                                 >
                                     <div className="flex items-center gap-2 text-xs">
                                         <span
                                             className="flex h-3 w-3 shrink-0 rounded-xs"
                                             style={{
-                                                backgroundColor: `var(--color-${key})`,
+                                                backgroundColor: config.color,
                                             }}
                                         />
                                         {config.label}
@@ -123,8 +125,8 @@ export function Chart1() {
                             content={<ChartTooltipContent hideLabel />}
                         />
                         <Pie
-                            data={eventData}
-                            dataKey="events"
+                            data={dataWithColors}
+                            dataKey="count"
                             nameKey="month"
                             innerRadius={60}
                             strokeWidth={5}
@@ -164,7 +166,8 @@ export function Chart1() {
                                                 >
                                                     {eventData[
                                                         activeIndex
-                                                    ].events.toLocaleString()}
+                                                    ]?.count?.toLocaleString() ??
+                                                        0}
                                                 </tspan>
                                                 <tspan
                                                     x={viewBox.cx}

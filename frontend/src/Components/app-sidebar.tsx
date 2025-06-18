@@ -2,6 +2,9 @@ import * as React from "react";
 import { useEffect } from "react";
 import { useStateContext } from "../Contexts/ContextProvider";
 import axiosClient from "../axiosClient";
+import { Link } from "react-router-dom";
+import img from "../assets/logos/realLimati.png";
+
 import {
   AudioWaveform,
   Command,
@@ -134,13 +137,16 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       className="fixed left-0 h-[100vh] border-r bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
       {...props}
     >
-      <SidebarHeader className="pt-8">
-        <NavUser 
+      <SidebarHeader className="pt-8 flex justify-center items-center">
+        {/*<NavUser 
           name={user?.name || data.user.name}
           email={user?.email || data.user.email}
           avatar={user?.avatar || data.user.avatar}
-        />
-      </SidebarHeader>
+        />*/}
+          <Link to="/">
+              <img src={img} alt="" className="w-40" />
+          </Link>
+        </SidebarHeader>
       
       <SidebarContent className="mt-4">
         <NavMain items={navItems} />

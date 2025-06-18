@@ -58,7 +58,7 @@ const Footer2 = ({
     legalLinks = defaultLegalLinks,
 }) => {
     return (
-        <section className="pt-20 container mx-auto">
+        <section className="pt-20 container mx-auto ">
             <div className="container">
                 <div className="flex w-full flex-col justify-between gap-10 lg:flex-row lg:items-start lg:text-left">
                     <div className="flex w-full flex-col justify-between gap-6 lg:items-start">

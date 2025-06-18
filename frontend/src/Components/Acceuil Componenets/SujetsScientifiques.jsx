@@ -55,7 +55,7 @@ function SujetsScientifiques(props) {
                     <SujetsScientifiquesNav />
                 </section>
 
-                <section className="bg-black">
+                <section className="">
                     <Footer2 />
                 </section>
             </main>

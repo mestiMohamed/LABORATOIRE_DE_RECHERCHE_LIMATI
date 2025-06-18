@@ -51,7 +51,7 @@ function AdminDashboardLayout(props) {
                                     />
                                 </div>
                             </header>
-                            <div className="flex flex-1 flex-col gap-4 p-4 pt-0 mb-30 px-15">
+                            <div className="flex flex-1 flex-col gap-4 p-4 pt-0 mb-10 px-15">
                                 <Outlet />
                             </div>
                         </SidebarInset>

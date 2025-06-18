@@ -53,7 +53,7 @@ function FaireDoctoratLimati (props) {
 
                 
                 
-                <section className="bg-black">
+                <section className="">
                     <Footer2 />
                 </section>
             </main>

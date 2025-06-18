@@ -38,30 +38,6 @@ const defaultAchievements = [
 ];
 
 const DashCharts = ({
-    title = "About Us",
-    description = "Shadcnblocks is a passionate team dedicated to creating innovative solutions that empower businesses to thrive in the digital age.",
-    mainImage = {
-        src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg",
-        alt: "placeholder",
-    },
-    secondaryImage = {
-        src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-2.svg",
-        alt: "placeholder",
-    },
-    breakout = {
-        src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/block-1.svg",
-        alt: "logo",
-        title: "Hundreds of blocks at Shadcnblocks.com",
-        description:
-            "Providing businesses with effective tools to improve workflows, boost efficiency, and encourage growth.",
-        buttonText: "Discover more",
-        buttonUrl: "https://shadcnblocks.com",
-    },
-    companiesTitle = "Valued by clients worldwide",
-    companies = defaultCompanies,
-    achievementsTitle = "Our Achievements in Numbers",
-    achievementsDescription = "Providing businesses with effective tools to improve workflows, boost efficiency, and encourage growth.",
-    achievements = defaultAchievements,
 }) => {
     return (
         <section className="py-10 flex flex-col gap-10">

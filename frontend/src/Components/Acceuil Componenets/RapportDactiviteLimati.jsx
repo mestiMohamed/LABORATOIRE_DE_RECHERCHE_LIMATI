@@ -56,7 +56,7 @@ function RapportDactiviteLimati (props) {
                     <RapportLimati />
                 </section>
                 
-                <section className="bg-black">
+                <section className="">
                     <Footer2 />
                 </section>
             </main>

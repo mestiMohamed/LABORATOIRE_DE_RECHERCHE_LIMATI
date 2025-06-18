@@ -78,30 +78,6 @@ class EventController extends Controller
         return response()->json($data);
     }
 
-    public function eventsPerMonth()
-    {
-        $sixMonthsAgo = Carbon::now()->subMonths(5)->startOfMonth();
-
-        $data = DB::table('events')
-            ->selectRaw('DATE_FORMAT(created_at, "%Y-%m") as month, COUNT(*) as count')
-            ->where('created_at', '>=', $sixMonthsAgo)
-            ->groupBy('month')
-            ->orderBy('month')
-            ->get();
-
-        // Formater pour React : remplir les mois manquants
-        $formattedData = [];
-        for ($i = 5; $i >= 0; $i--) {
-            $month = Carbon::now()->subMonths($i)->format('Y-m');
-            $formattedData[] = [
-                'month' => $month,
-                'count' => $data->firstWhere('month', $month)?->count ?? 0,
-            ];
-        }
-
-        return response()->json($formattedData);
-    }
-
     public function upcomingEvents()
     {
         $today = Carbon::now();
@@ -112,5 +88,31 @@ class EventController extends Controller
             ->get();
 
         return EventResource::collection($events);
+    }
+
+    public function eventsPerMonth()
+    {
+        // Obtenir la date du début du mois il y a 5 mois (excluant le mois courant)
+        $fiveMonthsAgo = Carbon::now()->subMonths(5)->startOfMonth();
+
+        // Requête brute pour regrouper les événements par mois
+        $data = DB::table('events')
+            ->selectRaw('DATE_FORMAT(created_at, "%Y-%m") as month, COUNT(*) as count')
+            ->where('created_at', '>=', $fiveMonthsAgo)
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get();
+
+        // Format pour React (remplir les mois manquants sauf le mois courant)
+        $formattedData = [];
+        for ($i = 5; $i >= 1; $i--) { // De 5 mois avant jusqu’à 1 mois avant (sans le mois courant)
+            $month = Carbon::now()->subMonths($i)->format('Y-m');
+            $formattedData[] = [
+                'month' => $month,
+                'count' => $data->firstWhere('month', $month)?->count ?? 0,
+            ];
+        }
+
+        return response()->json($formattedData);
     }
 }

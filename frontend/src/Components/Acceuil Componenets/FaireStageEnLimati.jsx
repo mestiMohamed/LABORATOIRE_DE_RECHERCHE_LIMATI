@@ -8,6 +8,7 @@ import { Community1 } from "../Intro.jsx";
 import { Feature73 } from "../PresentationHeader.jsx";
 import { Team1 } from "../Team.jsx";
 import { Stats6 } from "../LimatiEnChiffre.jsx";
+import { FaireStage } from "../FaireStage.jsx";
 
 function FaireStageEnLimati (props) {
     const [scrolled, setScrolled] = useState(false);
@@ -51,9 +52,11 @@ function FaireStageEnLimati (props) {
 
             <main className="pt-18">
 
+                <section className="container mx-auto">
+                    <FaireStage />
+                </section>
                 
-                
-                <section className="bg-black">
+                <section className="">
                     <Footer2 />
                 </section>
             </main>

@@ -1,4 +1,3 @@
-"use client";
 
 import { DatePickerDemo } from "./date-picker";
 import { cn } from "@/lib/utils";
@@ -440,7 +439,7 @@ export function RegisterForm({
                         <img
                             src={img}
                             alt="Register background"
-                            className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
+                            className="absolute inset-0 h-full w-full object-cover"
                         />
                     </div>
                 </CardContent>

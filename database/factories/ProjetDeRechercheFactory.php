@@ -2,26 +2,24 @@
 
 namespace Database\Factories;
 
-use App\Models\ProjetDeRecherche;
 use App\Models\User;
+use App\Models\Equipe;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ProjetDeRechercheFactory extends Factory
 {
-    protected $model = ProjetDeRecherche::class;
-
     public function definition(): array
     {
-        $type = $this->faker->randomElement(['user', 'equipe']);
-
         return [
-            'name' => $this->faker->sentence(4),
-            'description' => $this->faker->paragraph(5),
-            'user_id' => $type === 'user' ? User::inRandomOrder()->first()?->id : null,
-            'equipe_id' => $type === 'equipe' ? $this->faker->randomElement([2, 3, 4]) : null,
+            'name' => $this->faker->sentence,
+            'description' => $this->faker->paragraph,
+            'user_id' => User::inRandomOrder()->first()?->id,
+            'equipe_id' => Equipe::inRandomOrder()->first()?->id,
             'date_debut' => $this->faker->dateTimeBetween('-1 year', 'now'),
-            'date_fin' => $this->faker->dateTimeBetween('now', '+2 years'),
+            'date_fin' => $this->faker->dateTimeBetween('now', '+1 year'),
             'status' => $this->faker->randomElement(['publique', 'prive']),
+            'created_at' => now()->subDays(rand(0, 30)),
+            'updated_at' => now(),
         ];
     }
 }
